@@ -32,7 +32,7 @@ export const defaultUserProfile : UserProfileState={
 
 export const initialState = userProfileAdapter.getInitialState(defaultUserProfile);
 
-export const userProfileFeatureKey = 'user';
+//export const userProfileFeatureKey = 'user';
 
 export function userProfileReducer( state = initialState,action : userProfileActions.UserProfileAction): UserProfileState{
 
