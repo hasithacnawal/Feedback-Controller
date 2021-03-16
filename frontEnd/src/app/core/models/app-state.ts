@@ -1,4 +1,4 @@
-import {UserProfileState} from '../reducers/user-profile.reducer'
+import {UserProfileState} from 'src/app/auth/reducers/user-profile.reducer'
 
 
 export interface AppState{

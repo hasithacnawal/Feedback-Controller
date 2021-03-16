@@ -7,8 +7,8 @@ import { LoginComponent } from './views/pages/login/login.component';
 import  {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from '@ngrx/effects';
-import {UserProfileEffect} from '../app/core/effects/user-profile.effect';
-import{ userProfileReducer} from '../app/core/reducers/user-profile.reducer';
+import {UserProfileEffect} from '../app/auth/effects/user-profile.effect';
+import{ userProfileReducer} from '../app/auth/reducers/user-profile.reducer';
 import { DashboardComponent } from './views/pages/dashboard/dashboard.component'
 
 @NgModule({

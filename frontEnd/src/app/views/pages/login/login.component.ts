@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store,State,select} from '@ngrx/store';
-import * as userProfileActions from 'src/app/core/actions/user-profile.action';
-import * as fromUser  from 'src/app/core/reducers/user-profile.reducer';
-import {User} from 'src/app/core/models/user.model'
+import * as userProfileActions from 'src/app/auth/actions/user-profile.action';
+import * as fromUser  from 'src/app/auth/reducers/user-profile.reducer';
+import {User} from 'src/app/auth/models/user.model'
 import {AppState} from 'src/app/core/models/app-state';
-import * as userSelector from 'src/app/core/selectors/user-profile.selector'
+import * as userSelector from 'src/app/auth/selectors/user-profile.selector'
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 @Component({
