@@ -30,7 +30,7 @@ this.actions$.pipe(
   mergeMap((user: User) =>
     this.userService.userLogin(user).pipe(
       map(
-        (res: string) =>
+        (res:any) =>
           new userProfileActions.LoadUserLoginSucess(res)
       ),
       catchError(err => of(new userProfileActions.LoadUserLoginFailure(err)))

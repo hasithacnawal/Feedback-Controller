@@ -7,6 +7,7 @@ import {User} from 'src/app/core/models/user.model'
 import {AppState} from 'src/app/core/models/app-state';
 import * as userSelector from 'src/app/core/selectors/user-profile.selector'
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   userForm: FormGroup;
 error$: Observable<String>;
 sucess$: Observable<String>;
+su: string;
 //user : User={id:0,username:'',email:'',password:''}
 
 
@@ -24,7 +26,8 @@ sucess$: Observable<String>;
   constructor(
 
     private fb : FormBuilder,
-    private store : Store<AppState>
+    private store : Store<AppState>,
+    private router: Router
 
 
 
@@ -42,8 +45,10 @@ sucess$: Observable<String>;
 
     });
 
-    this.sucess$ = this.store.pipe(select(userSelector.getSuccess));
+   this.sucess$ = this.store.pipe(select(userSelector.getSuccess));
     this.error$ = this.store.pipe(select(userSelector.getError));
+
+
 
 
 
@@ -55,6 +60,10 @@ sucess$: Observable<String>;
 
   userLogin(){
 
+
+
+
+
     const newUser: User= {
       id:0,
       username:" ",
@@ -63,9 +72,45 @@ sucess$: Observable<String>;
 
     };
 
-    this.store.dispatch(new userProfileActions.LoadUserLoginAction(newUser));
+    if(!this.userForm.valid) {
 
-    this.userForm.reset();
+      alert('All the fileds are required!')
+      this.userForm.reset();
+
+    }
+
+    else{
+
+      this.store.dispatch(new userProfileActions.LoadUserLoginAction(newUser));
+      //this.router.navigate(['/dashboard'])
+      //this.sucess$ = this.store.pipe(select(userSelector.getSuccess));
+      //this.error$ = this.store.pipe(select(userSelector.getError));
+
+     if(!this.error$==null){
+      alert('error')
+
+      }else{
+
+        this.sucess$
+        .subscribe(val => alert(val),
+                )
+
+         //alert('sucessfully login')
+        console.log(this.sucess$)
+        this.userForm.reset();
+
+        this.router.navigate(['/dashboard'])
+
+        //console.log(this.error$ = this.store.pipe(select(userSelector.getError)));
+
+      }
+
+      //this.userForm.reset();
+
+
+
+    }
+
 
 
 

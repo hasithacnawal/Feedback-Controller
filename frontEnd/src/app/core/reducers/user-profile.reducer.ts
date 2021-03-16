@@ -9,8 +9,8 @@ export interface UserProfileState extends EntityState<User>{
   selectedUserId: number | null;
   loading: boolean;
   loaded: boolean;
-  success:string,
-  error: string;
+  success:any,
+  error: any;
 
 
 
