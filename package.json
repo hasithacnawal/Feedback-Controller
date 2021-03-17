@@ -4,9 +4,9 @@
   "description": "Nodejs Angular project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "server": "cd backend && nodemon index.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm start\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
