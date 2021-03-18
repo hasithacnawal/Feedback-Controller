@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const UserModel = require("../model/UserModel");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 require("dotenv").config();
@@ -21,8 +21,8 @@ router.post("/register", function (req, res) {
       status: res.statusCode,
     });
   } else {
-    UserModel.findOne({
-      attributes: ["user_name"],
+    User.findOne({
+      attributes: ["username"],
       where: {
         email,
       },
@@ -32,8 +32,8 @@ router.post("/register", function (req, res) {
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
             // CRETAE RECORD IN DB
-            UserModel.create({
-              user_name: username,
+            User.create({
+              username: username,
               email: email,
               password: hash,
             })
@@ -78,7 +78,7 @@ router.post("/login", function (req, res) {
   } else {
     // check mail in db or not
 
-    UserModel.findOne({
+    User.findOne({
       where: {
         email,
       },
@@ -94,7 +94,7 @@ router.post("/login", function (req, res) {
         const dbPassword = value.getDataValue("password");
 
         const userDetail = {
-          name: value.getDataValue("user_name"),
+          name: value.getDataValue("username"),
           id: value.getDataValue("id"),
         };
 
@@ -122,30 +122,30 @@ router.post("/login", function (req, res) {
 });
 
 // get UserProfil API
-router.get("/profile", function (req, res) {
-  const authHeader = req.headers["authorization"];
-  if (authHeader) {
-    const token = authHeader.substr("Bearer".length + 1);
+// router.get("/profile", function (req, res) {
+//   const authHeader = req.headers["authorization"];
+//   if (authHeader) {
+//     const token = authHeader.substr("Bearer".length + 1);
 
-    JWT.verify(token, process.env.JWTSecret, (err, user) => {
-      if (user) {
-        return res.status(200).json({
-          status: res.statusCode,
-          data: user,
-          message: "success",
-        });
-      }
-      res.status(401).json({
-        status: res.statusCode,
-        message: "please Login",
-      });
-    });
-  } else {
-    res.status(401).json({
-      status: res.statusCode,
-      message: "Please Login",
-    });
-  }
-});
+//     JWT.verify(token, process.env.JWTSecret, (err, user) => {
+//       if (user) {
+//         return res.status(200).json({
+//           status: res.statusCode,
+//           data: user,
+//           message: "success",
+//         });
+//       }
+//       res.status(401).json({
+//         status: res.statusCode,
+//         message: "please Login",
+//       });
+//     });
+//   } else {
+//     res.status(401).json({
+//       status: res.statusCode,
+//       message: "Please Login",
+//     });
+//   }
+// });
 
 module.exports = router;
