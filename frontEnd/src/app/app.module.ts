@@ -10,14 +10,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserProfileEffect } from '../app/auth/effects/user-profile.effect';
 import { userProfileReducer } from '../app/auth/reducers/user-profile.reducer';
 import { DashboardComponent } from './views/pages/dashboard/dashboard.component';
+import { NavigationBarComponent } from './views/partials/navigation-bar/navigation-bar.component';
+import { SideBarComponent } from './views/partials/side-bar/side-bar.component';
+import { FooterComponent } from './views/partials/footer/footer.component';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, NavigationBarComponent, SideBarComponent, FooterComponent],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    StoreDevtoolsModule.instrument(),
 
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
