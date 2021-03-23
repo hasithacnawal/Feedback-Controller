@@ -1,7 +1,10 @@
 const express = require("express");
+const orgs = require("../data/orgs");
 const Organization = require("../models/Organization");
 
 const router = express.Router();
+
+//relations
 
 router.post("/", async (req, res) => {
   const { name, email, phone, address } = req.body;
@@ -18,4 +21,5 @@ router.post("/", async (req, res) => {
     return res.status(500).json(err);
   }
 });
+
 module.exports = router;

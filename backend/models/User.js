@@ -26,9 +26,9 @@ const User = db.define(
     timestamps: true,
   }
 );
-
 module.exports = User;
-// "use strict";
+
+// ("use strict");
 // const { Model } = require("sequelize");
 // module.exports = (sequelize, DataTypes) => {
 //   class User extends Model {
@@ -52,10 +52,10 @@ module.exports = User;
 //     },
 //     {
 //       sequelize,
-//       modelName: "user",
-//       db,
+//       modelName: "User",
 //       tableName: "users",
 //       timestamps: true,
 //     }
 //   );
+//   return User;
 // };
