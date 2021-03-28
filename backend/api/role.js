@@ -1,6 +1,8 @@
 const express = require("express");
+const db = require("../models");
 const router = express.Router();
-const Role = require("../models/Role");
+
+const Role = db.Role;
 
 router.post("/", async (req, res) => {
   const { name } = req.body;

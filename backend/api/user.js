@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
+const db = require("../models");
 require("dotenv").config();
+
+const User = db.User;
 
 // Register APi
 router.post("/register", function (req, res) {

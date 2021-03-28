@@ -1,32 +1,34 @@
-const db = require("../connect/db");
-
-const Sequelize = require("sequelize");
-
-const User = db.define(
-  "users",
-  {
-    username: {
-      type: Sequelize.STRING,
-      allowNull: false,
+("use strict");
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define(
+    "users",
+    {
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      organizationId: {
+        type: DataTypes.INTEGER,
+      },
     },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: Sequelize.STRING,
-      unique: true,
-      allowNull: false,
-    },
-  },
-  {
-    modelName: "User",
-    db,
-    tableName: "users",
-    timestamps: true,
-  }
-);
-module.exports = User;
+    {
+      modelName: "User",
+      sequelize,
+      tableName: "users",
+      timestamps: true,
+    }
+  );
+  return User;
+};
 
 // ("use strict");
 // const { Model } = require("sequelize");

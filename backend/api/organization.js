@@ -1,6 +1,9 @@
 const express = require("express");
 const orgs = require("../data/orgs");
-const Organization = require("../models/Organization");
+const db = require("../models");
+
+const Admin = db.Admin;
+const Organization = db.Organization;
 
 const router = express.Router();
 
@@ -20,6 +23,17 @@ router.post("/", async (req, res) => {
     console.log(err);
     return res.status(500).json(err);
   }
+});
+router.get("/", async (req, res) => {
+  const organization = await Organization.findAll({
+    include: [
+      {
+        model: Admin,
+        as: "Admins",
+      },
+    ],
+  });
+  res.json(organization);
 });
 
 module.exports = router;

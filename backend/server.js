@@ -5,9 +5,11 @@ const db = require("./connect/db");
 const path = require("path");
 const cors = require("cors");
 
-//databse syncing
+const { sequelize } = require("./models");
 
-db.sync({})
+//databse syncing
+sequelize
+  .sync({ alter: true })
   .then(() => {
     console.log("database connected");
   })
@@ -32,19 +34,7 @@ const userRouter = require("./api/user");
 const adminRouter = require("./api/admin");
 const orgRouter = require("./api/organization");
 const seedsRouter = require("./api/seed");
-const Organization = require("./models/organization");
-const User = require("./models/User");
-const Admin = require("./models/admin");
-const Role = require("./models/Role");
 
-//Relations
-Organization.hasMany(Admin);
-Admin.belongsTo(Organization);
-
-Organization.hasMany(User);
-User.belongsTo(Organization);
-
-Admin.belongsTo(Role);
 //API routes
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
