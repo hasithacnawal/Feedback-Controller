@@ -1,4 +1,5 @@
 const express = require("express");
+const admin = require("../data/admin");
 const orgs = require("../data/orgs");
 const roles = require("../data/roles");
 const db = require("../models");
@@ -9,6 +10,8 @@ router.get("/", async (req, res) => {
   const role = await db.Role.bulkCreate(roles);
   res.send({ organizations, role });
   console.log("oranization data inserted");
+  
+  //res.send({admins});
 });
 
 module.exports = router;
