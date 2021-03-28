@@ -1,47 +1,46 @@
-const db = require("../connect/db");
+"use strict";
 
-const Sequelize = require("sequelize");
-
-const Admin = db.define(
-  "admins",
-  {
-    uuid: {
-      type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
+module.exports = (sequelize, DataTypes) => {
+  const Admin = sequelize.define(
+    "admins",
+    {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        PrimaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      organizationId: {
+        type: DataTypes.INTEGER,
+      },
+      roleId: {
+        type: DataTypes.INTEGER,
+      },
     },
-    name: {
-      type: Sequelize.STRING,
-
-      allowNull: false,
-    },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    phone: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    organizationId: {
-      type: Sequelize.INTEGER,
-    },
-    roleId: {
-      type: Sequelize.INTEGER,
-    },
-  },
-  {
-    modelName: "Admin",
-    db,
-    tableName: "admins",
-    timestamps: true,
-  }
-);
-
-module.exports = Admin;
+    {
+      modelName: "Admin",
+      sequelize,
+      tableName: "admins",
+      timestamps: true,
+    }
+  );
+  return Admin;
+};
 
 // ("use strict");
 // const { Model } = require("sequelize");

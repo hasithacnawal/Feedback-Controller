@@ -1,12 +1,15 @@
 const express = require("express");
-const Admin = require("../models/Admin");
 
+const db = require("../models");
+
+const Admin = db.Admin;
+const Organization = db.Organization;
 const router = express.Router();
 
 router.post("/", async (req, res) => {
   const { name, email, phone, password, organizationId, roleId } = req.body;
   try {
-    const admin = await Admin.create({
+    const admin = await db.Admin.create({
       name,
       email,
       phone,
@@ -23,7 +26,15 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
-  Admin.findByPk(id)
+  await Admin.findByPk(id, {
+    include: [
+      {
+        model: Organization,
+        as: "Organization",
+        attributes: ["name", "email"],
+      },
+    ],
+  })
     .then((value) => {
       if (value) {
         res.json(value);
@@ -34,6 +45,17 @@ router.get("/:id", async (req, res) => {
     .catch((err) => {
       res.status(404).send();
     });
+});
+router.get("/", async (req, res) => {
+  const admins = await Admin.findAll({
+    include: [
+      {
+        model: Organization,
+        attributes: ["name", "email"],
+      },
+    ],
+  });
+  res.json(admins);
 });
 
 router.get("/seed", async (req, res) => {

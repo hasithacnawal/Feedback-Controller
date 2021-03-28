@@ -1,25 +1,27 @@
-const Sequelize = require("sequelize");
-const db = require("../connect/db");
-
-const Question = db.define(
-  "questions",
-  {
-    uuid: {
-      type: Sequelize.UUID,
-      default: Sequelize.UUIDV4,
-      allowNull: false,
+"use strict";
+module.exports = (sequelize, DataTypes) => {
+  const Question = sequelize.define(
+    "questions",
+    {
+      uuid: {
+        type: DataTypes.UUID,
+        default: DataTypes.UUIDV4,
+        allowNull: false,
+      },
+      qName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      surveyId: {
+        type: DataTypes.INTEGER,
+      },
     },
-    text: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    modelName: "Question",
-    db,
-    tableName: "questions",
-    timestamps: true,
-  }
-);
-
-module.exports = Question;
+    {
+      modelName: "Question",
+      sequelize,
+      tableName: "questions",
+      timestamps: true,
+    }
+  );
+  return Question;
+};
