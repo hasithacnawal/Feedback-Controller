@@ -83,7 +83,9 @@ db.Question.belongsTo(db.Survey, {
   as: "survey",
 });
 
-db.Question.hasMany(db.MultipleOption);
+db.Question.hasMany(db.MultipleOption, {
+  as: "multipleOptions",
+});
 db.MultipleOption.belongsTo(db.Question);
 
 db.User.hasMany(db.Answer);

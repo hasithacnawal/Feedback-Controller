@@ -1,19 +1,19 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const MultipleOption = sequelize.define(
-    "multiOptions",
+    "multipleOptions",
     {
       option: {
         type: DataTypes.STRING,
       },
-      // questionId: {
-      //   type: DataTypes.INTEGER,
-      // },
+      questionId: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
       modelName: "MultipleOption",
-      tableName: "multiOptions",
+      tableName: "multipleOptions",
       timestamps: true,
     }
   );

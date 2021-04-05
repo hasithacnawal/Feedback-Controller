@@ -19,8 +19,7 @@ router.post("/", async (req, res) => {
       include: [
         {
           association: db.Survey.hasMany(db.Question),
-          as: "questions",
-          include: [db.Question.hasMany(db.MultipleOption)],
+          include: [{ association: db.Question.hasMany(db.MultipleOption) }],
         },
       ],
     }
