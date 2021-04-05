@@ -45,6 +45,10 @@ db.Organization = require("./Organization")(sequelize, DataTypes);
 db.Question = require("./Question")(sequelize, DataTypes);
 db.Survey = require("./Survey")(sequelize, DataTypes);
 db.Role = require("./role")(sequelize, DataTypes);
+db.MultipleOption = require("./MultipleOption")(sequelize, DataTypes);
+db.Answer = require("./Answer")(sequelize, DataTypes);
+db.QuestionType = require("./QuestionType")(sequelize, DataTypes);
+db.SurveyType = require("./SurveyType")(sequelize, DataTypes);
 
 // Relationships
 db.Organization.hasMany(db.Admin, {
@@ -68,15 +72,21 @@ db.Survey.belongsTo(db.Organization);
 db.Admin.belongsToMany(db.Survey, {
   through: "admin_survey",
 });
-db.Survey.belongsToMany(db.Admin, {
-  through: "admin_survey",
-});
-
 db.Survey.belongsTo(db.Admin, {
   foreignKey: "createrId",
 });
 
-db.Survey.hasMany(db.Question);
-db.Question.belongsTo(db.Survey);
+db.Survey.hasMany(db.Question, {
+  as: "questions",
+});
+db.Question.belongsTo(db.Survey, {
+  as: "survey",
+});
+
+db.Question.hasMany(db.MultipleOption);
+db.MultipleOption.belongsTo(db.Question);
+
+db.User.hasMany(db.Answer);
+db.Answer.belongsTo(db.User);
 
 module.exports = db;

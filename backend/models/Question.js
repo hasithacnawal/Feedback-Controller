@@ -5,12 +5,21 @@ module.exports = (sequelize, DataTypes) => {
     {
       uuid: {
         type: DataTypes.UUID,
-        default: DataTypes.UUIDV4,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      qName: {
+      questionTitle: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      questionType: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Small Text",
+      },
+      required: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       surveyId: {
         type: DataTypes.INTEGER,

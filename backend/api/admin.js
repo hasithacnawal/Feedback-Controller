@@ -51,6 +51,7 @@ router.get("/", async (req, res) => {
     include: [
       {
         model: Organization,
+        as: "Organization",
         attributes: ["name", "email"],
       },
     ],

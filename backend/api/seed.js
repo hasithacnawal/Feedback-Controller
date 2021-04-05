@@ -8,9 +8,10 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const organizations = await db.Organization.bulkCreate(orgs);
   const role = await db.Role.bulkCreate(roles);
-  res.send({ organizations, role });
+  const admins = await db.Admin.bulkCreate(admin);
+  res.send({ organizations, role, admins });
   console.log("oranization data inserted");
-  
+
   //res.send({admins});
 });
 

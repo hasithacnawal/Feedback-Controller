@@ -9,7 +9,7 @@ const { sequelize } = require("./models");
 
 //databse syncing
 sequelize
-  .sync({ alter: true })
+  .sync({})
   .then(() => {
     console.log("database connected");
   })
@@ -34,11 +34,12 @@ const userRouter = require("./api/user");
 const adminRouter = require("./api/admin");
 const orgRouter = require("./api/organization");
 const seedsRouter = require("./api/seed");
-
+const surveyRouter = require("./api/survey");
 //API routes
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/organization", orgRouter);
+app.use("/api/survey", surveyRouter);
 app.use("/api/seed", seedsRouter);
 
 app.get("/", (req, res) =>
