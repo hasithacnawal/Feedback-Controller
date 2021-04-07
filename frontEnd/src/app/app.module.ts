@@ -1,39 +1,85 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { UserProfileEffect } from '../app/auth/effects/user-profile.effect';
-import { userProfileReducer } from '../app/auth/reducers/user-profile.reducer';
-import { DashboardComponent } from './views/pages/dashboard/dashboard.component';
-import { NavigationBarComponent } from './views/partials/navigation-bar/navigation-bar.component';
-import { SideBarComponent } from './views/partials/side-bar/side-bar.component';
-import { FooterComponent } from './views/partials/footer/footer.component';
-import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgModule } from "@angular/core";
+
+import { CoreModule } from "./core/core.module";
+import { SharedModule } from "./shared/shared.module";
+
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./layout/header/header.component";
+import { PageLoaderComponent } from "./layout/page-loader/page-loader.component";
+import { SidebarComponent } from "./layout/sidebar/sidebar.component";
+import { RightSidebarComponent } from "./layout/right-sidebar/right-sidebar.component";
+import { AuthLayoutComponent } from "./layout/app-layout/auth-layout/auth-layout.component";
+import { MainLayoutComponent } from "./layout/app-layout/main-layout/main-layout.component";
+import { fakeBackendProvider } from "./core/interceptor/fake-backend";
+import { ErrorInterceptor } from "./core/interceptor/error.interceptor";
+import { JwtInterceptor } from "./core/interceptor/jwt.interceptor";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import {
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+  PerfectScrollbarConfigInterface,
+} from "ngx-perfect-scrollbar";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { ClickOutsideModule } from "ng-click-outside";
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from "@angular/common/http";
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  wheelPropagation: false,
+};
+
+export function createTranslateLoader(http: HttpClient): any {
+  return new TranslateHttpLoader(http, "assets/i18n/", ".json");
+}
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, NavigationBarComponent, SideBarComponent, FooterComponent],
-
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    PageLoaderComponent,
+    SidebarComponent,
+    RightSidebarComponent,
+    AuthLayoutComponent,
+    MainLayoutComponent,
+  ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
-    StoreDevtoolsModule.instrument(),
-
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-
-    ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
-    StoreModule.forFeature('user', userProfileReducer),
-    EffectsModule.forRoot([UserProfileEffect]),
+    PerfectScrollbarModule,
+    ClickOutsideModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+
+    // core & shared
+    CoreModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
+  ],
+  entryComponents: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
