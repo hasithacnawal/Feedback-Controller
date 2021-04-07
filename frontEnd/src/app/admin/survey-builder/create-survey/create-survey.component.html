@@ -1,0 +1,135 @@
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="breadcrumb breadcrumb-style ">
+              <li class="breadcrumb-item">
+                <h4 class="page-title">Create Survey</h4>
+              </li>
+              <li class="breadcrumb-item bcrumb-1">
+                <a routerLink="/admin/dashboard/main">
+                  <i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item bcrumb-2">
+                <a href="#" onClick="return false;">Survey Builder</a>
+              </li>
+              <li class="breadcrumb-item active">Create Survey</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+            <div class="header">
+              <h2>Create Survey</h2>
+  
+            </div>
+            <div class="body">
+              <h2 class="page-title">Create Survey</h2>
+  <mat-card>
+
+<form autocomplete="off">
+<mat-form-field class="full-width"> 
+<input formControlName="surveyTitle" matInput placeholder="Enter Survey Title" maxLength="50" [required]="true">
+
+</mat-form-field>
+
+<mat-form-field class="full-width">
+<mat-select formControlName="SurveyType" placeholder="Select Type" [required]="true">
+
+    <mat-option>
+
+    </mat-option>
+
+
+</mat-select>
+
+</mat-form-field>
+
+<mat-slide-toggle formControlNmae="IsAnonymous" class="mb-10">
+
+    Make survey anonymous
+</mat-slide-toggle>
+
+<div class= "survey-options">
+
+    <div class="poll-options">
+        <h3 class="list-title">Add Survey Questions</h3>
+
+
+        <div >
+
+            <div>
+
+                <mat-form-field class="full-width">
+                    <input formControlName="questionTitle" maxlenght="200" matInput placeholder ="Question title" [required]="true"
+                    
+                    >
+
+                
+                </mat-form-field>
+                
+                <mat-form-field class="full-width">
+
+                    <mat-select formControlName="questionType" placeholder="Question Type" [required]="true">
+
+                        <mat-option>
+
+                        </mat-option>
+
+                    </mat-select>
+                </mat-form-field>
+
+                <div formGroupName="questionGroup">
+
+
+                    <div>
+
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+            </div>
+
+            
+
+        </div>
+    
+        <div>
+
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end">
+            <button type="button" mat-raised-button>
+            Add Question
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="button-row">
+<button class="full-width">
+    <span>Add New Survey</span>
+
+</button>
+</div>
+
+</form>
+
+</mat-card>
+            
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>-->
