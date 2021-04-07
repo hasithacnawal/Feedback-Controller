@@ -47,6 +47,10 @@ db.Survey = require("./Survey")(sequelize, DataTypes);
 db.Role = require("./role")(sequelize, DataTypes);
 db.MultipleOption = require("./MultipleOption")(sequelize, DataTypes);
 db.Answer = require("./Answer")(sequelize, DataTypes);
+db.MultipleOptionAnswer = require("./MultipleOptionAnswer")(
+  sequelize,
+  DataTypes
+);
 db.QuestionType = require("./QuestionType")(sequelize, DataTypes);
 db.SurveyType = require("./SurveyType")(sequelize, DataTypes);
 
@@ -90,5 +94,10 @@ db.MultipleOption.belongsTo(db.Question);
 
 db.User.hasMany(db.Answer);
 db.Answer.belongsTo(db.User);
+
+db.Question.hasMany(db.Answer);
+db.Answer.belongsTo(db.Question);
+
+db.Answer.hasMany(db.MultipleOptionAnswer);
 
 module.exports = db;
