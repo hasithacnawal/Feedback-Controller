@@ -4,13 +4,12 @@ export class Survey{
 
 constructor(
 
-public id : number,
-public type: string,
+public uuid : number,
+public anonymous : boolean,
 public title: string,
-public isDeleted : boolean,
-public isAnonymous : boolean,
-public question : Question []
-
+public type: string,
+public organizationId: number,
+public createrId: number,
 
 
 ){}
