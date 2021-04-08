@@ -31,13 +31,13 @@
               <h2 class="page-title">Create Survey</h2>
   <mat-card>
 
-<form autocomplete="off">
-<mat-form-field class="full-width"> 
+<form [formGroup]="surveyForm"autocomplete="off">
+<mat-form-field class="d-block"> 
 <input formControlName="surveyTitle" matInput placeholder="Enter Survey Title" maxLength="50" [required]="true">
 
 </mat-form-field>
 
-<mat-form-field class="full-width">
+<mat-form-field class="d-block">
 <mat-select formControlName="SurveyType" placeholder="Select Type" [required]="true">
 
     <mat-option>
@@ -65,14 +65,12 @@
             <div>
 
                 <mat-form-field class="full-width">
-                    <input formControlName="questionTitle" maxlenght="200" matInput placeholder ="Question title" [required]="true"
-                    
-                    >
+                    <input formControlName="questionTitle" maxlenght="200" matInput placeholder ="Question title" [required]="true" >
 
                 
                 </mat-form-field>
                 
-                <mat-form-field class="full-width">
+                <!--<mat-form-field class="full-width">
 
                     <mat-select formControlName="questionType" placeholder="Question Type" [required]="true">
 
@@ -81,9 +79,9 @@
                         </mat-option>
 
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field>-->
 
-                <div formGroupName="questionGroup">
+                <!--<div formGroupName="questionGroup">
 
 
                     <div>
@@ -92,11 +90,11 @@
 
                         </div>
                     </div>
-                </div>
+                </div>-->
             
             
             
-            </div>
+           </div>
 
             
 
@@ -126,6 +124,8 @@
 </form>
 
 </mat-card>
+
+
             
 </div>
 </div>

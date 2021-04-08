@@ -4,14 +4,12 @@
 
 constructor(
 
-public id: number,
-public type:string,
-public text:string,
-public options: Option[],
+public uuid: number,
+public questionTitle:string,
+public questionType:string,
 public required:true,
-
-
-
+public surveyId: number,
+public questions: Question[]
 
 ){}
 
