@@ -31,6 +31,9 @@ import {
   HttpClient,
 } from "@angular/common/http";
 
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -53,6 +56,8 @@ export function createTranslateLoader(http: HttpClient): any {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
     AppRoutingModule,
     HttpClientModule,
     PerfectScrollbarModule,
