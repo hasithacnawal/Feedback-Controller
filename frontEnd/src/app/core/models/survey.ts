@@ -10,6 +10,7 @@ public title: string,
 public type: string,
 public organizationId: number,
 public createrId: number,
+public question:Question[]
 
 
 ){}
