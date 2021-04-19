@@ -20,13 +20,15 @@ import { MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 import {SurveyRoutingModule} from './survey-routing.module';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
-
+import {StoreModule} from '@ngrx/store';
+import {surveyReducer} from 'src/app/core/survey/survey.reducer'
 
 @NgModule({
   declarations: [CreateSurveyComponent],
   imports: [
     CommonModule,
     SurveyRoutingModule,
+    StoreModule.forFeature("survey", surveyReducer),
     //AppointmentRoutingModule,
   
     FormsModule,
