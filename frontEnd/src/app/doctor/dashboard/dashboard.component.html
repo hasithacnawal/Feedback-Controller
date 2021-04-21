@@ -3,13 +3,14 @@
     <div class="block-header">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <ul class="breadcrumb breadcrumb-style ">
+          <ul class="breadcrumb breadcrumb-style">
             <li class="breadcrumb-item">
               <h4 class="page-title">Dashboard</h4>
             </li>
             <li class="breadcrumb-item bcrumb-1">
               <a routerLink="/doctor/dashboard">
-                <i class="fas fa-home"></i> Home</a>
+                <i class="fas fa-home"></i> Home</a
+              >
             </li>
             <li class="breadcrumb-item active">Doctor Dashboard</li>
           </ul>
@@ -22,7 +23,9 @@
         <div class="info-box7 l-bg-card1 order-info-box7">
           <div class="info-box7-block">
             <h5 class="m-b-15">Todays Patients</h5>
-            <h2 class="text-right"><i class="fas fa-user-injured pull-left"></i><span>231</span></h2>
+            <h2 class="text-right">
+              <i class="fas fa-user-injured pull-left"></i><span>231</span>
+            </h2>
             <p class="m-b-0">18% Higher Then Last Month</p>
           </div>
         </div>
@@ -31,7 +34,9 @@
         <div class="info-box7 l-bg-card2 order-info-box7">
           <div class="info-box7-block">
             <h5 class="m-b-15">Appointments</h5>
-            <h2 class="text-right"><i class="far fa-calendar-check pull-left"></i><span>122</span></h2>
+            <h2 class="text-right">
+              <i class="far fa-calendar-check pull-left"></i><span>122</span>
+            </h2>
             <p class="m-b-0">21% Higher Then Last Month</p>
           </div>
         </div>
@@ -40,7 +45,9 @@
         <div class="info-box7 l-bg-card3 order-info-box7">
           <div class="info-box7-block">
             <h5 class="m-b-15">Todays Operations</h5>
-            <h2 class="text-right"><i class="fas fa-cut pull-left"></i><span>28</span></h2>
+            <h2 class="text-right">
+              <i class="fas fa-cut pull-left"></i><span>28</span>
+            </h2>
             <p class="m-b-0">37% Higher Then Last Month</p>
           </div>
         </div>
@@ -49,7 +56,9 @@
         <div class="info-box7 l-bg-card4 order-info-box7">
           <div class="info-box7-block">
             <h5 class="m-b-15">Online Appointment</h5>
-            <h2 class="text-right"><i class="fab fa-internet-explorer pull-left"></i><span>42</span></h2>
+            <h2 class="text-right">
+              <i class="fab fa-internet-explorer pull-left"></i><span>42</span>
+            </h2>
             <p class="m-b-0">10% Higher Then Last Month</p>
           </div>
         </div>
@@ -60,15 +69,20 @@
       <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>
-              Patients Survay</h2>
-
+            <h2>Patients Survay</h2>
           </div>
           <div class="body">
-            <apx-chart [series]="areaChartOptions.series" [chart]="areaChartOptions.chart"
-              [xaxis]="areaChartOptions.xaxis" [yaxis]="areaChartOptions.yaxis" [colors]="areaChartOptions.colors"
-              [stroke]="areaChartOptions.stroke" [legend]="areaChartOptions.legend" [tooltip]="areaChartOptions.tooltip"
-              [dataLabels]="areaChartOptions.dataLabels"></apx-chart>
+            <apx-chart
+              [series]="areaChartOptions.series"
+              [chart]="areaChartOptions.chart"
+              [xaxis]="areaChartOptions.xaxis"
+              [yaxis]="areaChartOptions.yaxis"
+              [colors]="areaChartOptions.colors"
+              [stroke]="areaChartOptions.stroke"
+              [legend]="areaChartOptions.legend"
+              [tooltip]="areaChartOptions.tooltip"
+              [dataLabels]="areaChartOptions.dataLabels"
+            ></apx-chart>
           </div>
         </div>
       </div>
@@ -76,11 +90,14 @@
         <div class="card">
           <div class="header">
             <h2>Appointment Review</h2>
-
           </div>
           <div class="body">
-            <apx-chart [series]="radialChartOptions.series" [chart]="radialChartOptions.chart"
-              [plotOptions]="radialChartOptions.plotOptions" [labels]="radialChartOptions.labels"></apx-chart>
+            <apx-chart
+              [series]="radialChartOptions.series"
+              [chart]="radialChartOptions.chart"
+              [plotOptions]="radialChartOptions.plotOptions"
+              [labels]="radialChartOptions.labels"
+            ></apx-chart>
             <div class="text-center p-t-20">
               <div class="chart-note">
                 <span class="dot bg-orange"></span>
@@ -96,7 +113,9 @@
               </div>
             </div>
             <div class="text-center p-t-20">
-              <button mat-stroked-button color="primary">Modify Availability</button>
+              <button mat-stroked-button color="primary">
+                Modify Availability
+              </button>
             </div>
           </div>
         </div>
@@ -106,13 +125,11 @@
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <div class="card">
           <div class="header">
-            <h2>
-              Todays Appointment</h2>
-
+            <h2>Todays Appointment</h2>
           </div>
           <div class="tableBody">
             <div class="table-responsive">
-              <table class="table table-hover ">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -121,17 +138,17 @@
                     <th>Last Visit</th>
                     <th>Diseases</th>
                     <th>Report</th>
-                    <th>Details </th>
+                    <th>Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user1.jpg" alt="">
+                      <img src="assets/images/user/user1.jpg" alt="" />
                     </td>
                     <td>John Doe</td>
                     <td>Male</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-red">Fever</div>
                     </td>
@@ -144,11 +161,11 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user2.jpg" alt="">
+                      <img src="assets/images/user/user2.jpg" alt="" />
                     </td>
                     <td>Sarah Smith</td>
                     <td>Female</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-green">Cholera</div>
                     </td>
@@ -161,11 +178,11 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user3.jpg" alt="">
+                      <img src="assets/images/user/user3.jpg" alt="" />
                     </td>
                     <td>Airi Satou</td>
                     <td>Male</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-purple">Jaundice</div>
                     </td>
@@ -178,11 +195,11 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user4.jpg" alt="">
+                      <img src="assets/images/user/user4.jpg" alt="" />
                     </td>
                     <td>Angelica Ramos</td>
                     <td>Female</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-brown">Typhod</div>
                     </td>
@@ -195,11 +212,11 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user5.jpg" alt="">
+                      <img src="assets/images/user/user5.jpg" alt="" />
                     </td>
                     <td>Ashton Cox</td>
                     <td>Female</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-orange">Maleria</div>
                     </td>
@@ -212,11 +229,11 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user8.jpg" alt="">
+                      <img src="assets/images/user/user8.jpg" alt="" />
                     </td>
                     <td>Cara Stevens</td>
                     <td>Male</td>
-                    <td>12/05/2016 </td>
+                    <td>12/05/2016</td>
                     <td>
                       <div class="badge col-cyan">Infection</div>
                     </td>
@@ -237,7 +254,6 @@
         <div class="card">
           <div class="header">
             <h2>Patients Group</h2>
-
           </div>
           <div class="list-body">
             <ul class="list-unstyled list-unstyled-noborder">
@@ -249,7 +265,9 @@
                   <div class="group-details font-16">Cholesterol</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">5 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    5 Patients
+                  </div>
                 </div>
               </li>
               <li class="patient-group-list">
@@ -260,7 +278,9 @@
                   <div class="group-details font-16">Diabetic</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">14 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    14 Patients
+                  </div>
                 </div>
               </li>
               <li class="patient-group-list">
@@ -271,7 +291,9 @@
                   <div class="group-details font-16">Low Blood Pressure</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">10 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    10 Patients
+                  </div>
                 </div>
               </li>
               <li class="patient-group-list">
@@ -282,7 +304,9 @@
                   <div class="group-details font-16">Hypertension</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">21 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    21 Patients
+                  </div>
                 </div>
               </li>
               <li class="patient-group-list">
@@ -293,7 +317,9 @@
                   <div class="group-details font-16">Malaria</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">11 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    11 Patients
+                  </div>
                 </div>
               </li>
               <li class="patient-group-list">
@@ -304,7 +330,9 @@
                   <div class="group-details font-16">Dental Problem</div>
                 </div>
                 <div class="media-cta">
-                  <div class="media-title text-muted mb-0 font-14">17 Patients</div>
+                  <div class="media-title text-muted mb-0 font-14">
+                    17 Patients
+                  </div>
                 </div>
               </li>
             </ul>
@@ -316,35 +344,65 @@
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
-            <h2>
-              <strong>Todo</strong> List</h2>
+            <h2><strong>Todo</strong> List</h2>
           </div>
           <div class="body">
-            <div cdkDropList class="task-list" (cdkDropListDropped)="drop($event)"
-              style="position: relative; max-height: 370px;" [perfectScrollbar]>
+            <div
+              cdkDropList
+              class="task-list"
+              (cdkDropListDropped)="drop($event)"
+              style="position: relative; max-height: 370px"
+              [perfectScrollbar]
+            >
               <div class="task-box" *ngFor="let task of tasks" cdkDrag>
                 <div>
                   <div class="task-handle m-r-20" cdkDragHandle>
                     <mat-icon aria-hidden="false">drag_indicator</mat-icon>
                   </div>
                 </div>
-                <mat-checkbox (change)="toggle(task, sidenav)" [checked]="!!task.done" class="m-r-15" color="primary">
+                <mat-checkbox
+                  (change)="toggle(task, sidenav)"
+                  [checked]="!!task.done"
+                  class="m-r-15"
+                  color="primary"
+                >
                 </mat-checkbox>
                 <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
-                <div matTooltip="Title" [ngClass]="{done:task.done}">
-                  {{task.title}}</div>
+                <div matTooltip="Title" [ngClass]="{ done: task.done }">
+                  {{ task.title }}
+                </div>
                 <div
-                  [ngClass]="{'task-low': task.priority=='Low', 'task-high': task.priority=='High','task-normal': task.priority=='Normal'}">
-                  <mat-icon matTooltip="Low" aria-hidden="false" class="lbl-low" *ngIf="task?.priority == 'Low'">
+                  [ngClass]="{
+                    'task-low': task.priority == 'Low',
+                    'task-high': task.priority == 'High',
+                    'task-normal': task.priority == 'Normal'
+                  }"
+                >
+                  <mat-icon
+                    matTooltip="Low"
+                    aria-hidden="false"
+                    class="lbl-low"
+                    *ngIf="task?.priority == 'Low'"
+                  >
                     arrow_downward
                   </mat-icon>
-                  <mat-icon matTooltip="High" aria-hidden="false" class="lbl-high" *ngIf="task?.priority == 'High'">
+                  <mat-icon
+                    matTooltip="High"
+                    aria-hidden="false"
+                    class="lbl-high"
+                    *ngIf="task?.priority == 'High'"
+                  >
                     arrow_upward
                   </mat-icon>
-                  <mat-icon matTooltip="Normal" aria-hidden="false" class="lbl-normal"
-                    *ngIf="task?.priority == 'Normal'">
-                    remove</mat-icon>
-                  {{task.priority}}
+                  <mat-icon
+                    matTooltip="Normal"
+                    aria-hidden="false"
+                    class="lbl-normal"
+                    *ngIf="task?.priority == 'Normal'"
+                  >
+                    remove</mat-icon
+                  >
+                  {{ task.priority }}
                 </div>
               </div>
             </div>
@@ -354,13 +412,11 @@
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
-            <h2>
-              Doctors List</h2>
-
+            <h2>Doctors List</h2>
           </div>
           <div class="tableBody">
             <div class="table-responsive">
-              <table class="table table-hover ">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -371,11 +427,12 @@
                 <tbody>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user5.jpg" alt="">
+                      <img src="assets/images/user/user5.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com"> Dr.Jay Soni
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com"> Dr.Jay Soni </a>
+                      </div>
                       <div class="text-job font-11">(MBBS,MD)</div>
                     </td>
                     <td>
@@ -384,11 +441,12 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user6.jpg" alt="">
+                      <img src="assets/images/user/user6.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com"> Dr.Sarah Smith
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com"> Dr.Sarah Smith </a>
+                      </div>
                       <div class="text-job font-11">(BDS,MDS)</div>
                     </td>
                     <td>
@@ -397,11 +455,12 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user3.jpg" alt="">
+                      <img src="assets/images/user/user3.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com">Dr.Megha Trivedi
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com">Dr.Megha Trivedi </a>
+                      </div>
                       <div class="text-job font-11">(BHMS)</div>
                     </td>
                     <td>
@@ -410,11 +469,12 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user2.jpg" alt="">
+                      <img src="assets/images/user/user2.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com"> Dr.John Deo
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com"> Dr.John Deo </a>
+                      </div>
                       <div class="text-job font-11">(MBBS,MS)</div>
                     </td>
                     <td>
@@ -423,11 +483,12 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user1.jpg" alt="">
+                      <img src="assets/images/user/user1.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com"> Dr.Jacob Ryan
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com"> Dr.Jacob Ryan </a>
+                      </div>
                       <div class="text-job font-11">(MBBS,MD)</div>
                     </td>
                     <td>
@@ -436,11 +497,12 @@
                   </tr>
                   <tr>
                     <td class="table-img">
-                      <img src="assets/images/user/user8.jpg" alt="">
+                      <img src="assets/images/user/user8.jpg" alt="" />
                     </td>
                     <td>
-                      <div class="media-title"><a href="mailto:test@gmail.com"> Dr.Jay Soni
-                        </a></div>
+                      <div class="media-title">
+                        <a href="mailto:test@gmail.com"> Dr.Jay Soni </a>
+                      </div>
                       <div class="text-job font-11">(MBBS)</div>
                     </td>
                     <td>
@@ -459,11 +521,19 @@
             <h2>Number Of Patients</h2>
           </div>
           <div class="body">
-            <apx-chart [series]="linechartOptions.series" [chart]="linechartOptions.chart"
-              [dataLabels]="linechartOptions.dataLabels" [plotOptions]="linechartOptions.plotOptions"
-              [yaxis]="linechartOptions.yaxis" [legend]="linechartOptions.legend" [fill]="linechartOptions.fill"
-              [colors]="linechartOptions.colors" [stroke]="linechartOptions.stroke" [tooltip]="linechartOptions.tooltip"
-              [xaxis]="linechartOptions.xaxis">
+            <apx-chart
+              [series]="linechartOptions.series"
+              [chart]="linechartOptions.chart"
+              [dataLabels]="linechartOptions.dataLabels"
+              [plotOptions]="linechartOptions.plotOptions"
+              [yaxis]="linechartOptions.yaxis"
+              [legend]="linechartOptions.legend"
+              [fill]="linechartOptions.fill"
+              [colors]="linechartOptions.colors"
+              [stroke]="linechartOptions.stroke"
+              [tooltip]="linechartOptions.tooltip"
+              [xaxis]="linechartOptions.xaxis"
+            >
             </apx-chart>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import {DOCUMENT} from "@angular/common";
+import { DOCUMENT } from "@angular/common";
 import {
   Component,
   Inject,
@@ -7,11 +7,11 @@ import {
   Renderer2,
   AfterViewInit,
 } from "@angular/core";
-import {Router} from "@angular/router";
-import {ConfigService} from "src/app/config/config.service";
-import {AuthService} from "src/app/core/service/auth.service";
-import {RightSidebarService} from "src/app/core/service/rightsidebar.service";
-import {LanguageService} from "src/app/core/service/language.service";
+import { Router } from "@angular/router";
+import { ConfigService } from "src/app/configuration/config.service";
+import { AuthService } from "src/app/core/service/auth.service";
+import { RightSidebarService } from "src/app/core/service/rightsidebar.service";
+import { LanguageService } from "src/app/core/service/language.service";
 
 const document: any = window.document;
 
@@ -39,13 +39,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private router: Router,
     public languageService: LanguageService
-  ) {
-  }
+  ) {}
 
   listLang = [
-    {text: "English", flag: "assets/images/flags/us.jpg", lang: "en"},
-    {text: "Spanish", flag: "assets/images/flags/spain.jpg", lang: "es"},
-    {text: "German", flag: "assets/images/flags/germany.jpg", lang: "de"},
+    { text: "English", flag: "assets/images/flags/us.jpg", lang: "en" },
+    { text: "Spanish", flag: "assets/images/flags/spain.jpg", lang: "es" },
+    { text: "German", flag: "assets/images/flags/germany.jpg", lang: "de" },
   ];
   notifications: any[] = [
     {
