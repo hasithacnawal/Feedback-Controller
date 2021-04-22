@@ -1,0 +1,92 @@
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="breadcrumb breadcrumb-style ">
+              <li class="breadcrumb-item">
+                <h4 class="page-title">Add Organization</h4>
+              </li>
+              <li class="breadcrumb-item bcrumb-1">
+                <a routerLink="/admin/dashboard/main">
+                  <i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item bcrumb-2">
+                <a href="#" onClick="return false;">Organizations</a>
+              </li>
+              <li class="breadcrumb-item active">Add</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-9">
+          <div class="card">
+            <div class="header">
+              <h2>Add Organization</h2>
+  
+            </div>
+            <div class="body">
+              <form class="m-4" [formGroup]="docForm" (ngSubmit)="onSubmit()">
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Organization Name</mat-label>
+                      <input matInput formControlName="name" required>
+                      <mat-error *ngIf="docForm.get('name').hasError('required')">
+                        First name is required
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                   
+
+                </div>
+                <div class="row justify-content-center">
+                 
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Mobile</mat-label>
+                      <input matInput formControlName="phone" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+               
+               
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Address</mat-label>
+                      <textarea matInput   cdkTextareaAutosize
+                       formControlName="address"></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email" required>
+                      <mat-error *ngIf="docForm.get('email').hasError('email') && docForm.get('email').touched">
+                        Please enter a valid email address
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                
+                </div>
+               
+                
+                <div class="row justify-content-center">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                    <button class="mr-3" [disabled]="!docForm.valid " mat-raised-button color="primary">Submit</button>
+                    <button type="button" mat-button>Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

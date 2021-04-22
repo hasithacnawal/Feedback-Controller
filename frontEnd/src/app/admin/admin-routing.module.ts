@@ -36,6 +36,13 @@ const routes: Routes = [
       import('./survey-builder/survey-builder.module').then((m) => m.SurveyBuilderModule),
   },
 
+  {
+    path: 'organization',
+    loadChildren: () =>
+      import('./organizations/organizations.module').then((m) => m.OrganizationsModule),
+  },
+
+
 
 ];
 
