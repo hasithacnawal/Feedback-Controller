@@ -1,40 +1,39 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: "dashboard",
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
-    path: 'appointment',
+    path: "appointment",
     loadChildren: () =>
-      import('./appointment/appointment.module').then(
+      import("./appointment/appointment.module").then(
         (m) => m.AppointmentModule
       ),
   },
   {
-    path: 'doctors',
+    path: "doctors",
     loadChildren: () =>
-      import('./doctors/doctors.module').then((m) => m.DoctorsModule),
-  },
-  {
-    path: 'staff',
-    loadChildren: () =>
-      import('./staff/staff.module').then((m) => m.StaffModule),
-  },
-  {
-    path: 'patients',
-    loadChildren: () =>
-      import('./patients/patients.module').then((m) => m.PatientsModule),
+      import("./doctors/doctors.module").then((m) => m.DoctorsModule),
   },
 
   {
-    path: 'survey',
+    path: "patients",
     loadChildren: () =>
-      import('./survey-builder/survey-builder.module').then((m) => m.SurveyBuilderModule),
+      import("./patients/patients.module").then((m) => m.PatientsModule),
   },
+
+  {
+    path: "survey",
+    loadChildren: () =>
+      import("./survey-builder/survey-builder.module").then(
+        (m) => m.SurveyBuilderModule
+      ),
+  },
+<<<<<<< HEAD
 
   {
     path: 'organization',
@@ -44,6 +43,8 @@ const routes: Routes = [
 
 
 
+=======
+>>>>>>> cee0aee48f31e90e0deb9d02832f4128333719c0
 ];
 
 @NgModule({

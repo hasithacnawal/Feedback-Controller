@@ -59,10 +59,7 @@ const routes: Routes = [
         loadChildren: () =>
           import("./widget/widget.module").then((m) => m.WidgetModule),
       },
-      {
-        path: "ui",
-        loadChildren: () => import("./ui/ui.module").then((m) => m.UiModule),
-      },
+
       {
         path: "forms",
         loadChildren: () =>
@@ -93,7 +90,7 @@ const routes: Routes = [
   { path: "**", component: Page404Component },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

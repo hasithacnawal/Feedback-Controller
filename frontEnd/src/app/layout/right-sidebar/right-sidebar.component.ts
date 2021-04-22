@@ -8,7 +8,7 @@ import {
   Renderer2,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { ConfigService } from "src/app/config/config.service";
+import { ConfigService } from "src/app/configuration/config.service";
 import { RightSidebarService } from "src/app/core/service/rightsidebar.service";
 import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 
