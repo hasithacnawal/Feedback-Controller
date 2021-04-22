@@ -33,7 +33,6 @@ const routes: Routes = [
         (m) => m.SurveyBuilderModule
       ),
   },
-<<<<<<< HEAD
 
   {
     path: 'organization',
@@ -43,8 +42,6 @@ const routes: Routes = [
 
 
 
-=======
->>>>>>> cee0aee48f31e90e0deb9d02832f4128333719c0
 ];
 
 @NgModule({
