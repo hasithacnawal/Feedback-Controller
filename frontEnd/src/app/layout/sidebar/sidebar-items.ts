@@ -188,6 +188,78 @@ export const ROUTES: RouteInfo[] = [
       },
     ],
   },
+//organiaton
+
+{
+  path: "",
+  title: "organization",
+  moduleName: "organizations",
+  iconType: "material-icons-two-tone",
+  icon: "supervised_user_circle",
+  class: "menu-toggle",
+  groupTitle: false,
+  badge: "",
+  badgeClass: "",
+  role: ["Admin"],
+  submenu: [
+    {
+      path: "/admin/organization/allOrganizations",
+      title: "All Organizations",
+      moduleName: "organizations",
+      iconType: "",
+      icon: "",
+      class: "ml-menu",
+      groupTitle: false,
+      badge: "",
+      badgeClass: "",
+      role: [""],
+      submenu: [],
+    },
+    {
+      path: "/admin/organization/add-organization",
+      title: "Add Organization",
+      moduleName: "organizations",
+      iconType: "",
+      icon: "",
+      class: "ml-menu",
+      groupTitle: false,
+      badge: "",
+      badgeClass: "",
+      role: [""],
+      submenu: [],
+    },
+    {
+      path: "/admin/organization/edit-organization",
+      title: "Edit Organiztion",
+      moduleName: "organizations",
+      iconType: "",
+      icon: "",
+      class: "ml-menu",
+      groupTitle: false,
+      badge: "",
+      badgeClass: "",
+      role: [""],
+      submenu: [],
+    },
+    {
+      path: "/admin/organization/organization-profile",
+      title: "Organization Profile",
+      moduleName: "organizations",
+      iconType: "",
+      icon: "",
+      class: "ml-menu",
+      groupTitle: false,
+      badge: "",
+      badgeClass: "",
+      role: [""],
+      submenu: [],
+    },
+  ],
+},
+
+
+
+//
 
   // Doctor Modules
   {

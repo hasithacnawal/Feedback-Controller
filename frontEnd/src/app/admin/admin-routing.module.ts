@@ -33,6 +33,15 @@ const routes: Routes = [
         (m) => m.SurveyBuilderModule
       ),
   },
+
+  {
+    path: 'organization',
+    loadChildren: () =>
+      import('./organizations/organizations.module').then((m) => m.OrganizationsModule),
+  },
+
+
+
 ];
 
 @NgModule({
