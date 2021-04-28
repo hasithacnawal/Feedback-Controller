@@ -20,7 +20,7 @@ const users: User[] = [
     password: "admin@123",
     firstName: "Sarah",
     lastName: "Smith",
-    role: Role.Admin,
+    role: Role.SuperAdmin,
     token: "admin-token",
   },
   {
@@ -30,18 +30,8 @@ const users: User[] = [
     password: "doctor@123",
     firstName: "Ashton",
     lastName: "Cox",
-    role: Role.Doctor,
+    role: Role.OrgAdmin,
     token: "doctor-token",
-  },
-  {
-    id: 3,
-    img: "assets/images/user/patient.jpg",
-    username: "patient@hospital.org",
-    password: "patient@123",
-    firstName: "Cara",
-    lastName: "Stevens",
-    role: Role.Patient,
-    token: "patient-token",
   },
 ];
 

@@ -11,7 +11,13 @@ const routes: Routes = [
     path: "dashboard",
     component: DashboardComponent,
   },
-
+  {
+    path: "survey",
+    loadChildren: () =>
+      import("./survey-builder/survey-builder.module").then(
+        (m) => m.SurveyBuilderModule
+      ),
+  },
   {
     path: "doctors",
     component: DoctorsComponent,

@@ -1,5 +1,5 @@
-import {Router, NavigationEnd} from "@angular/router";
-import {DOCUMENT} from "@angular/common";
+import { Router, NavigationEnd } from "@angular/router";
+import { DOCUMENT } from "@angular/common";
 import {
   Component,
   Inject,
@@ -9,9 +9,9 @@ import {
   HostListener,
   OnDestroy,
 } from "@angular/core";
-import {ROUTES} from "./sidebar-items";
-import {AuthService} from "src/app/core/service/auth.service";
-import {Role} from "src/app/core/models/role";
+import { ROUTES } from "./sidebar-items";
+import { AuthService } from "src/app/core/service/auth.service";
+import { Role } from "src/app/core/models/role";
 
 @Component({
   selector: "app-sidebar",
@@ -109,23 +109,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
-      this.userFullName =
-        this.authService.currentUserValue.firstName +
-        " " +
-        this.authService.currentUserValue.lastName;
+      this.userFullName = this.authService.currentUserValue.name;
       this.userImg = this.authService.currentUserValue.img;
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf("All") !== -1
       );
-      if (userRole === Role.Admin) {
-        this.userType = Role.Admin;
-      } else if (userRole === Role.Patient) {
-        this.userType = Role.Patient;
-      } else if (userRole === Role.Doctor) {
-        this.userType = Role.Doctor;
+      if (userRole === Role.SuperAdmin) {
+        this.userType = Role.SuperAdmin;
+      } else if (userRole === Role.OrgAdmin) {
+        this.userType = Role.OrgAdmin;
       } else {
-        this.userType = Role.Admin;
+        this.userType = Role.SuperAdmin;
       }
     }
 

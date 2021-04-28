@@ -19,7 +19,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./doctors/doctors.module").then((m) => m.DoctorsModule),
   },
-
+  {
+    path: "org-admins",
+    loadChildren: () =>
+      import("./org-admins/org-admins.module").then((m) => m.OrgAdminsModule),
+  },
   {
     path: "patients",
     loadChildren: () =>
@@ -27,21 +31,12 @@ const routes: Routes = [
   },
 
   {
-    path: "survey",
+    path: "organization",
     loadChildren: () =>
-      import("./survey-builder/survey-builder.module").then(
-        (m) => m.SurveyBuilderModule
+      import("./organizations/organizations.module").then(
+        (m) => m.OrganizationsModule
       ),
   },
-
-  {
-    path: 'organization',
-    loadChildren: () =>
-      import('./organizations/organizations.module').then((m) => m.OrganizationsModule),
-  },
-
-
-
 ];
 
 @NgModule({

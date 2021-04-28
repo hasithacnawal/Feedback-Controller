@@ -1,5 +1,3 @@
-import { DashboardComponent as patientDashboard } from "./../../patient/dashboard/dashboard.component";
-import { DashboardComponent as doctorDashboard } from "./../../doctor/dashboard/dashboard.component";
 import { Page404Component } from "./../../authentication/page404/page404.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -14,14 +12,7 @@ const routes: Routes = [
     path: "main",
     component: MainComponent,
   },
-  {
-    path: "doctor-dashboard",
-    component: doctorDashboard,
-  },
-  {
-    path: "patient-dashboard",
-    component: patientDashboard,
-  },
+
   { path: "**", component: Page404Component },
 ];
 @NgModule({
