@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
@@ -55,4 +55,4 @@ import {OrganizationService} from 'src/app/core/organization/organization.servic
   ],
   providers: [OrganizationService],
 })
-export class OrganizationsModule { }
+export class OrganizationsModule {}

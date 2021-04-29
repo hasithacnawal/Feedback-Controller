@@ -1,28 +1,18 @@
 const express = require("express");
-
+const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
+require("dotenv").config();
 const db = require("../models");
-
+const { register, login } = require("../sevice/adminService");
 const Admin = db.Admin;
 const Organization = db.Organization;
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-  const { name, email, phone, password, organizationId, roleId } = req.body;
-  try {
-    const admin = await db.Admin.create({
-      name,
-      email,
-      phone,
-      password,
-      organizationId,
-      roleId,
-    });
-    return res.json(admin);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-});
+//Register
+router.post("/", register);
+
+// Login API
+router.post("/login", login);
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;

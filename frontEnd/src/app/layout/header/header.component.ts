@@ -96,11 +96,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const userRole = this.authService.currentUserValue.role;
     this.userImg = this.authService.currentUserValue.img;
 
-    if (userRole === "Admin") {
+    if (userRole === "SuperAdmin") {
       this.homePage = "admin/dashboard/main";
-    } else if (userRole === "Patient") {
-      this.homePage = "patient/dashboard";
-    } else if (userRole === "Doctor") {
+    } else if (userRole === "OrgAdmin") {
       this.homePage = "doctor/dashboard";
     } else {
       this.homePage = "admin/dashboard/main";

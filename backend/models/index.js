@@ -67,8 +67,8 @@ db.Admin.belongsTo(db.Organization, {
 db.Organization.hasMany(db.User);
 db.User.belongsTo(db.Organization);
 
-db.Role.hasMany(db.Admin);
-db.Admin.belongsTo(db.Role);
+// db.Role.hasMany(db.Admin);
+// db.Admin.belongsTo(db.Role);
 
 db.Organization.hasMany(db.Survey);
 db.Survey.belongsTo(db.Organization);

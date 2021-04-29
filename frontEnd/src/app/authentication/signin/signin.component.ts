@@ -21,44 +21,42 @@ export class SigninComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.authForm = this.formBuilder.group({
-      username: ["admin@hospital.org", Validators.required],
-      password: ["admin@123", Validators.required],
+      email: ["chana@gmail.com", Validators.required],
+      password: ["1234", Validators.required],
     });
   }
   get f() {
     return this.authForm.controls;
   }
-  adminSet() {
-    this.authForm.get("username").setValue("admin@hospital.org");
-    this.authForm.get("password").setValue("admin@123");
+  superAdminSet() {
+    this.authForm.get("email").setValue("chana@gmail.com");
+    this.authForm.get("password").setValue("1234");
   }
-  doctorSet() {
-    this.authForm.get("username").setValue("doctor@hospital.org");
-    this.authForm.get("password").setValue("doctor@123");
+  orgAdminSet() {
+    this.authForm.get("email").setValue("damith@gmail.com");
+    this.authForm.get("password").setValue("1234");
   }
   patientSet() {
-    this.authForm.get("username").setValue("patient@hospital.org");
+    this.authForm.get("email").setValue("patient@hospital.org");
     this.authForm.get("password").setValue("patient@123");
   }
   onSubmit() {
     this.submitted = true;
     this.error = "";
     if (this.authForm.invalid) {
-      this.error = "Username and Password not valid !";
+      this.error = "email or Password not valid !";
       return;
     } else {
       this.authService
-        .login(this.f.username.value, this.f.password.value)
+        .login(this.f.email.value, this.f.password.value)
         .subscribe(
           (res) => {
             if (res) {
               const role = this.authService.currentUserValue.role;
-              if (role === Role.All || role === Role.Admin) {
+              if (role === Role.All || role === Role.SuperAdmin) {
                 this.router.navigate(["/admin/dashboard/main"]);
-              } else if (role === Role.Doctor) {
-                this.router.navigate(["/doctor/dashboard"]);
-              } else if (role === Role.Patient) {
-                this.router.navigate(["/patient/dashboard"]);
+              } else if (role === Role.OrgAdmin) {
+                this.router.navigate(["/orgAdmin/dashboard"]);
               } else {
                 this.router.navigate(["/authentication/signin"]);
               }

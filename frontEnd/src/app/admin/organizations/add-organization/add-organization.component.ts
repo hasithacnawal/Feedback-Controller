@@ -5,26 +5,25 @@ import {OrganizationService} from 'src/app/core/organization/organization.servic
 
 
 @Component({
-  selector: 'app-add-organization',
-  templateUrl: './add-organization.component.html',
-  styleUrls: ['./add-organization.component.sass']
+  selector: "app-add-organization",
+  templateUrl: "./add-organization.component.html",
+  styleUrls: ["./add-organization.component.sass"],
 })
 export class AddOrganizationComponent implements OnInit {
 
   org : Organization;
-  docForm: FormGroup;
+  addOrganizationForm: FormGroup;
   hide3 = true;
   agree3 = false;
   constructor(private fb: FormBuilder, private orgService: OrganizationService ) {
-    this.docForm = this.fb.group({
+    this.addOrganizationForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       phone: ['', [Validators.required]],
       address: [''],
       email: [
-        '',
-        [Validators.required, Validators.email, Validators.minLength(5)]
+        "",
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-    
     });
   }
 
@@ -33,22 +32,20 @@ export class AddOrganizationComponent implements OnInit {
 
   saveOrganization(){
 
-    //this.orgService.createOrganization(this.docForm.value).subscribe( data =>{
-      //console.log(data);
+    this.orgService.createOrganization(this.addOrganizationForm.value).subscribe( data =>{
+      console.log(data);
      
-    //},
-    //error => console.log(error));
+    },
+    error => console.log(error));
 
 
   }
 
   onSubmit() {
-    console.log('Form Value', this.docForm.value);
+    console.log("Form Value", this.addOrganizationForm.value);
 
-   // this.orgService.createOrganization(this.docForm.value);
+    // this.orgService.createOrganization(this.docForm.value);
 
-   this.saveOrganization();
+    this.saveOrganization();
   }
-
- 
 }

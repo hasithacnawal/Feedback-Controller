@@ -2,7 +2,7 @@
   <div class="modalHeader">
     <div class="editRowModal">
       <div class="modalHeader clearfix">
-        <img [src]="doctors.img" alt="avatar" />
+        <img [src]="" alt="avatar" />
         <div class="modal-about">
           <div class="font-weight-bold p-t-5 p-l-10 font-17">
             {{ dialogTitle }}
@@ -21,77 +21,32 @@
   <div mat-dialog-content>
     <form
       class="register-form m-4"
-      [formGroup]="doctorsForm"
+      [formGroup]="adminDialogForm"
       (ngSubmit)="(submit)"
     >
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" required />
             <mat-icon matSuffix>face</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('name').hasError('required')">
+            <mat-error *ngIf="adminDialogForm.get('name').hasError('required')">
               Name is required
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>department</mat-label>
-            <input matInput formControlName="department" required />
-            <mat-icon matSuffix>business_center</mat-icon>
-            <mat-error
-              *ngIf="doctorsForm.get('department').hasError('required')"
-            >
-              Department is required
-            </mat-error>
-          </mat-form-field>
-        </div>
       </div>
+
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Specialization</mat-label>
-            <input matInput formControlName="specialization" required />
-            <mat-icon matSuffix>flag</mat-icon>
-            <mat-error
-              *ngIf="doctorsForm.get('specialization').hasError('required')"
-            >
-              Specialization is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Degree</mat-label>
-            <input matInput formControlName="degree" required />
-            <mat-icon matSuffix>school</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('degree').hasError('required')">
-              Department is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number" />
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="doctorsForm.get('mobile').hasError('required')">
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" required />
             <mat-icon matSuffix>email</mat-icon>
             <mat-error
               *ngIf="
-                doctorsForm.get('email').hasError('required') ||
-                doctorsForm.get('email').touched
+                adminDialogForm.get('email').hasError('required') ||
+                adminDialogForm.get('email').touched
               "
             >
               Please enter a valid email address
@@ -102,14 +57,32 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="phone" type="number" />
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error
+              *ngIf="adminDialogForm.get('phone').hasError('required')"
+            >
+              Mobile is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Joining date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="createdAt"
+            />
             <mat-datepicker-toggle
               matSuffix
               [for]="picker"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="doctorsForm.get('date').hasError('required')">
+            <mat-error
+              *ngIf="adminDialogForm.get('createdAt').hasError('required')"
+            >
               Please select date
             </mat-error>
           </mat-form-field>
@@ -122,7 +95,7 @@
               mat-raised-button
               color="primary"
               [type]="submit"
-              [disabled]="!doctorsForm.valid"
+              [disabled]="!adminDialogForm.valid"
               [mat-dialog-close]="1"
               (click)="confirmAdd()"
             >

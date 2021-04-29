@@ -5,7 +5,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <ul class="breadcrumb breadcrumb-style">
             <li class="breadcrumb-item">
-              <h4 class="page-title">Add Organization</h4>
+              <h4 class="page-title">Add Admin</h4>
             </li>
             <li class="breadcrumb-item bcrumb-1">
               <a routerLink="/admin/dashboard/main">
@@ -13,23 +13,23 @@
               >
             </li>
             <li class="breadcrumb-item bcrumb-2">
-              <a href="#" onClick="return false;">Organizations</a>
+              <a href="#" onClick="return false;">Admins</a>
             </li>
             <li class="breadcrumb-item active">Add</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-9">
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Add Organization</h2>
+            <h2>Add New Admin</h2>
           </div>
           <div class="body">
             <form
               class="m-4"
-              [formGroup]="addOrganizationForm"
+              [formGroup]="orgAdminForm"
               (ngSubmit)="onSubmit()"
             >
               <div class="row justify-content-center">
@@ -38,14 +38,31 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Organization Name</mat-label>
+                    <mat-label> Name</mat-label>
                     <input matInput formControlName="name" required />
                     <mat-error
+                      *ngIf="orgAdminForm.get('name').hasError('required')"
+                    >
+                      Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required />
+                    <mat-error
                       *ngIf="
-                        addOrganizationForm.get('name').hasError('required')
+                        orgAdminForm.get('email').hasError('email') &&
+                        orgAdminForm.get('email').touched
                       "
                     >
-                      First name is required
+                      Please enter a valid email address
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -77,18 +94,26 @@
                   </mat-form-field>
                 </div>
               </div>
+
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" required />
+                    <mat-label>Organization</mat-label>
+                    <mat-select formControlName="organization" required>
+                      <mat-option [value]="'1'"> Neurology </mat-option>
+                      <mat-option [value]="'2'"> Orthopedics </mat-option>
+                      <mat-option [value]="'3'"> Gynaecology </mat-option>
+                      <mat-option [value]="'4'"> Microbiology </mat-option>
+                    </mat-select>
                     <mat-error
                       *ngIf="
-                        addOrganizationForm.get('email').hasError('email') &&
-                        addOrganizationForm.get('email').touched
+                        orgAdminForm
+                          .get('organization')
+                          .hasError('organization') &&
+                        orgAdminForm.get('organization').touched
                       "
                     >
                       Please enter a valid email address
@@ -101,21 +126,13 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <button
                     class="mr-3"
-                    [disabled]="!addOrganizationForm.valid"
+                    [disabled]="!orgAdminForm.valid"
                     mat-raised-button
                     color="primary"
                   >
                     Submit
                   </button>
-                  <button
-                    [routerLink]="['/admin/org-admins/add-admin']"
-                    class="mr-3"
-                    [disabled]="!addOrganizationForm.valid"
-                    mat-raised-button
-                    color="primary"
-                  >
-                    Submit & Add Admin
-                  </button>
+
                   <button type="button" mat-button>Cancel</button>
                 </div>
               </div>
