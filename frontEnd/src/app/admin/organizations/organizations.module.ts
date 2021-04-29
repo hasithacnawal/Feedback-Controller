@@ -19,19 +19,18 @@ import { MaterialFileInputModule } from "ngx-material-file-input";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
-import { OrganizationsRoutingModule } from "./organizations-routing.module";
-import { AddOrganizationComponent } from "./add-organization/add-organization.component";
-import { AllOrganizationsComponent } from "./all-organizations/all-organizations.component";
-import { OrganizationProfileComponent } from "./organization-profile/organization-profile.component";
-import { EditOrganizationComponent } from "./edit-organization/edit-organization.component";
+import { OrganizationsRoutingModule } from './organizations-routing.module';
+import { AddOrganizationComponent } from './add-organization/add-organization.component';
+import { AllOrganizationsComponent } from './all-organizations/all-organizations.component';
+import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
+import { EditOrganizationComponent } from './edit-organization/edit-organization.component';
+import { DeleteDialogComponent} from './all-organizations/dialogs/delete/delete.component';
+import { FormDialogComponent } from './all-organizations/dialogs/form-dialog/form-dialog.component';
+import {OrganizationService} from 'src/app/core/organization/organization.service'
+
 
 @NgModule({
-  declarations: [
-    AddOrganizationComponent,
-    AllOrganizationsComponent,
-    OrganizationProfileComponent,
-    EditOrganizationComponent,
-  ],
+  declarations: [AddOrganizationComponent, AllOrganizationsComponent, OrganizationProfileComponent, EditOrganizationComponent,DeleteDialogComponent, FormDialogComponent],
   imports: [
     CommonModule,
     OrganizationsRoutingModule,
@@ -54,5 +53,6 @@ import { EditOrganizationComponent } from "./edit-organization/edit-organization
     MaterialFileInputModule,
     MatProgressSpinnerModule,
   ],
+  providers: [OrganizationService],
 })
 export class OrganizationsModule {}

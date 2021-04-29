@@ -6,7 +6,7 @@ const Admin = db.Admin;
 const Organization = db.Organization;
 
 const register = function (req, res) {
-  const { name, email, phone, password, organizationId, roleId } = req.body;
+  const { name, email, phone, password, organizationId, roleId, role } = req.body;
   if (
     name == undefined ||
     name == "" ||
@@ -37,6 +37,7 @@ const register = function (req, res) {
               phone,
               organizationId,
               roleId,
+              role,
               password: hash,
             })
               .then((value) =>
