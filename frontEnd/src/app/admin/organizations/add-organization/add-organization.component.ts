@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Organization } from 'src/app/core/models/organization';
 import {OrganizationService} from 'src/app/core/organization/organization.service'
 
 
@@ -10,11 +11,11 @@ import {OrganizationService} from 'src/app/core/organization/organization.servic
 })
 export class AddOrganizationComponent implements OnInit {
 
-  
+  org : Organization;
   docForm: FormGroup;
   hide3 = true;
   agree3 = false;
-  constructor(private fb: FormBuilder, private orgService: OrganizationService) {
+  constructor(private fb: FormBuilder, private orgService: OrganizationService ) {
     this.docForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       phone: ['', [Validators.required]],
@@ -32,11 +33,11 @@ export class AddOrganizationComponent implements OnInit {
 
   saveOrganization(){
 
-    this.orgService.createOrganization(this.docForm.value).subscribe( data =>{
-      console.log(data);
+    //this.orgService.createOrganization(this.docForm.value).subscribe( data =>{
+      //console.log(data);
      
-    },
-    error => console.log(error));
+    //},
+    //error => console.log(error));
 
 
   }
