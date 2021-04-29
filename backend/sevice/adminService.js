@@ -122,5 +122,39 @@ const login = function (req, res) {
     });
   }
 };
+const findAllAdmins = async (req, res) => {
+  const admins = await Admin.findAll({
+    include: [
+      {
+        model: Organization,
+        as: "Organization",
+        attributes: ["name", "email"],
+      },
+    ],
+  });
+  res.json(admins);
+};
+const findAdminById = async (req, res) => {
+  let { id } = req.params;
+  await Admin.findByPk(id, {
+    include: [
+      {
+        model: Organization,
+        as: "Organization",
+        attributes: ["name", "email"],
+      },
+    ],
+  })
+    .then((value) => {
+      if (value) {
+        res.json(value);
+      } else {
+        res.status(500).json("Admin not found");
+      }
+    })
+    .catch((err) => {
+      res.status(404).send();
+    });
+};
 
-module.exports = { register, login };
+module.exports = { register, login, findAdminById, findAllAdmins };
