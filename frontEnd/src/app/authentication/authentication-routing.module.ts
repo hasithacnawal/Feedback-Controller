@@ -1,44 +1,49 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LockedComponent } from './locked/locked.component';
-import { Page404Component } from './page404/page404.component';
-import { Page500Component } from './page500/page500.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { SigninComponent } from "./signin/signin.component";
+import { SignupComponent } from "./signup/signup.component";
+import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
+import { LockedComponent } from "./locked/locked.component";
+import { Page404Component } from "./page404/page404.component";
+import { Page500Component } from "./page500/page500.component";
+import { OrgRegisterComponent } from "./org-register/org-register.component";
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'signin',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "signin",
+    pathMatch: "full",
   },
   {
-    path: 'signin',
-    component: SigninComponent
+    path: "signin",
+    component: SigninComponent,
   },
   {
-    path: 'signup',
-    component: SignupComponent
+    path: "signup",
+    component: SignupComponent,
   },
   {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent
+    path: "org-register",
+    component: OrgRegisterComponent,
   },
   {
-    path: 'locked',
-    component: LockedComponent
+    path: "forgot-password",
+    component: ForgotPasswordComponent,
   },
   {
-    path: 'page404',
-    component: Page404Component
+    path: "locked",
+    component: LockedComponent,
   },
   {
-    path: 'page500',
-    component: Page500Component
-  }
+    path: "page404",
+    component: Page404Component,
+  },
+  {
+    path: "page500",
+    component: Page500Component,
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AuthenticationRoutingModule {}

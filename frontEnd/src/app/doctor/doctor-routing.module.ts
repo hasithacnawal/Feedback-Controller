@@ -19,6 +19,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: "staff",
+    loadChildren: () =>
+      import("./staff/staff.module").then((m) => m.StaffModule),
+  },
+  {
     path: "doctors",
     component: DoctorsComponent,
   },

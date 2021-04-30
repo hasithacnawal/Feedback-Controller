@@ -3,18 +3,18 @@
     <div class="col-sm-6 px-0 d-none d-sm-block">
       <div
         class="left-img"
-        style="background-image: url(assets/images/pages/bg-01.png)"
+        style="background-image: url(assets/images/pages/bg-02.jpeg)"
       ></div>
     </div>
     <div class="col-sm-6 auth-form-section">
       <div class="form-section">
         <div class="auth-wrapper">
-          <h2 class="welcome-msg">Welcome to Text</h2>
+          <h2 class="welcome-msg">Welcome to STC Survey Toolkit</h2>
           <p class="auth-signup-text text-muted">
-            Need an account?<a
+            Are you new?<a
               routerLink="/authentication/signup"
               class="sign-up-link"
-              >Request Registration Here
+              >Register Your Organization
             </a>
           </p>
           <div class="d-flex justify-content-around lbl-alert mb-3">
@@ -48,11 +48,11 @@
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
+                  <mat-label>Email</mat-label>
                   <input matInput formControlName="email" />
-                  <mat-icon matSuffix>face</mat-icon>
+                  <mat-icon matSuffix>mail</mat-icon>
                   <mat-error *ngIf="authForm.get('email').hasError('required')">
-                    Username is required
+                    Enter a valid email addrress
                   </mat-error>
                 </mat-form-field>
               </div>

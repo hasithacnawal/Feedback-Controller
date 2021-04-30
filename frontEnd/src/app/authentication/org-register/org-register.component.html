@@ -9,23 +9,24 @@
     <div class="col-sm-6 auth-form-section">
       <div class="form-section">
         <div class="auth-wrapper">
-          <h2 class="welcome-msg">Sign Up</h2>
+          <h2 class="welcome-msg">Register Your Organization Here</h2>
           <p class="auth-signup-text text-muted">
-            Enter details to create your account
+            Once you submit, the "Registration Pin" will be sent to your
+            organizations email.
           </p>
           <form
             class="validate-form"
-            [formGroup]="authForm"
+            [formGroup]="orgRegisterForm"
             (ngSubmit)="onSubmit()"
           >
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Name</mat-label>
-                  <input matInput formControlName="username" required />
-                  <mat-icon matSuffix>face</mat-icon>
+                  <mat-label>Organization Name</mat-label>
+                  <input matInput formControlName="orgName" required />
+                  <mat-icon matSuffix>account_balance</mat-icon>
                   <mat-error
-                    *ngIf="authForm.get('username').hasError('required')"
+                    *ngIf="orgRegisterForm.get('orgName').hasError('orgName')"
                   >
                     Username is required
                   </mat-error>
@@ -40,8 +41,8 @@
                   <mat-icon matSuffix>mail</mat-icon>
                   <mat-error
                     *ngIf="
-                      authForm.get('email').hasError('required') ||
-                      authForm.get('email').touched
+                      orgRegisterForm.get('email').hasError('required') ||
+                      orgRegisterForm.get('email').touched
                     "
                   >
                     Please enter a valid email address
@@ -49,23 +50,20 @@
                 </mat-form-field>
               </div>
             </div>
+
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Password</mat-label>
-                  <input
-                    matInput
-                    formControlName="password"
-                    [type]="hide ? 'password' : 'text'"
-                    required
-                  />
-                  <mat-icon matSuffix (click)="hide = !hide">
-                    {{ hide ? "visibility_off" : "visibility" }}</mat-icon
-                  >
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="phone" required />
+                  <mat-icon matSuffix>phone</mat-icon>
                   <mat-error
-                    *ngIf="authForm.get('password').hasError('required')"
+                    *ngIf="
+                      orgRegisterForm.get('phone').hasError('required') ||
+                      orgRegisterForm.get('phone').touched
+                    "
                   >
-                    Password is required
+                    Please enter a phone number
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -73,21 +71,9 @@
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Confirm Password</mat-label>
-                  <input
-                    matInput
-                    formControlName="cpassword"
-                    [type]="chide ? 'password' : 'text'"
-                    required
-                  />
-                  <mat-icon matSuffix (click)="chide = !chide">
-                    {{ chide ? "visibility_off" : "visibility" }}</mat-icon
-                  >
-                  <mat-error
-                    *ngIf="authForm.get('cpassword').hasError('required')"
-                  >
-                    Confirm Password is required
-                  </mat-error>
+                  <mat-label>Address</mat-label>
+                  <textarea matInput formControlName="address"></textarea>
+                  <mat-icon matSuffix>room</mat-icon>
                 </mat-form-field>
               </div>
             </div>
@@ -95,7 +81,9 @@
               <div>
                 <span
                   >Already Registered?
-                  <a routerLink="/authentication/signin"> Login </a></span
+                  <a routerLink="/authentication/signin">
+                    Login to your account</a
+                  ></span
                 >
               </div>
             </div>
@@ -104,7 +92,7 @@
                 mat-flat-button
                 color="primary"
                 class="auth-form-btn"
-                [disabled]="!authForm.valid"
+                [disabled]="!orgRegisterForm.valid"
                 type="submit"
               >
                 Register

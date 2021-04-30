@@ -31,9 +31,21 @@ router.get("/", async (req, res) => {
   await Survey.findAll({
     attributes: ["uuid", "title", "anonymous", "type"],
     include: [
-      { model: db.Admin },
+      {
+        model: db.Question,
+        as: "questions",
+        include: [
+          {
+            model: db.MultipleOption,
+            as: "multipleOptions",
+            attributes: ["id", "option"],
+          },
+        ],
+      },
+      { model: db.Admin, attributes: ["id", "name", "email"] },
       {
         model: db.Organization,
+        attributes: ["id", "name", "email"],
       },
     ],
   })

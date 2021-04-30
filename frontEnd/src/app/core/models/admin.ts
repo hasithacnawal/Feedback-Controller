@@ -12,13 +12,14 @@ export class Admin {
   phone: string;
   createdAt: string;
   role: Role;
+  organizationId: number;
   Organization: Organization;
   token: string;
 
   constructor(admins) {
     {
       this.id = admins.id || this.getRandomID();
-
+      this.img = admins.img;
       this.name = admins.name || "";
       this.email = admins.email || "";
       this.createdAt = formatDate(new Date(), "yyyy-MM-dd", "en") || "";

@@ -39,7 +39,7 @@ export class LockedComponent implements OnInit {
       if (role === Role.All || role === Role.SuperAdmin) {
         this.router.navigate(["/admin/dashboard/main"]);
       } else if (role === Role.OrgAdmin) {
-        this.router.navigate(["/doctor/dashboard"]);
+        this.router.navigate(["/orgAdmin/dashboard"]);
       } else {
         this.router.navigate(["/authentication/signin"]);
       }

@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { OrgRegisterComponent } from './org-register/org-register.component';
 @NgModule({
   declarations: [
     Page500Component,
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     SigninComponent,
     SignupComponent,
     LockedComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    OrgRegisterComponent
   ],
   imports: [
     CommonModule,
