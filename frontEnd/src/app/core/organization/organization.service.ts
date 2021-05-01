@@ -31,6 +31,12 @@ export class OrganizationService {
 
   }
   //
+
+ getAll():Observable<Organization[]>{
+
+    return this.httpClient.get<Organization[]>(`${this.baseUrl}`);
+  }
+  
   getAllOrganizations(): void {
     this.httpClient.get<Organization[]>(this.baseUrl).subscribe(
       (data) => {
