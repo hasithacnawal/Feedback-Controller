@@ -19,6 +19,9 @@ import { MaterialFileInputModule } from "ngx-material-file-input";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
+
+
+
 import { OrganizationsRoutingModule } from './organizations-routing.module';
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
 import { AllOrganizationsComponent } from './all-organizations/all-organizations.component';
@@ -52,6 +55,7 @@ import {OrganizationService} from 'src/app/core/organization/organization.servic
     MatCheckboxModule,
     MaterialFileInputModule,
     MatProgressSpinnerModule,
+   
   ],
   providers: [OrganizationService],
 })

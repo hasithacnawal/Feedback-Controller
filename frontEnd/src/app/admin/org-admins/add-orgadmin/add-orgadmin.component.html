@@ -83,17 +83,18 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
-                    appearance="outline"
-                  >
-                    <mat-label>Address</mat-label>
-                    <textarea
-                      matInput
-                      cdkTextareaAutosize
-                      formControlName="address"
-                    ></textarea>
+                    appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" required>
+                    <mat-error *ngIf=" orgAdminForm.get('password').hasError('required')">
+                      password is required
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
+              
+
+              
 
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -103,10 +104,8 @@
                   >
                     <mat-label>Organization</mat-label>
                     <mat-select formControlName="organization" required>
-                      <mat-option [value]="'1'"> Neurology </mat-option>
-                      <mat-option [value]="'2'"> Orthopedics </mat-option>
-                      <mat-option [value]="'3'"> Gynaecology </mat-option>
-                      <mat-option [value]="'4'"> Microbiology </mat-option>
+                      <mat-option  *ngFor="let item of (data$ | async)" [value]="item.id">{{item.name}}</mat-option>
+                     
                     </mat-select>
                     <mat-error
                       *ngIf="
@@ -121,6 +120,26 @@
                   </mat-form-field>
                 </div>
               </div>
+
+
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Role Id</mat-label>
+                    <input matInput formControlName="roleId" required />
+                    <mat-error
+                      *ngIf="orgAdminForm.get('roleId').hasError('required')"
+                    >
+                      roleId is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              
 
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">

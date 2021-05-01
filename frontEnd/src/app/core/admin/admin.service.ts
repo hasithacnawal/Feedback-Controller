@@ -18,6 +18,11 @@ export class AdminService {
     return this.dialogData;
   }
   /** CRUD METHODS */
+  createAdmin(admin: Admin): Observable<Object>{
+
+    return this.httpClient.post(`${this.baseUrl}`, admin)
+
+  }
   getAllAdmins(): void {
     this.httpClient.get<Admin[]>(this.baseUrl).subscribe(
       (data) => {

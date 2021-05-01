@@ -25,7 +25,7 @@ import { TrashComponent } from "./trash/trash.component";
 import { AdminService } from "src/app/core/admin/admin.service";
 import { DeleteDialogComponent } from "./all-orgadmin/dialogs/delete/delete.component";
 import { FormDialogComponent } from "./all-orgadmin/dialogs/form-dialog/form-dialog.component";
-
+import {OrganizationsModule} from "src/app/admin/organizations/organizations.module"
 @NgModule({
   declarations: [
     AddOrgadminComponent,
@@ -55,6 +55,7 @@ import { FormDialogComponent } from "./all-orgadmin/dialogs/form-dialog/form-dia
     MatCheckboxModule,
     MaterialFileInputModule,
     MatProgressSpinnerModule,
+    OrganizationsModule
   ],
   providers: [AdminService],
 })
