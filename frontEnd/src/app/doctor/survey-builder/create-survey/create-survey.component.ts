@@ -11,6 +11,7 @@ import { Question } from "src/app/core/models/question";
 import { Option } from "src/app/core/models/option";
 import { SurveyService } from "src/app/core/survey/survey.service";
 import { AuthService } from "src/app/core/service/auth.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 export interface QuestionType {
   value: string;
@@ -40,8 +41,10 @@ export class CreateSurveyComponent implements OnInit {
   ];
 
   constructor(
+    private fb: FormBuilder,
     private surveyService: SurveyService,
-    private authService: AuthService //
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {} //
 
   ngOnInit() {
@@ -140,62 +143,85 @@ export class CreateSurveyComponent implements OnInit {
         .controls.questionGroup.controls.options
     )).removeAt(itemIndex);
   }
-
   postSurvey() {
-    let formData = this.surveyForm.value;
-    console.log(formData);
+    this.surveyService.postSurvey(this.surveyForm.value).subscribe(
+      (data) => {
+        console.log(data);
 
-    console.log();
-    let ID = 0;
-    let Type = formData.surveyType;
-    let Title = formData.surveyTitle;
-    //let IsDeleted = false;
-    let IsAnonymous = formData.IsAnonymous;
-    //  let Question: Question[] = [];
-
-    const orgId = this.authService.currentUserValue.organizationId;
-    const createrId = this.authService.currentUserValue.id;
-    let Questions = [];
-
-    let surveyQuestions = formData.surveyQuestions;
-    let optionArray =
-      formData.surveyQuestions[0].questionGroup.options[0].optionText;
-
-    const survey = new Survey(
-      IsAnonymous,
-      Title,
-      Type,
-      orgId,
-      createrId,
-      Questions
+        this.showNotification(
+          "black",
+          "Add Admin Record Successfully...!!!",
+          "bottom",
+          "center"
+        );
+      },
+      (error) => console.log(error)
     );
-
-    surveyQuestions.forEach((question, index, array) => {
-      let questionItem = {
-        uuid: 0,
-        questionType: question.questionType,
-        questionTitle: question.questionTitle,
-        //"required": true,
-        options: [],
-      };
-
-      if (question.questionGroup.hasOwnProperty("options")) {
-        question.questionGroup.options.forEach((option) => {
-          let optionItem: Option = {
-            id: 0,
-            optionText: option.optionText,
-            optionColor: "",
-          };
-          questionItem.options.push(optionItem);
-        });
-      }
-
-      survey.question.push(questionItem);
-    });
-
-    console.log(survey);
-    console.log("posting survey");
   }
+
+  showNotification(colorName, text, placementFrom, placementAlign) {
+    this.snackBar.open(text, "", {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName,
+    });
+  }
+  // postSurvey() {
+  //   let formData = this.surveyForm.value;
+  //   console.log(formData);
+
+  //   console.log();
+  //   let ID = 0;
+  //   let Type = formData.surveyType;
+  //   let Title = formData.surveyTitle;
+  //   //let IsDeleted = false;
+  //   let IsAnonymous = formData.IsAnonymous;
+  //   //  let Question: Question[] = [];
+
+  //   const orgId = this.authService.currentUserValue.organizationId;
+  //   const createrId = this.authService.currentUserValue.id;
+  //   let Questions = [];
+
+  //   let surveyQuestions = formData.surveyQuestions;
+  //   let optionArray =
+  //     formData.surveyQuestions[0].questionGroup.options[0].optionText;
+
+  //   const survey = new Survey(
+  //     IsAnonymous,
+  //     Title,
+  //     Type,
+  //     orgId,
+  //     createrId,
+  //     Questions
+  //   );
+
+  //   surveyQuestions.forEach((question, index, array) => {
+  //     let questionItem = {
+  //       uuid: 0,
+  //       questionType: question.questionType,
+  //       questionTitle: question.questionTitle,
+  //       //"required": true,
+  //       options: [],
+  //     };
+
+  //     if (question.questionGroup.hasOwnProperty("options")) {
+  //       question.questionGroup.options.forEach((option) => {
+  //         let optionItem: Option = {
+  //           id: 0,
+  //           optionText: option.optionText,
+  //           optionColor: "",
+  //         };
+  //         questionItem.options.push(optionItem);
+  //       });
+  //     }
+
+  //     survey.question.push(questionItem);
+  //   });
+
+  //   console.log(survey);
+  //   console.log("posting survey");
+  // }
 
   onSubmit() {
     this.postSurvey();

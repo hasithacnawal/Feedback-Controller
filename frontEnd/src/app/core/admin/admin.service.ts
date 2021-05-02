@@ -18,10 +18,8 @@ export class AdminService {
     return this.dialogData;
   }
   /** CRUD METHODS */
-  createAdmin(admin: Admin): Observable<Object>{
-
-    return this.httpClient.post(`${this.baseUrl}`, admin)
-
+  createAdmin(admin: Admin): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}`, admin);
   }
   getAllAdmins(): void {
     this.httpClient.get<Admin[]>(this.baseUrl).subscribe(
@@ -34,6 +32,20 @@ export class AdminService {
         console.log(error.name + " " + error.message);
       }
     );
+  }
+  getByOrgId(orgId): void {
+    this.httpClient
+      .get<Admin[]>(`${this.baseUrl}/findByOrgId/${orgId}`)
+      .subscribe(
+        (data) => {
+          this.isTblLoading = false;
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          this.isTblLoading = false;
+          console.log(error.name + " " + error.message);
+        }
+      );
   }
   addAdmin(admin: Admin): void {
     this.httpClient.post(`${this.baseUrl}`, admin).subscribe((data) => {

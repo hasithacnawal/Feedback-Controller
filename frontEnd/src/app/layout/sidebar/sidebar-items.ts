@@ -332,7 +332,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "",
-    title: "survey",
+    title: "Survey",
     moduleName: "survey-builder",
     iconType: "material-icons-two-tone",
     icon: "assignment",
@@ -358,6 +358,19 @@ export const ROUTES: RouteInfo[] = [
       {
         path: "/orgAdmin/survey/bookAppointment",
         title: "edit survey",
+        moduleName: "survey-builder",
+        iconType: "",
+        icon: "",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: [""],
+        submenu: [],
+      },
+      {
+        path: "/orgAdmin/survey/mySurveys",
+        title: "My Surveys",
         moduleName: "survey-builder",
         iconType: "",
         icon: "",

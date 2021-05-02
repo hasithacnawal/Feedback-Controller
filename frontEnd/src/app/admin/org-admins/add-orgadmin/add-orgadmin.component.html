@@ -83,18 +83,23 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
-                    appearance="outline">
+                    appearance="outline"
+                  >
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" type="password" required>
-                    <mat-error *ngIf=" orgAdminForm.get('password').hasError('required')">
+                    <input
+                      matInput
+                      formControlName="password"
+                      type="password"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="orgAdminForm.get('password').hasError('required')"
+                    >
                       password is required
                     </mat-error>
                   </mat-form-field>
                 </div>
               </div>
-              
-
-              
 
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -103,16 +108,19 @@
                     appearance="outline"
                   >
                     <mat-label>Organization</mat-label>
-                    <mat-select formControlName="organization" required>
-                      <mat-option  *ngFor="let item of (data$ | async)" [value]="item.id">{{item.name}}</mat-option>
-                     
+                    <mat-select formControlName="organizationId" required>
+                      <mat-option
+                        *ngFor="let item of data$ | async"
+                        [value]="item.id"
+                        >{{ item.name }}</mat-option
+                      >
                     </mat-select>
                     <mat-error
                       *ngIf="
                         orgAdminForm
-                          .get('organization')
-                          .hasError('organization') &&
-                        orgAdminForm.get('organization').touched
+                          .get('organizationId')
+                          .hasError('organizationId') &&
+                        orgAdminForm.get('organizationId').touched
                       "
                     >
                       Please enter a valid email address
@@ -120,27 +128,27 @@
                   </mat-form-field>
                 </div>
               </div>
-
-
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <mat-form-field
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Role Id</mat-label>
-                    <input matInput formControlName="roleId" required />
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="role" required>
+                      <mat-option [value]="'SuperAdmin'"> Admin </mat-option>
+                      <mat-option [value]="'Editor'"> Editor </mat-option>
+                      <mat-option [value]="'Moderator'"> Moderator </mat-option>
+                    </mat-select>
+
                     <mat-error
-                      *ngIf="orgAdminForm.get('roleId').hasError('required')"
+                      *ngIf="orgAdminForm.get('role').hasError('required')"
                     >
-                      roleId is required
+                      rolerequired
                     </mat-error>
                   </mat-form-field>
                 </div>
               </div>
-
-              
-
               <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                   <button

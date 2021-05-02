@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import{Organization} from 'src/app/core/models/organization';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Organization } from "src/app/core/models/organization";
+import { Observable } from "rxjs";
 import { BehaviorSubject } from "rxjs";
-
-
 
 //
 
@@ -12,7 +10,9 @@ import { BehaviorSubject } from "rxjs";
 export class OrganizationService {
   private readonly baseUrl = "http://localhost:5550/api/organization/";
   isTblLoading = true;
-  dataChange: BehaviorSubject<Organization[]> = new BehaviorSubject<Organization[]>([]);
+  dataChange: BehaviorSubject<Organization[]> = new BehaviorSubject<
+    Organization[]
+  >([]);
   // Temporarily stores data from dialogs
   dialogData: any;
   constructor(private httpClient: HttpClient) {}
@@ -25,18 +25,15 @@ export class OrganizationService {
   /** CRUD METHODS */
 
   //
-  createOrganization(org: Organization): Observable<Object>{
-
-    return this.httpClient.post(`${this.baseUrl}`, org)
-
+  createOrganization(org: Organization): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}`, org);
   }
   //
 
- getAll():Observable<Organization[]>{
-
+  getAll(): Observable<Organization[]> {
     return this.httpClient.get<Organization[]>(`${this.baseUrl}`);
   }
-  
+
   getAllOrganizations(): void {
     this.httpClient.get<Organization[]>(this.baseUrl).subscribe(
       (data) => {
@@ -82,4 +79,3 @@ export class OrganizationService {
     );*/
   }
 }
-

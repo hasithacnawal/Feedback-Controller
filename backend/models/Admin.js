@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      img: {
+        type: DataTypes.STRING,
+        defaultValue: "assets/images/user/admin.jpg",
+      },
       phone: {
         type: DataTypes.STRING,
         allowNull: false,

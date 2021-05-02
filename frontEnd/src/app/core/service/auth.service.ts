@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 
 import { environment } from "src/environments/environment";
 import { Admin } from "../models/admin";
+import { Organization } from "../models/organization";
 
 @Injectable({
   providedIn: "root",
@@ -12,6 +13,7 @@ import { Admin } from "../models/admin";
 export class AuthService {
   private currentUserSubject: BehaviorSubject<Admin>;
   public currentUser: Observable<Admin>;
+
   private baseUrl = "http://localhost:5550/api/admin/";
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<Admin>(

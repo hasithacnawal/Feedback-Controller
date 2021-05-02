@@ -13,7 +13,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatMenuModule } from "@angular/material/menu";
-import { MatDatepickerModule } from "@angular/material/datepicker";
+import {
+  MatDatepicker,
+  MatDatepickerModule,
+} from "@angular/material/datepicker";
 import { MatTableModule } from "@angular/material/table";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";

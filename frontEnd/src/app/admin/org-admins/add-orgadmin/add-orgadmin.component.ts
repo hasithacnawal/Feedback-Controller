@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar"
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Organization } from "src/app/core/models/organization";
-import { Observable } from 'rxjs';
-import {AdminService} from 'src/app/core/admin/admin.service';
-import {OrganizationService} from 'src/app/core/organization/organization.service';
-
+import { Observable } from "rxjs";
+import { AdminService } from "src/app/core/admin/admin.service";
+import { OrganizationService } from "src/app/core/organization/organization.service";
+import { Role } from "src/app/core/models/role";
 
 @Component({
   selector: "app-add-orgadmin",
@@ -16,9 +16,15 @@ export class AddOrgadminComponent {
   orgAdminForm: FormGroup;
   hide3 = true;
   agree3 = false;
-  data$:Observable<Organization[]>;  
+  data$: Observable<Organization[]>;
+  roles: Role;
 
-  constructor(private fb: FormBuilder, private adminService: AdminService, private orgService : OrganizationService, private snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService,
+    private orgService: OrganizationService,
+    private snackBar: MatSnackBar
+  ) {
     this.orgAdminForm = this.fb.group({
       name: ["", [Validators.required]],
       email: [
@@ -27,39 +33,32 @@ export class AddOrgadminComponent {
       ],
       password: ["", [Validators.required]],
       phone: ["", [Validators.required]],
-      organization: [[], [Validators.required]],
-      roleId: ["", [Validators.required]],
+      organizationId: ["", [Validators.required]],
+      role: ["", [Validators.required]],
     });
   }
 
   ngOnInit(): void {
+    this.data$ = this.orgService.getAll();
 
-   
-   this.data$ = this.orgService.getAll();
-
-   //console.log(this.data$);
-   //console.log(this.orgService.getAll());
-   
-
+    //console.log(this.data$);
+    //console.log(this.orgService.getAll());
   }
 
-  saveAdmin(){
+  saveAdmin() {
+    this.adminService.createAdmin(this.orgAdminForm.value).subscribe(
+      (data) => {
+        console.log(data);
 
-    
-    this.adminService.createAdmin( this.orgAdminForm.value).subscribe( data =>{
-      console.log(data);
-
-      this.showNotification(
-        "black",
-        "Add Admin Record Successfully...!!!",
-        "bottom",
-        "center"
-      );
-      
-    },
-    error => console.log(error));
-   
-
+        this.showNotification(
+          "black",
+          "Add Admin Record Successfully...!!!",
+          "bottom",
+          "center"
+        );
+      },
+      (error) => console.log(error)
+    );
   }
 
   showNotification(colorName, text, placementFrom, placementAlign) {
@@ -70,11 +69,9 @@ export class AddOrgadminComponent {
       panelClass: colorName,
     });
   }
- 
 
- 
   onSubmit() {
     console.log("Form Value", this.orgAdminForm.value);
-    this.saveAdmin()
+    this.saveAdmin();
   }
 }

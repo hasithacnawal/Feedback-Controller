@@ -141,11 +141,11 @@ export class DashboardComponent implements OnInit {
     this.areaChartOptions = {
       series: [
         {
-          name: "New Patients",
+          name: "Anonymous",
           data: [31, 40, 28, 51, 42, 85, 77],
         },
         {
-          name: "Old Patients",
+          name: "Registered",
           data: [11, 32, 45, 32, 34, 52, 41],
         },
       ],

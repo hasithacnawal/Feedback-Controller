@@ -1,10 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+
+import { SurveyService } from "src/app/core/survey/survey.service";
+
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { DataSource } from "@angular/cdk/collections";
-import { MatSnackBar } from "@angular/material/snack-bar";
+
 import { BehaviorSubject, fromEvent, merge, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { FormDialogComponent } from "./dialogs/form-dialog/form-dialog.component";
@@ -14,34 +18,33 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { AdminService } from "src/app/core/admin/admin.service";
 import { Admin } from "src/app/core/models/admin";
 import { AuthService } from "src/app/core/service/auth.service";
+import { Survey } from "src/app/core/models/survey";
 
 @Component({
-  selector: "app-all-members",
-  templateUrl: "./all-members.component.html",
-  styleUrls: ["./all-members.component.sass"],
+  selector: "app-my-surveys",
+  templateUrl: "./my-surveys.component.html",
+  styleUrls: ["./my-surveys.component.sass"],
 })
-export class AllMembersComponent implements OnInit {
+export class MySurveysComponent implements OnInit {
   displayedColumns = [
     "select",
-    "img",
-    "name",
-    "email",
-    "Organization",
-    "role",
-    "phone",
-    "createdAt",
-    "actions",
+    "id",
+    "title",
+    "type",
+    "updatedAt",
+    "share",
+    "more",
   ];
-  exampleDatabase: AdminService | null;
+  exampleDatabase: SurveyService | null;
   dataSource: ExampleDataSource | null;
-  selection = new SelectionModel<Admin>(true, []);
+  selection = new SelectionModel<Survey>(true, []);
   index: number;
   id: number;
-  admins: Admin | null;
+  surveys: Survey | null;
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
-    public adminService: AdminService,
+    public surveyService: SurveyService,
     public authService: AuthService,
     private snackBar: MatSnackBar
   ) {}
@@ -58,7 +61,7 @@ export class AllMembersComponent implements OnInit {
   addNew() {
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        admins: this.admins,
+        surveys: this.surveys,
         action: "add",
       },
     });
@@ -67,7 +70,7 @@ export class AllMembersComponent implements OnInit {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
         this.exampleDatabase.dataChange.value.unshift(
-          this.adminService.getDialogData()
+          this.surveyService.getDialogData()
         );
         this.refreshTable();
         this.showNotification(
@@ -96,7 +99,7 @@ export class AllMembersComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[
           foundIndex
-        ] = this.adminService.getDialogData();
+        ] = this.surveyService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
         this.showNotification(
@@ -159,7 +162,7 @@ export class AllMembersComponent implements OnInit {
       this.exampleDatabase.dataChange.value.splice(index, 1);
 
       this.refreshTable();
-      this.selection = new SelectionModel<Admin>(true, []);
+      this.selection = new SelectionModel<Survey>(true, []);
     });
     this.showNotification(
       "snackbar-danger",
@@ -169,7 +172,7 @@ export class AllMembersComponent implements OnInit {
     );
   }
   public loadData() {
-    this.exampleDatabase = new AdminService(this.httpClient);
+    this.exampleDatabase = new SurveyService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -194,7 +197,7 @@ export class AllMembersComponent implements OnInit {
 }
 
 // DataSource extends from nodemodules
-export class ExampleDataSource extends DataSource<Admin> {
+export class ExampleDataSource extends DataSource<Survey> {
   filterChange = new BehaviorSubject("");
   get filter(): string {
     return this.filterChange.value;
@@ -202,10 +205,10 @@ export class ExampleDataSource extends DataSource<Admin> {
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
-  filteredData: Admin[] = [];
-  renderedData: Admin[] = [];
+  filteredData: Survey[] = [];
+  renderedData: Survey[] = [];
   constructor(
-    public exampleDatabase: AdminService,
+    public exampleDatabase: SurveyService,
     public paginator: MatPaginator,
     public _sort: MatSort,
     public authService: AuthService
@@ -216,7 +219,7 @@ export class ExampleDataSource extends DataSource<Admin> {
   }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Admin[]> {
+  connect(): Observable<Survey[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -225,21 +228,17 @@ export class ExampleDataSource extends DataSource<Admin> {
       this.paginator.page,
     ];
 
-    this.exampleDatabase.getByOrgId(
-      this.authService.currentUserValue.organizationId
-    );
+    this.exampleDatabase.getAllSurvey();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((admins: Admin) => {
+          .filter((survey: Survey) => {
             const searchStr = (
-              admins.name +
-              admins.email +
-              admins.Organization.name +
-              admins.phone +
-              admins.role
+              survey.id +
+              survey.title +
+              survey.type
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -258,7 +257,7 @@ export class ExampleDataSource extends DataSource<Admin> {
   disconnect() {}
 
   /** Returns a sorted copy of the database data. */
-  sortData(data: Admin[]): Admin[] {
+  sortData(data: Survey[]): Survey[] {
     if (!this._sort.active || this._sort.direction === "") {
       return data;
     }
@@ -270,13 +269,12 @@ export class ExampleDataSource extends DataSource<Admin> {
           [propertyA, propertyB] = [a.id, b.id];
           break;
         case "name":
-          [propertyA, propertyB] = [a.name, b.name];
+          [propertyA, propertyB] = [a.title, b.title];
           break;
         case "email":
-          [propertyA, propertyB] = [a.email, b.email];
+          [propertyA, propertyB] = [a.type, b.type];
           break;
-        case "phone":
-          [propertyA, propertyB] = [a.phone, b.phone];
+
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

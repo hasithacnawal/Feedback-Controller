@@ -6,7 +6,15 @@ const Admin = db.Admin;
 const Organization = db.Organization;
 
 const register = function (req, res) {
-  const { name, email, phone, password, organizationId, roleId, role } = req.body;
+  const {
+    name,
+    email,
+    phone,
+    password,
+    organizationId,
+    roleId,
+    role,
+  } = req.body;
   if (
     name == undefined ||
     name == "" ||
@@ -96,7 +104,7 @@ const login = function (req, res) {
         const dbPassword = value.getDataValue("password");
 
         const userDetail = {
-          name: value.getDataValue("username"),
+          name: value.getDataValue("name"),
           id: value.getDataValue("id"),
         };
 
@@ -132,9 +140,13 @@ const findAllAdmins = async (req, res) => {
         attributes: ["name", "email"],
       },
     ],
+    where: {
+      role: ["OrgAdmin"],
+    },
   });
   res.json(admins);
 };
+
 const findAdminById = async (req, res) => {
   let { id } = req.params;
   await Admin.findByPk(id, {
@@ -157,5 +169,31 @@ const findAdminById = async (req, res) => {
       res.status(404).send();
     });
 };
+const findByOrgId = async (req, res) => {
+  let { orgId } = req.params;
+  await Admin.findAll({
+    include: [
+      {
+        model: Organization,
+        as: "Organization",
+        attributes: ["name", "email"],
+      },
+    ],
+    where: {
+      organizationId: orgId,
+      role: ["OrgAdmin", "Editor", "Moderator"],
+    },
+  })
+    .then((value) => {
+      if (value != []) {
+        res.json(value);
+      } else {
+        res.status(500).json("Admins Not Available");
+      }
+    })
+    .catch((err) => {
+      res.status(404).send();
+    });
+};
 
-module.exports = { register, login, findAdminById, findAllAdmins };
+module.exports = { register, login, findAdminById, findAllAdmins, findByOrgId };

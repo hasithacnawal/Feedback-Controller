@@ -29,7 +29,6 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   await Survey.findAll({
-    attributes: ["uuid", "title", "anonymous", "type"],
     include: [
       {
         model: db.Question,

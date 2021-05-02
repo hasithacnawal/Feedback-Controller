@@ -12,6 +12,7 @@ export class Admin {
   phone: string;
   createdAt: string;
   role: Role;
+  roleId: number;
   organizationId: number;
   Organization: Organization;
   token: string;
@@ -19,7 +20,7 @@ export class Admin {
   constructor(admins) {
     {
       this.id = admins.id || this.getRandomID();
-      this.img = admins.img;
+
       this.name = admins.name || "";
       this.email = admins.email || "";
       this.createdAt = formatDate(new Date(), "yyyy-MM-dd", "en") || "";

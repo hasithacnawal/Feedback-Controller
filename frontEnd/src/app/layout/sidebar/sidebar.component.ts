@@ -12,6 +12,7 @@ import {
 import { ROUTES } from "./sidebar-items";
 import { AuthService } from "src/app/core/service/auth.service";
 import { Role } from "src/app/core/models/role";
+import { Organization } from "src/app/core/models/organization";
 
 @Component({
   selector: "app-sidebar",
@@ -30,6 +31,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   userFullName: string;
   userImg: string;
   userType: string;
+  Organization: Organization;
   headerHeight = 60;
   currentRoute: string;
   routerObj = null;
@@ -110,8 +112,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
       this.userFullName = this.authService.currentUserValue.name;
+      this.Organization = this.authService.currentUserValue.Organization;
       this.userImg = this.authService.currentUserValue.img;
-
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf("All") !== -1
       );
