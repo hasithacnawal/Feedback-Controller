@@ -25,6 +25,11 @@ const routes: Routes = [
       import("./org-admins/org-admins.module").then((m) => m.OrgAdminsModule),
   },
   {
+    path: "surveys",
+    loadChildren: () =>
+      import("./surveys/surveys.module").then((m) => m.SurveysModule),
+  },
+  {
     path: "patients",
     loadChildren: () =>
       import("./patients/patients.module").then((m) => m.PatientsModule),
