@@ -154,8 +154,13 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "",
+<<<<<<< HEAD
     title: "Survey",
     moduleName: "survey-builder",
+=======
+    title: "survey",
+    moduleName: "surveys",
+>>>>>>> d257a01364aed71cb1b2a475a3e6d03c9d3858a6
     iconType: "material-icons-two-tone",
     icon: "assignment",
     class: "menu-toggle",
@@ -167,7 +172,7 @@ export const ROUTES: RouteInfo[] = [
       {
         path: "/admin/surveys/active",
         title: "Active Surveys",
-        moduleName: "survey-builder",
+        moduleName: "surveys",
         iconType: "",
         icon: "",
         class: "ml-menu",
@@ -178,9 +183,29 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
+<<<<<<< HEAD
         path: "/admin/surveys/trash",
         title: "Trash Bin",
         moduleName: "appointment",
+=======
+        path: "admin/surveys/deleted",
+        title: "Trash",
+        moduleName: "surveys",
+        iconType: "",
+        icon: "",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: [""],
+        submenu: [],
+      },
+
+      {
+        path: "admin/surveys/my-survey",
+        title: "My Surveys",
+        moduleName: "surveys",
+>>>>>>> d257a01364aed71cb1b2a475a3e6d03c9d3858a6
         iconType: "",
         icon: "",
         class: "ml-menu",
