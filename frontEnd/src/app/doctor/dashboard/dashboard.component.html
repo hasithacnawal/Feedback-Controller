@@ -88,7 +88,7 @@
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Appointment Review</h2>
+            <h2>Survey Review</h2>
           </div>
           <div class="body">
             <apx-chart
@@ -100,20 +100,20 @@
             <div class="text-center p-t-20">
               <div class="chart-note">
                 <span class="dot bg-orange"></span>
-                <span>Face To Face</span>
+                <span>Active</span>
               </div>
               <div class="chart-note">
                 <span class="dot bg-indigo"></span>
-                <span>E-Consult</span>
+                <span>Anonymous</span>
               </div>
               <div class="chart-note mr-0">
                 <span class="dot bg-green"></span>
-                <span>Available</span>
+                <span>Non-Anonymous</span>
               </div>
             </div>
             <div class="text-center p-t-20">
               <button mat-stroked-button color="primary">
-                Modify Availability
+                Review Insights
               </button>
             </div>
           </div>
@@ -411,15 +411,15 @@
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
         <div class="card">
           <div class="header">
-            <h2>Doctors List</h2>
+            <h2>Members List</h2>
           </div>
           <div class="tableBody">
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Doctor Name</th>
+                    <th>Id</th>
+                    <th>Member Name</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -430,9 +430,9 @@
                     </td>
                     <td>
                       <div class="media-title">
-                        <a href="mailto:test@gmail.com"> Dr.Jay Soni </a>
+                        <a href="mailto:test@gmail.com"> Shehani </a>
                       </div>
-                      <div class="text-job font-11">(MBBS,MD)</div>
+                      <div class="text-job font-11">Admin</div>
                     </td>
                     <td>
                       <div class="badge col-green">Available</div>
@@ -444,12 +444,12 @@
                     </td>
                     <td>
                       <div class="media-title">
-                        <a href="mailto:test@gmail.com"> Dr.Sarah Smith </a>
+                        <a href="mailto:test@gmail.com"> Damith </a>
                       </div>
-                      <div class="text-job font-11">(BDS,MDS)</div>
+                      <div class="text-job font-11">Admin</div>
                     </td>
                     <td>
-                      <div class="badge col-red">Absend</div>
+                      <div class="badge col-red">Logged In</div>
                     </td>
                   </tr>
                   <tr>
@@ -458,9 +458,9 @@
                     </td>
                     <td>
                       <div class="media-title">
-                        <a href="mailto:test@gmail.com">Dr.Megha Trivedi </a>
+                        <a href="mailto:test@gmail.com">Ann </a>
                       </div>
-                      <div class="text-job font-11">(BHMS)</div>
+                      <div class="text-job font-11">Editor</div>
                     </td>
                     <td>
                       <div class="badge col-green">Available</div>
@@ -472,37 +472,9 @@
                     </td>
                     <td>
                       <div class="media-title">
-                        <a href="mailto:test@gmail.com"> Dr.John Deo </a>
+                        <a href="mailto:test@gmail.com"> Mary </a>
                       </div>
-                      <div class="text-job font-11">(MBBS,MS)</div>
-                    </td>
-                    <td>
-                      <div class="badge col-green">Available</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-img">
-                      <img src="assets/images/user/user1.jpg" alt="" />
-                    </td>
-                    <td>
-                      <div class="media-title">
-                        <a href="mailto:test@gmail.com"> Dr.Jacob Ryan </a>
-                      </div>
-                      <div class="text-job font-11">(MBBS,MD)</div>
-                    </td>
-                    <td>
-                      <div class="badge col-red">Absend</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-img">
-                      <img src="assets/images/user/user8.jpg" alt="" />
-                    </td>
-                    <td>
-                      <div class="media-title">
-                        <a href="mailto:test@gmail.com"> Dr.Jay Soni </a>
-                      </div>
-                      <div class="text-job font-11">(MBBS)</div>
+                      <div class="text-job font-11">Editor</div>
                     </td>
                     <td>
                       <div class="badge col-green">Available</div>
@@ -511,29 +483,6 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-        <div class="card">
-          <div class="header">
-            <h2>Number Of Patients</h2>
-          </div>
-          <div class="body">
-            <apx-chart
-              [series]="linechartOptions.series"
-              [chart]="linechartOptions.chart"
-              [dataLabels]="linechartOptions.dataLabels"
-              [plotOptions]="linechartOptions.plotOptions"
-              [yaxis]="linechartOptions.yaxis"
-              [legend]="linechartOptions.legend"
-              [fill]="linechartOptions.fill"
-              [colors]="linechartOptions.colors"
-              [stroke]="linechartOptions.stroke"
-              [tooltip]="linechartOptions.tooltip"
-              [xaxis]="linechartOptions.xaxis"
-            >
-            </apx-chart>
           </div>
         </div>
       </div>

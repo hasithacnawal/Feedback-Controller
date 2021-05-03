@@ -63,19 +63,19 @@ export class DashboardComponent implements OnInit {
   tasks = [
     {
       id: "1",
-      title: "Check patient report",
+      title: "Check New Surveys",
       done: true,
       priority: "High",
     },
     {
       id: "2",
-      title: "Request for festivle holiday",
+      title: "Contact System Administration",
       done: false,
       priority: "High",
     },
     {
       id: "3",
-      title: "Order new medicine stock",
+      title: "Create Survey for Popup Quiz",
       done: false,
       priority: "Low",
     },
@@ -87,7 +87,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       id: "5",
-      title: "Conference in london",
+      title: "Add Kamal to the system",
       done: false,
       priority: "High",
     },
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       id: "7",
-      title: "call bus driver",
+      title: "Export insights of the School Survey",
       done: true,
       priority: "High",
     },

@@ -154,7 +154,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: "",
-    title: "survey",
+    title: "Survey",
     moduleName: "survey-builder",
     iconType: "material-icons-two-tone",
     icon: "assignment",
@@ -165,7 +165,7 @@ export const ROUTES: RouteInfo[] = [
     role: ["SuperAdmin"],
     submenu: [
       {
-        path: "",
+        path: "/admin/surveys/active",
         title: "Active Surveys",
         moduleName: "survey-builder",
         iconType: "",
@@ -178,8 +178,8 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: "",
-        title: "Trash",
+        path: "/admin/surveys/trash",
+        title: "Trash Bin",
         moduleName: "appointment",
         iconType: "",
         icon: "",
@@ -344,7 +344,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: "/orgAdmin/survey/createSurvey",
-        title: "create survey",
+        title: "Create Survey",
         moduleName: "survey-builder",
         iconType: "",
         icon: "",
@@ -355,22 +355,23 @@ export const ROUTES: RouteInfo[] = [
         role: [""],
         submenu: [],
       },
-      {
-        path: "/orgAdmin/survey/bookAppointment",
-        title: "edit survey",
-        moduleName: "survey-builder",
-        iconType: "",
-        icon: "",
-        class: "ml-menu",
-        groupTitle: false,
-        badge: "",
-        badgeClass: "",
-        role: [""],
-        submenu: [],
-      },
+
       {
         path: "/orgAdmin/survey/mySurveys",
         title: "My Surveys",
+        moduleName: "survey-builder",
+        iconType: "",
+        icon: "",
+        class: "ml-menu",
+        groupTitle: false,
+        badge: "",
+        badgeClass: "",
+        role: [""],
+        submenu: [],
+      },
+      {
+        path: "/orgAdmin/survey/all",
+        title: "Our Surveys",
         moduleName: "survey-builder",
         iconType: "",
         icon: "",

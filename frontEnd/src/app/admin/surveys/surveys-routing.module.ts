@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ActiveServeysComponent,
   },
   {
-    path: "deleted",
+    path: "trash",
     component: DeletedSurveysComponent,
   },
 ];
