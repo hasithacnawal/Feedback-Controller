@@ -2,7 +2,7 @@
   <div class="modalHeader">
     <div class="editRowModal">
       <div class="modalHeader clearfix">
-        <img [src]="" alt="avatar" />
+      
         <div class="modal-about">
           <div class="font-weight-bold p-t-5 p-l-10 font-17">
             {{ dialogTitle }}
@@ -21,16 +21,16 @@
   <div mat-dialog-content>
     <form
       class="register-form m-4"
-      [formGroup]="adminDialogForm"
+      [formGroup]="surveyDialogForm"
       (ngSubmit)="(submit)"
     >
       <div class="row">
         <div class="col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name" required />
-            <mat-icon matSuffix>face</mat-icon>
-            <mat-error *ngIf="adminDialogForm.get('name').hasError('required')">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required />
+            <mat-icon matSuffix>article</mat-icon>
+            <mat-error *ngIf="surveyDialogForm.get('title').hasError('required')">
               Name is required
             </mat-error>
           </mat-form-field>
@@ -40,40 +40,27 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" required />
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error
-              *ngIf="
-                adminDialogForm.get('email').hasError('required') ||
-                adminDialogForm.get('email').touched
-              "
-            >
-              Please enter a valid email address
+            <mat-label>Type</mat-label>
+            <input matInput formControlName="type" required />
+            <mat-icon matSuffix>post_add</mat-icon>
+            <mat-error *ngIf="surveyDialogForm.get('type').hasError('required')">
+              Name is required
             </mat-error>
           </mat-form-field>
         </div>
       </div>
+
+
+     
       <div class="row">
+       
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="phone" type="number" />
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error
-              *ngIf="adminDialogForm.get('phone').hasError('required')"
-            >
-              Mobile is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Joining date</mat-label>
+            <mat-label>Last modified date</mat-label>
             <input
               matInput
               [matDatepicker]="picker"
-              formControlName="createdAt"
+              formControlName="updatedAt"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -81,7 +68,7 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error
-              *ngIf="adminDialogForm.get('createdAt').hasError('required')"
+              *ngIf="surveyDialogForm.get('updatedAt').hasError('required')"
             >
               Please select date
             </mat-error>
@@ -95,7 +82,7 @@
               mat-raised-button
               color="primary"
               [type]="submit"
-              [disabled]="!adminDialogForm.valid"
+              [disabled]="!surveyDialogForm.valid"
               [mat-dialog-close]="1"
               (click)="confirmAdd()"
             >
