@@ -19,17 +19,21 @@ import { MatCardModule } from "@angular/material/card";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 
-import { SurveysRoutingModule } from './surveys-routing.module';
-import { ActiveServeysComponent } from './active-serveys/active-serveys.component';
-import { DeletedSurveysComponent } from './deleted-surveys/deleted-surveys.component';
-import { MySurveysComponent } from './my-surveys/my-surveys.component';
-import { DeleteDialogComponent } from './my-surveys/dialogs/delete/delete.component';
-import { FormDialogComponent } from './my-surveys/dialogs/form-dialog/form-dialog.component';
+import { SurveysRoutingModule } from "./surveys-routing.module";
+
+import { DeletedSurveysComponent } from "./deleted-surveys/deleted-surveys.component";
+import { MySurveysComponent } from "./my-surveys/my-surveys.component";
+import { DeleteDialogComponent } from "./my-surveys/dialogs/delete/delete.component";
+import { FormDialogComponent } from "./my-surveys/dialogs/form-dialog/form-dialog.component";
 import { SurveyService } from "src/app/core/survey/survey.service";
 
-
 @NgModule({
-  declarations: [ActiveServeysComponent, DeletedSurveysComponent, MySurveysComponent, DeleteDialogComponent, FormDialogComponent],
+  declarations: [
+    DeletedSurveysComponent,
+    MySurveysComponent,
+    DeleteDialogComponent,
+    FormDialogComponent,
+  ],
   imports: [
     CommonModule,
     SurveysRoutingModule,
@@ -66,8 +70,7 @@ import { SurveyService } from "src/app/core/survey/survey.service";
     MatRadioModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
-  ]
-  ,
+  ],
   providers: [SurveyService],
 })
-export class SurveysModule { }
+export class SurveysModule {}

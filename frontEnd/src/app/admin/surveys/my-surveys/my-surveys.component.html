@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <ul class="breadcrumb breadcrumb-style">
             <li class="breadcrumb-item">
-              <h4 class="page-title">My Serveys</h4>
+              <h4 class="page-title">Active Serveys</h4>
             </li>
             <li class="breadcrumb-item bcrumb-1">
               <a routerLink="/admin/dashboard/main">
@@ -16,7 +16,7 @@
             <li class="breadcrumb-item bcrumb-2">
               <a href="#" onClick="return false;">Surveys</a>
             </li>
-            <li class="breadcrumb-item active">My Servey</li>
+            <li class="breadcrumb-item active">Active</li>
           </ul>
         </div>
       </div>
@@ -232,14 +232,7 @@
               >
                 No results
               </div>
-              <div>
-                <button
-                  routerLink="/orgAdmin/survey/createSurvey"
-                  class="mat-raised-button btn-primary mt-5"
-                >
-                  Create Survey
-                </button>
-              </div>
+
               <mat-paginator
                 #paginator
                 [length]="dataSource.filteredData.length"

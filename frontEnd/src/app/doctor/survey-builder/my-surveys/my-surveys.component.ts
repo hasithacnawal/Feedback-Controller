@@ -228,7 +228,9 @@ export class ExampleDataSource extends DataSource<Survey> {
       this.paginator.page,
     ];
 
-    this.exampleDatabase.getAllSurvey();
+    this.exampleDatabase.getSurveysByCreatorId(
+      this.authService.currentUserValue.id
+    );
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data

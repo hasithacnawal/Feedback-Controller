@@ -40,7 +40,7 @@ export class SurveyService {
   }
   getSurveysByCreatorId(createrId): void {
     this.httpClient
-      .get<Survey[]>(`${this.baseUrl}/findByOrgId/${createrId}`)
+      .get<Survey[]>(`${this.baseUrl}/findByCreater/${createrId}`)
       .subscribe(
         (data) => {
           this.isTblLoading = false;
@@ -55,7 +55,7 @@ export class SurveyService {
   }
   getSurveysByOrgId(orgId): void {
     this.httpClient
-      .get<Survey[]>(`${this.baseUrl}/findByOrgId/${orgId}`)
+      .get<Survey[]>(`${this.baseUrl}/findByOrg/${orgId}`)
       .subscribe(
         (data) => {
           this.isTblLoading = false;

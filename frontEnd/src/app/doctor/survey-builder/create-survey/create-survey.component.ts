@@ -29,8 +29,11 @@ export class CreateSurveyComponent implements OnInit {
 
   editMode = false;
   surveyTypes = [
-    { id: 0, value: "Training" },
-    { id: 1, value: "HR" },
+    { id: 0, value: "Public" },
+    { id: 1, value: "Political" },
+    { id: 3, value: "Education" },
+    { id: 4, value: "Travel" },
+    { id: 5, value: "Leisure " },
   ];
 
   questions: QuestionType[] = [
