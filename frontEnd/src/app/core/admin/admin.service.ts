@@ -21,6 +21,25 @@ export class AdminService {
   createAdmin(admin: Admin): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}`, admin);
   }
+  addAdmin(admin: Admin): void {
+    this.dialogData = admin;
+    // this.httpClient.post(`${this.baseUrl}/`, admin).subscribe((data) => {
+    //   this.dialogData = admin;
+    // });
+  }
+
+  updateAdmin(admin: Admin): void {
+    this.dialogData = admin;
+
+    /* this.httpClient.put(this.API_URL + doctors.id, doctors).subscribe(data => {
+      this.dialogData = doctors;
+    },
+    (err: HttpErrorResponse) => {
+      // error code here
+    }
+  );*/
+  }
+
   getAll(): Observable<Admin[]> {
     return this.httpClient.get<Admin[]>(`${this.baseUrl}`);
   }
@@ -50,23 +69,7 @@ export class AdminService {
         }
       );
   }
-  addAdmin(admin: Admin): void {
-    this.httpClient.post(`${this.baseUrl}`, admin).subscribe((data) => {
-      this.dialogData = admin;
-    });
-  }
 
-  updateAdmin(doctors: Admin): void {
-    this.dialogData = doctors;
-
-    /* this.httpClient.put(this.API_URL + doctors.id, doctors).subscribe(data => {
-      this.dialogData = doctors;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
-  }
   deleteAdmin(id: number): void {
     console.log(id);
 

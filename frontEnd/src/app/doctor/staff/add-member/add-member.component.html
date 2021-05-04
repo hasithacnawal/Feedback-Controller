@@ -1,0 +1,172 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Add Admin</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Admins</a>
+            </li>
+            <li class="breadcrumb-item active">Add</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Add New Admin</h2>
+          </div>
+          <div class="body">
+            <form
+              class="m-4"
+              [formGroup]="orgAdminForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label> Name</mat-label>
+                    <input matInput formControlName="name" required />
+                    <mat-error
+                      *ngIf="orgAdminForm.get('name').hasError('required')"
+                    >
+                      Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required />
+                    <mat-error
+                      *ngIf="
+                        orgAdminForm.get('email').hasError('email') &&
+                        orgAdminForm.get('email').touched
+                      "
+                    >
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label>Mobile</mat-label>
+                    <input matInput formControlName="phone" required />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label>Password</mat-label>
+                    <input
+                      matInput
+                      formControlName="password"
+                      type="password"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="orgAdminForm.get('password').hasError('required')"
+                    >
+                      password is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label>Organization</mat-label>
+
+                    <mat-select formControlName="organizationId" required>
+                      <mat-option [value]="userOrganization.id">{{
+                        userOrganization.name
+                      }}</mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="
+                        orgAdminForm
+                          .get('organizationId')
+                          .hasError('organizationId') &&
+                        orgAdminForm.get('organizationId').touched
+                      "
+                    >
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <mat-form-field
+                    class="example-full-width mb-1"
+                    appearance="outline"
+                  >
+                    <mat-label>Role</mat-label>
+                    <mat-select formControlName="role" required>
+                      <mat-option [value]="'OrgAdmin'"> Admin </mat-option>
+                      <mat-option [value]="'Editor'"> Editor </mat-option>
+                      <mat-option [value]="'Moderator'"> Moderator </mat-option>
+                    </mat-select>
+
+                    <mat-error
+                      *ngIf="orgAdminForm.get('role').hasError('required')"
+                    >
+                      rolerequired
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-1">
+                  <button
+                    class="mr-3"
+                    [disabled]="!orgAdminForm.valid"
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+
+                  <button type="button" mat-button>Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -81,6 +81,7 @@ export class AllOrgadminComponent implements OnInit {
         action: "edit",
       },
     });
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
@@ -223,9 +224,11 @@ export class ExampleDataSource extends DataSource<Admin> {
           .slice()
           .filter((admins: Admin) => {
             const searchStr = (
+              admins.id +
               admins.name +
-              admins.email +
               admins.Organization.name +
+              admins.email +
+              admins.role +
               admins.phone
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;

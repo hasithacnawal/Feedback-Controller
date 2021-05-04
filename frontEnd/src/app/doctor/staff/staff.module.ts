@@ -24,6 +24,7 @@ import { AllMembersComponent } from "./all-members/all-members.component";
 import { FormDialogComponent } from "./all-members/dialogs/form-dialog/form-dialog.component";
 import { DeleteDialogComponent } from "./all-members/dialogs/delete/delete.component";
 import { AdminService } from "src/app/core/admin/admin.service";
+import { OrganizationService } from "src/app/core/organization/organization.service";
 
 @NgModule({
   declarations: [
@@ -56,6 +57,6 @@ import { AdminService } from "src/app/core/admin/admin.service";
     MaterialFileInputModule,
     MatProgressSpinnerModule,
   ],
-  providers: [AdminService],
+  providers: [AdminService, OrganizationService],
 })
 export class StaffModule {}

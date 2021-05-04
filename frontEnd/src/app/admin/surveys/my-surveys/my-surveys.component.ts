@@ -16,8 +16,6 @@ import { FormDialogComponent } from "./dialogs/form-dialog/form-dialog.component
 import { DeleteDialogComponent } from "./dialogs/delete/delete.component";
 import { SelectionModel } from "@angular/cdk/collections";
 
-import { AdminService } from "src/app/core/admin/admin.service";
-import { Admin } from "src/app/core/models/admin";
 import { AuthService } from "src/app/core/service/auth.service";
 import { Survey } from "src/app/core/models/survey";
 

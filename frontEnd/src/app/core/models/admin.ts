@@ -20,8 +20,9 @@ export class Admin {
   constructor(admins) {
     {
       this.id = admins.id || this.getRandomID();
-
+      this.Organization.name = admins.Organization.name || "";
       this.name = admins.name || "";
+      this.role = admins.role || "";
       this.email = admins.email || "";
       this.createdAt = formatDate(new Date(), "yyyy-MM-dd", "en") || "";
       this.phone = admins.phone || "";

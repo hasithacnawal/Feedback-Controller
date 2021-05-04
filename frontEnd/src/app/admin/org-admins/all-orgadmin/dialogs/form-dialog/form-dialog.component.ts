@@ -36,6 +36,7 @@ export class FormDialogComponent {
       this.dialogTitle = "New Admin";
       this.admins = new Admin({});
     }
+
     this.adminDialogForm = this.createContactForm();
   }
   formControl = new FormControl("", [
@@ -53,7 +54,6 @@ export class FormDialogComponent {
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.admins.id],
-
       name: [this.admins.name],
       email: [this.admins.email],
       createdAt: [
@@ -65,6 +65,9 @@ export class FormDialogComponent {
   }
   submit() {
     console.log(this.admins);
+  }
+  updateUser(): void {
+    this.adminService.updateAdmin(this.adminDialogForm.getRawValue());
   }
   onNoClick(): void {
     this.dialogRef.close();

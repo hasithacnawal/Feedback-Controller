@@ -64,7 +64,7 @@ export class FormDialogComponent {
     });
   }
   submit() {
-    console.log(this.admins);
+    console.log("hello");
   }
   onNoClick(): void {
     this.dialogRef.close();
