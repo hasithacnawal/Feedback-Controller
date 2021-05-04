@@ -86,7 +86,7 @@ export class MySurveysComponent implements OnInit {
     this.id = row.id;
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        admins: row,
+        surveys: row,
         action: "edit",
       },
     });

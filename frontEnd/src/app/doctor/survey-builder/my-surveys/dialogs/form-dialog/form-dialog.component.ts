@@ -10,7 +10,7 @@ import {
 
 import { formatDate } from "@angular/common";
 import { Admin } from "src/app/core/models/admin";
-import { AdminService } from "src/app/core/admin/admin.service";
+import { SurveyService } from "src/app/core/survey/survey.service";
 import { Survey } from "src/app/core/models/survey";
 @Component({
   selector: "app-form-dialog",
@@ -20,12 +20,12 @@ import { Survey } from "src/app/core/models/survey";
 export class FormDialogComponent {
   action: string;
   dialogTitle: string;
-  adminDialogForm: FormGroup;
+  surveyDialogForm: FormGroup;
   surveys: Survey;
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public adminService: AdminService,
+    public surveyService: SurveyService,
     private fb: FormBuilder
   ) {
     // Set the defaults
@@ -37,7 +37,7 @@ export class FormDialogComponent {
       this.dialogTitle = "New Admin";
       this.surveys = new Survey({});
     }
-    this.adminDialogForm = this.createContactForm();
+    this.surveyDialogForm = this.createContactForm();
   }
   formControl = new FormControl("", [
     Validators.required,
@@ -68,6 +68,6 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.adminService.addAdmin(this.adminDialogForm.getRawValue());
+    this.surveyService.updateSurvey(this.surveyDialogForm.getRawValue());
   }
 }
