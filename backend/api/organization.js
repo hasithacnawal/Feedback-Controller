@@ -25,11 +25,27 @@ router.post("/", async (req, res) => {
   }
 });
 router.get("/", async (req, res) => {
-  const organization = await Organization.findAll({
+  const organizations = await Organization.findAll({
     include: [
       {
         model: Admin,
         as: "Admins",
+      },
+    ],
+  });
+  res.json(organizations);
+});
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const organization = await Organization.findByPk(id, {
+    include: [
+      {
+        model: Admin,
+        as: "Admins",
+      },
+      {
+        model: db.Survey,
+        as: "Surveys",
       },
     ],
   });

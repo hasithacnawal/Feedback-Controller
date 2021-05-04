@@ -13,6 +13,8 @@ import { Organization } from "../models/organization";
 export class AuthService {
   private currentUserSubject: BehaviorSubject<Admin>;
   public currentUser: Observable<Admin>;
+  userOrganizationSubject: BehaviorSubject<Organization>;
+  public userOrganization: Observable<Organization>;
 
   private baseUrl = "http://localhost:5550/api/admin/";
   constructor(private http: HttpClient) {
@@ -20,8 +22,14 @@ export class AuthService {
       JSON.parse(localStorage.getItem("currentUser"))
     );
     this.currentUser = this.currentUserSubject.asObservable();
+    this.userOrganizationSubject = new BehaviorSubject<Organization>(
+      JSON.parse(localStorage.getItem("userOrganization"))
+    );
+    this.userOrganization = this.userOrganizationSubject.asObservable();
   }
-
+  public get userOrgValue(): Organization {
+    return this.userOrganizationSubject.value;
+  }
   public get currentUserValue(): Admin {
     return this.currentUserSubject.value;
   }
@@ -37,7 +45,12 @@ export class AuthService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
 
           localStorage.setItem("currentUser", JSON.stringify(value.value));
+          localStorage.setItem(
+            "userOrganization",
+            JSON.stringify(value.value.Organization)
+          );
           this.currentUserSubject.next(value.value);
+          this.userOrganizationSubject.next(value.value.Organization);
           return value;
         })
       );

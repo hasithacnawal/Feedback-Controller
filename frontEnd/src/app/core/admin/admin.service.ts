@@ -21,6 +21,9 @@ export class AdminService {
   createAdmin(admin: Admin): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}`, admin);
   }
+  getAll(): Observable<Admin[]> {
+    return this.httpClient.get<Admin[]>(`${this.baseUrl}`);
+  }
   getAllAdmins(): void {
     this.httpClient.get<Admin[]>(this.baseUrl).subscribe(
       (data) => {

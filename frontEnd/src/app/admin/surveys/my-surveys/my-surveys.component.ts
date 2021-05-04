@@ -1,4 +1,3 @@
-
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
@@ -23,9 +22,9 @@ import { AuthService } from "src/app/core/service/auth.service";
 import { Survey } from "src/app/core/models/survey";
 
 @Component({
-  selector: 'app-my-surveys',
-  templateUrl: './my-surveys.component.html',
-  styleUrls: ['./my-surveys.component.sass']
+  selector: "app-my-surveys",
+  templateUrl: "./my-surveys.component.html",
+  styleUrls: ["./my-surveys.component.sass"],
 })
 export class MySurveysComponent implements OnInit {
   displayedColumns = [
@@ -92,6 +91,8 @@ export class MySurveysComponent implements OnInit {
         action: "edit",
       },
     });
+    console.log(row);
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
@@ -287,6 +288,3 @@ export class ExampleDataSource extends DataSource<Survey> {
     });
   }
 }
-
-
-

@@ -70,8 +70,10 @@ db.User.belongsTo(db.Organization);
 // db.Role.hasMany(db.Admin);
 // db.Admin.belongsTo(db.Role);
 
-db.Organization.hasMany(db.Survey);
-db.Survey.belongsTo(db.Organization);
+db.Organization.hasMany(db.Survey, {
+  as: "Surveys",
+});
+db.Survey.belongsTo(db.Organization, {});
 
 db.Admin.belongsToMany(db.Survey, {
   through: "admin_survey",

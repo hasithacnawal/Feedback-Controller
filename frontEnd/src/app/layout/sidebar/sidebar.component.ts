@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   userFullName: string;
   userImg: string;
   userType: string;
-  Organization: Organization;
+  organization: string;
   headerHeight = 60;
   currentRoute: string;
   routerObj = null;
@@ -112,7 +112,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if (this.authService.currentUserValue) {
       const userRole = this.authService.currentUserValue.role;
       this.userFullName = this.authService.currentUserValue.name;
-      this.Organization = this.authService.currentUserValue.Organization;
+      this.organization = this.authService.currentUserValue.Organization.name;
       this.userImg = this.authService.currentUserValue.img;
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf("All") !== -1

@@ -12,6 +12,7 @@ import { ConfigService } from "src/app/configuration/config.service";
 import { AuthService } from "src/app/core/service/auth.service";
 import { RightSidebarService } from "src/app/core/service/rightsidebar.service";
 import { LanguageService } from "src/app/core/service/language.service";
+import { Organization } from "src/app/core/models/organization";
 
 const document: any = window.document;
 
@@ -29,6 +30,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   countryName;
   langStoreValue: string;
   defaultFlag: string;
+  orgName: string;
+  Organization: Organization;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -94,14 +97,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.config = this.configService.configData;
     const userRole = this.authService.currentUserValue.role;
+    this.Organization = this.authService.currentUserValue.Organization;
     this.userImg = this.authService.currentUserValue.img;
 
     if (userRole === "SuperAdmin") {
       this.homePage = "admin/dashboard/main";
-    } else if (userRole === "OrgAdmin") {
-      this.homePage = "doctor/dashboard";
     } else {
-      this.homePage = "admin/dashboard/main";
+      this.homePage = "orgAdmin/dashboard";
     }
 
     this.langStoreValue = localStorage.getItem("lang");

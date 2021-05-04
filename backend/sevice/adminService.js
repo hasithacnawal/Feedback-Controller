@@ -89,6 +89,13 @@ const login = function (req, res) {
     // check mail in db or not
 
     Admin.findOne({
+      include: [
+        {
+          model: Organization,
+          as: "Organization",
+          attributes: ["id", "name", "email"],
+        },
+      ],
       where: {
         email,
       },

@@ -11,18 +11,19 @@ import {
 import { formatDate } from "@angular/common";
 import { SurveyService } from "src/app/core/survey/survey.service";
 import { Survey } from "src/app/core/models/survey";
+import { Question } from "src/app/core/models/question";
 
 @Component({
-  selector: 'app-form-dialog',
-  templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  selector: "app-form-dialog",
+  templateUrl: "./form-dialog.component.html",
+  styleUrls: ["./form-dialog.component.sass"],
 })
-export class FormDialogComponent{
-
+export class FormDialogComponent {
   action: string;
   dialogTitle: string;
   surveysDialogForm: FormGroup;
   surveys: Survey;
+  questions: Question[];
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -39,6 +40,7 @@ export class FormDialogComponent{
       this.surveys = new Survey({});
     }
     this.surveysDialogForm = this.createContactForm();
+    console.log(this.surveys);
   }
   formControl = new FormControl("", [
     Validators.required,
@@ -55,7 +57,7 @@ export class FormDialogComponent{
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.surveys.id],
-
+      questions: [this.surveys.questions],
       title: [this.surveys.title],
       type: [this.surveys.type],
 
@@ -74,4 +76,3 @@ export class FormDialogComponent{
 }
 
 //
-
