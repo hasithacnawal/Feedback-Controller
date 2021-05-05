@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       createrId: {
         type: DataTypes.INTEGER,
       },
+      surveyTypeId: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       modelName: "Survey",

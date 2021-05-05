@@ -6,13 +6,23 @@ const router = express.Router();
 const Survey = db.Survey;
 
 router.post("/", async (req, res) => {
-  const { title, type, organizationId, createrId, questions } = req.body;
+  const {
+    title,
+    type,
+    organizationId,
+    createrId,
+    surveyTypeId,
+
+    questions,
+  } = req.body;
   const survey = await Survey.create(
     {
       title,
       type,
       organizationId,
       createrId,
+      surveyTypeId,
+
       questions,
     },
     {
@@ -26,7 +36,35 @@ router.post("/", async (req, res) => {
   );
   return res.json(survey);
 });
-
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  await Survey.findByPk(id, {
+    include: [
+      {
+        model: db.Question,
+        as: "questions",
+        include: [
+          {
+            model: db.MultipleOption,
+            as: "multipleOptions",
+            attributes: ["id", "option"],
+          },
+        ],
+      },
+      { model: db.Admin, attributes: ["id", "name", "email"] },
+      {
+        model: db.Organization,
+        attributes: ["id", "name", "email"],
+      },
+    ],
+  })
+    .then((value) => {
+      res.send(value);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 router.get("/", async (req, res) => {
   await Survey.findAll({
     include: [

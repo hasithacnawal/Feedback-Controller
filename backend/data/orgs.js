@@ -13,12 +13,17 @@ const orgs = [
   },
 
   {
-    name: "Hitachi",
-    email: "hitachi@gmail.com",
+    name: "SLIIT",
+    email: "sliit@gmail.com",
     phone: "0777584685",
     address: "240, Highlevel Road, Colombo 00600, Srilanka",
   },
-
+  {
+    name: "Ikman.LK",
+    email: "ikman.lk.com",
+    phone: "0714556541",
+    address: "01 Galle Rd, Colombo 00300, Sri Lanka.",
+  },
   {
     name: "Kelly Felder",
     email: "online@kellyfelder.com",

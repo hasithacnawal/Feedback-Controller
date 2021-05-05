@@ -38,6 +38,9 @@ export class SurveyService {
       }
     );
   }
+  getSurveyById(surveyid: number): void {
+    this.httpClient.get(`${this.baseUrl}/${surveyid}`);
+  }
   getSurveysByCreatorId(createrId): void {
     this.httpClient
       .get<Survey[]>(`${this.baseUrl}/findByCreater/${createrId}`)

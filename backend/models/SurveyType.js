@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const SurveyType = sequelize.define(
     "surveyTypes",
     {
-      type: DataTypes.STRING,
+      value: DataTypes.STRING,
     },
     {
       sequelize,

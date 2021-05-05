@@ -12,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      questionType: {
+      type: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "Small Text",
       },
       required: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
       surveyId: {
+        type: DataTypes.INTEGER,
+      },
+      questionTypeId: {
         type: DataTypes.INTEGER,
       },
     },

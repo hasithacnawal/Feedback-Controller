@@ -25,6 +25,7 @@ const admin = [
     phone: "0757584697",
     organizationId: 2,
     roleId: 1,
+    role: "OrgAdmin",
   },
 
   {
@@ -34,6 +35,7 @@ const admin = [
     phone: "0757584698",
     organizationId: 2,
     roleId: 2,
+    role: "Editor",
   },
 
   {
@@ -43,6 +45,7 @@ const admin = [
     phone: "0777584698",
     organizationId: 2,
     roleId: 1,
+    role: "OrgAdmin",
   },
 ];
 
