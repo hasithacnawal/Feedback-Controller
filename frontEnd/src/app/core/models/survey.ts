@@ -2,12 +2,12 @@ import { Question } from "./question";
 
 export class Survey {
   id: number;
-  uuid: string;
   anonymous: boolean;
   title: string;
   type: string;
   organizationId: number;
   createrId: number;
+  surveyTypeId: number;
   createdAt: Date;
   updatedAt: Date;
   questions: Question[];
@@ -15,6 +15,10 @@ export class Survey {
     this.id = surveys.id || this.getRandomID();
     this.title = surveys.title;
     this.type = surveys.type;
+    this.anonymous = surveys.anonymous;
+    this.createrId = surveys.createrId;
+    this.surveyTypeId = surveys.surveyTypeId;
+    this.organizationId = surveys.organizationId;
   }
 
   public getRandomID(): string {

@@ -94,12 +94,14 @@ db.Question.hasMany(db.MultipleOption, {
 });
 db.MultipleOption.belongsTo(db.Question);
 
-db.Survey.hasOne(db.SurveyType, {
+db.Survey.belongsTo(db.SurveyType, {
   foreignKey: "surveyTypeId",
 });
-db.Question.hasOne(db.QuestionType, {
+db.SurveyType.hasMany(db.Survey);
+db.Question.belongsTo(db.QuestionType, {
   foreignKey: "questionTypeId",
 });
+db.QuestionType.hasMany(db.Question);
 
 db.User.hasMany(db.Answer);
 db.Answer.belongsTo(db.User);

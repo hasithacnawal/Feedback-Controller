@@ -1,19 +1,12 @@
- import {Option} from './option'
- 
- export class Question{
+import { MultipleOption } from "./multipleOption";
 
-constructor(
+export class Question {
+  id: number;
+  uuid: number;
+  questionTitle: string;
+  type: string;
+  surveyId: number;
+  multipleOption: MultipleOption[];
 
-
-public uuid: number,
-public questionTitle:string,
-public questionType:string,
-//public required:true,
-//public surveyId: number,
-public options: Option[],
-//public questions: Question[]
-
-){}
-
-
- }
+  constructor() {}
+}
