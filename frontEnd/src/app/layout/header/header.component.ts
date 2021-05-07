@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.config = this.configService.configData;
-    const userRole = this.authService.currentUserValue.role;
+    const userRole = this.authService.currentUserValue.Role.name;
     this.Organization = this.authService.currentUserValue.Organization;
     this.userImg = this.authService.currentUserValue.img;
 

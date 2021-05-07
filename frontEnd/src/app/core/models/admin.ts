@@ -11,7 +11,7 @@ export class Admin {
   email: string;
   phone: string;
   createdAt: string;
-  role: Role;
+  Role: Role;
   roleId: number;
   organizationId: number;
   Organization: Organization;
@@ -22,7 +22,7 @@ export class Admin {
       this.id = admins.id || this.getRandomID();
       this.Organization.name = admins.Organization.name || "";
       this.name = admins.name || "";
-      this.role = admins.role || "";
+      this.Role = admins.Role || "";
       this.email = admins.email || "";
       this.createdAt = formatDate(new Date(), "yyyy-MM-dd", "en") || "";
       this.phone = admins.phone || "";
