@@ -6,12 +6,12 @@ import {
   Validators,
   FormBuilder,
 } from "@angular/forms";
-import { Survey } from "src/app/core/models/survey";
-import { Question } from "src/app/core/models/question";
-import { Option } from "src/app/core/models/option";
+
 import { SurveyService } from "src/app/core/survey/survey.service";
 import { AuthService } from "src/app/core/service/auth.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Survey } from "src/app/core/models/survey";
+import { MultipleOption } from "src/app/core/models/multipleOption";
 
 export interface QuestionType {
   value: string;
@@ -170,63 +170,52 @@ export class CreateSurveyComponent implements OnInit {
       panelClass: colorName,
     });
   }
-  // postSurvey() {
-  //   let formData = this.surveyForm.value;
-  //   console.log(formData);
+  addNewSurvey() {
+    let formData = this.surveyForm.value;
+    let createrId = this.authService.currentUserValue.id;
+    let orgId = this.authService.currentUserValue.organizationId;
+    let surveyQuestions = formData.surveyQuestions;
+    console.log("hello", formData);
 
-  //   console.log();
-  //   let ID = 0;
-  //   let Type = formData.surveyType;
-  //   let Title = formData.surveyTitle;
-  //   //let IsDeleted = false;
-  //   let IsAnonymous = formData.IsAnonymous;
-  //   //  let Question: Question[] = [];
+    let survey: Survey;
 
-  //   const orgId = this.authService.currentUserValue.organizationId;
-  //   const createrId = this.authService.currentUserValue.id;
-  //   let Questions = [];
+    survey.type = formData.surveyType;
+    survey.title = formData.surveyTitle;
+    survey.anonymous = formData.IsAnonymous;
+    survey.createrId = createrId;
+    survey.organizationId = orgId;
 
-  //   let surveyQuestions = formData.surveyQuestions;
-  //   let optionArray =
-  //     formData.surveyQuestions[0].questionGroup.options[0].optionText;
+    let optionArray =
+      formData.surveyQuestions[0].questionGroup.options[0].optionText;
 
-  //   const survey = new Survey(
-  //     IsAnonymous,
-  //     Title,
-  //     Type,
-  //     orgId,
-  //     createrId,
-  //     Questions
-  //   );
+    surveyQuestions.forEach((question, index, array) => {
+      let questionItem = {
+        uuid: 0,
+        questionType: question.questionType,
+        questionTitle: question.questionTitle,
+        //"required": true,
+        options: [],
+      };
 
-  //   surveyQuestions.forEach((question, index, array) => {
-  //     let questionItem = {
-  //       uuid: 0,
-  //       questionType: question.questionType,
-  //       questionTitle: question.questionTitle,
-  //       //"required": true,
-  //       options: [],
-  //     };
+      if (question.questionGroup.hasOwnProperty("options")) {
+        question.questionGroup.options.forEach((option) => {
+          let optionItem: MultipleOption = {
+            id: 0,
+            optionText: option.optionText,
+            optionColor: "",
+          };
+          questionItem.options.push(optionItem);
+        });
+      }
 
-  //     if (question.questionGroup.hasOwnProperty("options")) {
-  //       question.questionGroup.options.forEach((option) => {
-  //         let optionItem: Option = {
-  //           id: 0,
-  //           optionText: option.optionText,
-  //           optionColor: "",
-  //         };
-  //         questionItem.options.push(optionItem);
-  //       });
-  //     }
+      survey.questions.push(questionItem);
+    });
 
-  //     survey.question.push(questionItem);
-  //   });
-
-  //   console.log(survey);
-  //   console.log("posting survey");
-  // }
+    console.log(survey);
+    console.log("posting survey");
+  }
 
   onSubmit() {
-    this.postSurvey();
+    this.addNewSurvey();
   }
 }

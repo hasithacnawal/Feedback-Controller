@@ -78,6 +78,13 @@ db.Survey.belongsTo(db.Organization, {});
 db.Admin.belongsToMany(db.Survey, {
   through: "admin_survey",
 });
+
+db.Admin.belongsTo(db.Role, {
+  foreignKey: "roleId",
+  as: "Role",
+});
+db.Role.hasMany(db.Admin);
+
 db.Survey.belongsTo(db.Admin, {
   foreignKey: "createrId",
 });
@@ -94,12 +101,14 @@ db.Question.hasMany(db.MultipleOption, {
 });
 db.MultipleOption.belongsTo(db.Question);
 
-db.Survey.hasOne(db.SurveyType, {
+db.Survey.belongsTo(db.SurveyType, {
   foreignKey: "surveyTypeId",
 });
-db.Question.hasOne(db.QuestionType, {
+db.SurveyType.hasMany(db.Survey);
+db.Question.belongsTo(db.QuestionType, {
   foreignKey: "questionTypeId",
 });
+db.QuestionType.hasMany(db.Question);
 
 db.User.hasMany(db.Answer);
 db.Answer.belongsTo(db.User);

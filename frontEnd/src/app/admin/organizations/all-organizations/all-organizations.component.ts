@@ -1,10 +1,9 @@
-
 import { OrganizationService } from "src/app/core/organization/organization.service";
 import { HttpClient } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import {Organization } from "src/app/core/models/organization";
+import { Organization } from "src/app/core/models/organization";
 import { DataSource } from "@angular/cdk/collections";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BehaviorSubject, fromEvent, merge, Observable } from "rxjs";
@@ -13,24 +12,15 @@ import { FormDialogComponent } from "./dialogs/form-dialog/form-dialog.component
 import { DeleteDialogComponent } from "./dialogs/delete/delete.component";
 import { SelectionModel } from "@angular/cdk/collections";
 
-
-import { Component,ElementRef, OnInit,ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 
 @Component({
-  selector: 'app-all-organizations',
-  templateUrl: './all-organizations.component.html',
-  styleUrls: ['./all-organizations.component.sass']
+  selector: "app-all-organizations",
+  templateUrl: "./all-organizations.component.html",
+  styleUrls: ["./all-organizations.component.sass"],
 })
 export class AllOrganizationsComponent implements OnInit {
-
-  displayedColumns = [
-    "select",
-    "name",
-    "phone",
-    "email",
-    "address",
-    "actions",
-  ];
+  displayedColumns = ["select", "name", "phone", "email", "address", "actions"];
   exampleDatabase: OrganizationService | null;
   dataSource: ExampleDataSource | null;
   selection = new SelectionModel<Organization>(true, []);
@@ -88,7 +78,7 @@ export class AllOrganizationsComponent implements OnInit {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-        (x) => x.id === this.id
+          (x) => x.id === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[
@@ -228,8 +218,7 @@ export class ExampleDataSource extends DataSource<Organization> {
               organizations.name +
               organizations.email +
               organizations.phone +
-              organizations.address 
-             
+              organizations.address
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -268,10 +257,9 @@ export class ExampleDataSource extends DataSource<Organization> {
           [propertyA, propertyB] = [a.phone, b.phone];
           break;
 
-          case "address":
+        case "address":
           [propertyA, propertyB] = [a.address, b.address];
           break;
-      
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
       const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
@@ -280,5 +268,4 @@ export class ExampleDataSource extends DataSource<Organization> {
       );
     });
   }
-
 }

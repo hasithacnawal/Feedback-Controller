@@ -1,9 +1,11 @@
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
+
 require("dotenv").config();
 const db = require("../models");
 const Admin = db.Admin;
 const Organization = db.Organization;
+const Role = db.Role;
 
 const register = function (req, res) {
   const {
@@ -95,6 +97,11 @@ const login = function (req, res) {
           as: "Organization",
           attributes: ["id", "name", "email"],
         },
+        {
+          model: Role,
+          as: "Role",
+          attributes: ["id", "name"],
+        },
       ],
       where: {
         email,
@@ -147,9 +154,6 @@ const findAllAdmins = async (req, res) => {
         attributes: ["name", "email"],
       },
     ],
-    where: {
-      role: ["OrgAdmin"],
-    },
   });
   res.json(admins);
 };
@@ -162,6 +166,11 @@ const findAdminById = async (req, res) => {
         model: Organization,
         as: "Organization",
         attributes: ["name", "email"],
+      },
+      {
+        model: Role,
+        as: "Role",
+        attributes: ["id", "name"],
       },
     ],
   })
@@ -186,10 +195,10 @@ const findByOrgId = async (req, res) => {
         attributes: ["name", "email"],
       },
     ],
-    where: {
-      organizationId: orgId,
-      role: ["OrgAdmin", "Editor", "Moderator"],
-    },
+    // where: {
+    //   organizationId: orgId,
+    //   role: ["OrgAdmin", "Editor", "Moderator"],
+    // },
   })
     .then((value) => {
       if (value != []) {
