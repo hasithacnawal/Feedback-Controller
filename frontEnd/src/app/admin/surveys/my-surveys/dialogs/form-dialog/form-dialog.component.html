@@ -18,6 +18,8 @@
     </button>
   </div>
   <div mat-dialog-content>
+
+    
     <form
       class="register-form m-4"
       [formGroup]="surveysDialogForm"
@@ -52,6 +54,25 @@
           </mat-form-field>
         </div>
       </div>
+
+      
+          
+        
+      <div class="row">
+        <div class="col-md-12 col-sm-12 mb-2">
+          
+          <tr *ngFor="let notes of question; let i = index">
+            <td>{{notes.questionTitle}}</td>
+            <td>{{notes.questionType}}</td>
+        </tr>
+        </div>
+      </div>
+            
+                
+
+          
+
+       
 
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
