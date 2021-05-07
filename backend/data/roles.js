@@ -1,6 +1,9 @@
 const roles = [
   {
-    name: "Admin",
+    name: "SuperAdmin",
+  },
+  {
+    name: "OrgAdmin",
   },
   {
     name: "Editor",

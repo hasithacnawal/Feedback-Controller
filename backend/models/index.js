@@ -78,6 +78,13 @@ db.Survey.belongsTo(db.Organization, {});
 db.Admin.belongsToMany(db.Survey, {
   through: "admin_survey",
 });
+
+db.Admin.belongsTo(db.Role, {
+  foreignKey: "roleId",
+  as: "Role",
+});
+db.Role.hasMany(db.Admin);
+
 db.Survey.belongsTo(db.Admin, {
   foreignKey: "createrId",
 });

@@ -172,36 +172,29 @@ export class CreateSurveyComponent implements OnInit {
   }
   addNewSurvey() {
     let formData = this.surveyForm.value;
-    console.log(formData);
-
-    console.log();
-    let ID = 0;
-    let Type = formData.surveyType;
-    let Title = formData.surveyTitle;
-    //let IsDeleted = false;
-    let IsAnonymous = formData.IsAnonymous;
-    //  let Question: Question[] = [];
-
-    const orgId = this.authService.currentUserValue.organizationId;
-    const createrId = this.authService.currentUserValue.id;
-
+    let createrId = this.authService.currentUserValue.id;
+    let orgId = this.authService.currentUserValue.organizationId;
     let surveyQuestions = formData.surveyQuestions;
+    console.log("hello", formData);
 
-    const survey = new Survey({});
-    (survey.title = Title),
-      (survey.type = Type),
-      (survey.anonymous = IsAnonymous);
+    let survey: Survey;
+
+    survey.type = formData.surveyType;
+    survey.title = formData.surveyTitle;
+    survey.anonymous = formData.IsAnonymous;
+    survey.createrId = createrId;
+    survey.organizationId = orgId;
+
+    let optionArray =
+      formData.surveyQuestions[0].questionGroup.options[0].optionText;
 
     surveyQuestions.forEach((question, index, array) => {
       let questionItem = {
-        id: 1,
         uuid: 0,
-        type: "DemoType",
-        surveyId: 2,
         questionType: question.questionType,
         questionTitle: question.questionTitle,
         //"required": true,
-        multipleOption: [],
+        options: [],
       };
 
       if (question.questionGroup.hasOwnProperty("options")) {
@@ -211,7 +204,7 @@ export class CreateSurveyComponent implements OnInit {
             optionText: option.optionText,
             optionColor: "",
           };
-          questionItem.multipleOption.push(optionItem);
+          questionItem.options.push(optionItem);
         });
       }
 

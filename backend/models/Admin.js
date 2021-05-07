@@ -35,10 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       roleId: {
         type: DataTypes.INTEGER,
       },
-      role: {
-        type: DataTypes.STRING,
-        defaultValue: "",
-      },
     },
     {
       modelName: "Admin",

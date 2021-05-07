@@ -34,7 +34,6 @@ const routes: Routes = [
     loadChildren: () =>
       import("./patients/patients.module").then((m) => m.PatientsModule),
   },
-
   {
     path: "organization",
     loadChildren: () =>

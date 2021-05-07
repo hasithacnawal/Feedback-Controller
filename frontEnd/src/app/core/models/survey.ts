@@ -19,6 +19,7 @@ export class Survey {
     this.createrId = surveys.createrId;
     this.surveyTypeId = surveys.surveyTypeId;
     this.organizationId = surveys.organizationId;
+    this.questions = surveys.questions;
   }
 
   public getRandomID(): string {
@@ -28,3 +29,14 @@ export class Survey {
     return S4() + S4();
   }
 }
+// export class Survey {
+//   constructor(
+//     public uuid: number,
+//     public anonymous: boolean,
+//     public title: string,
+//     public type: string,
+//     public organizationId: number,
+//     public createrId: number,
+//     public question: Question[]
+//   ) {}
+// }
