@@ -1,7 +1,4 @@
-export enum Role {
-  All = "All",
-  SuperAdmin = "SuperAdmin",
-  OrgAdmin = "OrgAdmin",
-  Editor = "Editor",
-  Moderator = "Moderator",
+export class Role {
+  id: number;
+  name: string;
 }

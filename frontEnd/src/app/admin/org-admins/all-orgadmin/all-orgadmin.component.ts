@@ -228,7 +228,7 @@ export class ExampleDataSource extends DataSource<Admin> {
               admins.name +
               admins.Organization.name +
               admins.email +
-              admins.role +
+              admins.Role.name +
               admins.phone
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;

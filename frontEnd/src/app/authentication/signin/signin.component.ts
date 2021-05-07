@@ -52,10 +52,10 @@ export class SigninComponent implements OnInit {
         .subscribe(
           (res) => {
             if (res) {
-              const role = this.authService.currentUserValue.role;
-              if (role === Role.All || role === Role.SuperAdmin) {
+              const role = this.authService.currentUserValue.Role.name;
+              if (role === "SuperAdmin") {
                 this.router.navigate(["/admin/dashboard/main"]);
-              } else if (role === Role.OrgAdmin) {
+              } else if (role === "OrgAdmin") {
                 this.router.navigate(["/orgAdmin/dashboard"]);
               } else {
                 this.router.navigate(["/authentication/signin"]);
