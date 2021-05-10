@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { AdminService } from "src/app/core/admin/admin.service";
 import { OrganizationService } from "src/app/core/organization/organization.service";
 import { Role } from "src/app/core/models/role";
+import {RoleService} from 'src/app/core/admin/role.service'
 
 @Component({
   selector: "app-add-orgadmin",
@@ -17,13 +18,15 @@ export class AddOrgadminComponent {
   hide3 = true;
   agree3 = false;
   data$: Observable<Organization[]>;
+  roles$: Observable<Role[]>;
   roles: Role;
 
   constructor(
     private fb: FormBuilder,
     private adminService: AdminService,
     private orgService: OrganizationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private roleService: RoleService
   ) {
     this.orgAdminForm = this.fb.group({
       name: ["", [Validators.required]],
@@ -40,6 +43,7 @@ export class AddOrgadminComponent {
 
   ngOnInit(): void {
     this.data$ = this.orgService.getAll();
+    this.roles$= this.roleService.getAllRoles();
 
     //console.log(this.data$);
     //console.log(this.orgService.getAll());
