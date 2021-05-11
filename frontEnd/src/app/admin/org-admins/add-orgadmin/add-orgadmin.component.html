@@ -135,10 +135,12 @@
                     appearance="outline"
                   >
                     <mat-label>Role</mat-label>
-                    <mat-select formControlName="role" required>
-                      <mat-option [value]="'OrgAdmin'"> Admin </mat-option>
-                      <mat-option [value]="'Editor'"> Editor </mat-option>
-                      <mat-option [value]="'Moderator'"> Moderator </mat-option>
+                    <mat-select formControlName="roleId" required>
+                      <mat-option
+                        *ngFor="let roles of roles$ | async"
+                        [value]="roles.id"
+                        >{{ roles.name }}</mat-option
+                      >
                     </mat-select>
 
                     <mat-error

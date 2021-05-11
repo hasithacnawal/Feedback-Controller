@@ -1,18 +1,12 @@
 const express = require("express");
 const db = require("../models");
+const { postRole, getAllRoles } = require("../sevice/roleService");
 const router = express.Router();
 
 const Role = db.Role;
 
-router.post("/", async (req, res) => {
-  const { name } = req.body;
+router.post("/",postRole )
 
-  try {
-    const role = await Role.create({ name });
-    return res.json(role);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.get("/",getAllRoles);
 
 module.exports = router;
