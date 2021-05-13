@@ -47,6 +47,30 @@ const postOrgnization= async (req, res) => {
     });
     res.json(organization);
   }
-  
 
-  module.exports={postOrgnization,getAllOrganizations,getOrganizationById}
+  const deleteOrgByID=async(req, res)=> {
+    Organization.deleteById(req.params.id).
+        then((data) => {
+            res.status(200).json({
+                message: "organization deleted successfully",
+                org: data
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+const putOrganization = async(req, res) => {
+  const id = req.params.id;
+
+  Organization.update(req.body, {
+    where: { id: id }
+  }).then(() => {
+    res.status(200).send("updated successfully an organization with id = " + id);
+    });
+    
+
+};
+
+  module.exports={postOrgnization,getAllOrganizations,getOrganizationById,deleteOrgByID,putOrganization}

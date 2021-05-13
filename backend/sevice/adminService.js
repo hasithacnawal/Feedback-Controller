@@ -212,4 +212,16 @@ const findByOrgId = async (req, res) => {
     });
 };
 
-module.exports = { register, login, findAdminById, findAllAdmins, findByOrgId };
+const putAdmin = async(req, res) => {
+  const id = req.params.id;
+
+  Admin.update(req.body, {
+    where: { id: id }
+  }).then(() => {
+    res.status(200).send("updated successfully an admin with id = " + id);
+    });
+    
+
+};
+
+module.exports = { register, login, findAdminById, findAllAdmins, findByOrgId, putAdmin };

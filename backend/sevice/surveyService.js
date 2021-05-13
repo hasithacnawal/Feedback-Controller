@@ -157,6 +157,18 @@ const postSurvey = async (req, res) => {
       .catch((err) => {
         res.status(500).json(err);
       });
-  }
+  };
 
-  module.exports={postSurvey,getSurveyById,getAllSurveys, getSurveysByCreatorId,getSurveysByOrgId}
+  const putSurvey = async(req, res) => {
+    const id = req.params.id;
+  
+    Survey.update(req.body, {
+      where: { id: id }
+    }).then(() => {
+      res.status(200).send("updated successfully a survey with id = " + id);
+      });
+      
+  
+  };
+
+  module.exports={postSurvey,getSurveyById,getAllSurveys, getSurveysByCreatorId,getSurveysByOrgId, putSurvey}
