@@ -24,8 +24,6 @@ export class Question {
     public questionType: string,
     //public required:true,
     //public surveyId: number,
-    public options: MultipleOption[]
-  ) //public questions: Question[]
-
-  {}
+    public multipleOptions: MultipleOption[] //public questions: Question[]
+  ) {}
 }

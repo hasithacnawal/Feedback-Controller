@@ -105,10 +105,12 @@ db.Survey.belongsTo(db.SurveyType, {
   foreignKey: "surveyTypeId",
 });
 db.SurveyType.hasMany(db.Survey);
-db.Question.belongsTo(db.QuestionType, {
-  foreignKey: "questionTypeId",
-});
-db.QuestionType.hasMany(db.Question);
+// db.Question.belongsTo(db.QuestionType, {
+//   foreignKey: "questionTypeId",
+// });
+// db.QuestionType.hasMany(db.Question, {
+//   foreignKey: "questionTypeId",
+// });
 
 db.User.hasMany(db.Answer);
 db.Answer.belongsTo(db.User);

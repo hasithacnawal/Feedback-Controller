@@ -44,8 +44,6 @@ export class AddMemberComponent implements OnInit {
   ngOnInit(): void {
     this.data$ = this.orgService.getAll();
     this.userOrganization = this.authService.currentUserValue.Organization;
-    //console.log(this.data$);
-    //console.log(this.orgService.getAll());
   }
 
   saveAdmin() {

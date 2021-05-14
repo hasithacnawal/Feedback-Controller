@@ -37,7 +37,7 @@
               >
                 <mat-form-field class="full-width">
                   <input
-                    formControlName="surveyTitle"
+                    formControlName="title"
                     matInput
                     placeholder="Enter Survey Title"
                     maxlength="50"
@@ -47,7 +47,7 @@
 
                 <mat-form-field class="full-width">
                   <mat-select
-                    formControlName="surveyType"
+                    formControlName="type"
                     placeholder="Select Type"
                     [required]="true"
                   >
@@ -64,13 +64,13 @@
                 </mat-slide-toggle>
 
                 <div class="survey-options">
-                  <div formArrayName="surveyQuestions" class="poll-options">
+                  <div formArrayName="questions" class="poll-options">
                     <h3 class="list-title">Add Survey Questions</h3>
 
                     <ol class="list-style">
                       <li
                         *ngFor="
-                          let questionCtrl of surveyForm.get('surveyQuestions')[
+                          let questionCtrl of surveyForm.get('questions')[
                             'controls'
                           ];
                           let i = index
@@ -250,7 +250,6 @@
                     type="submit"
                     mat-raised-button
                     [disabled]="!surveyForm.valid"
-                  
                   >
                     <span *ngIf="!editMode">Add New Survey</span>
                     <span *ngIf="editMode">Update Survey</span>
