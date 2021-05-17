@@ -55,14 +55,10 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   private initForm() {
-    let surveyTitle = "";
-    let surveyType = "";
-    let surveyQuestions = new FormArray([]);
-
     this.surveyForm = new FormGroup({
-      surveyTitle: new FormControl(surveyTitle, [Validators.required]),
-      surveyType: new FormControl(surveyType, [Validators.required]),
-      surveyQuestions: surveyQuestions,
+      title: new FormControl("", [Validators.required]),
+      type: new FormControl("", [Validators.required]),
+      questions: new FormArray([]),
       IsAnonymous: new FormControl(false, [Validators.required]),
     });
 
@@ -75,23 +71,21 @@ export class CreateSurveyComponent implements OnInit {
     const surveyQuestionItem = new FormGroup({
       questionTitle: new FormControl("", Validators.required),
       questionType: new FormControl("", Validators.required),
-      questionGroup: new FormGroup({}),
+      multipleOptions: new FormArray([]),
     });
 
-    (<FormArray>this.surveyForm.get("surveyQuestions")).push(
-      surveyQuestionItem
-    );
+    (<FormArray>this.surveyForm.get("questions")).push(surveyQuestionItem);
   }
 
   onRemoveQuestion(index) {
     this.surveyForm.controls.surveyQuestions["controls"][
       index
-    ].controls.questionGroup = new FormGroup({});
+    ].controls.multipleOptions = new FormArray([]);
     this.surveyForm.controls.surveyQuestions["controls"][
       index
     ].controls.questionType = new FormControl({});
 
-    (<FormArray>this.surveyForm.get("surveyQuestions")).removeAt(index);
+    (<FormArray>this.surveyForm.get("questions")).removeAt(index);
     this.selectedOption.splice(index, 1);
     console.log(this.surveyForm);
   }
@@ -103,20 +97,20 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   addOptionControls(questionType, index) {
-    let options = new FormArray([]);
+    let option = new FormControl("");
     let showRemarksBox = new FormControl(false);
 
-    this.surveyForm.controls.surveyQuestions["controls"][
+    this.surveyForm.controls.questions["controls"][
       index
-    ].controls.questionGroup.addControl("options", options);
-    this.surveyForm.controls.surveyQuestions["controls"][
+    ].controls.multipleOptions.addControl("option", option);
+    this.surveyForm.controls.questions["controls"][
       index
-    ].controls.questionGroup.addControl("showRemarksBox", showRemarksBox);
+    ].controls.multipleOptions.addControl("showRemarksBox", showRemarksBox);
 
     this.clearFormArray(
       <FormArray>(
-        this.surveyForm.controls.surveyQuestions["controls"][index].controls
-          .questionGroup.controls.options
+        this.surveyForm.controls.questions["controls"][index].controls
+          .multipleOptions
       )
     );
 
@@ -132,21 +126,21 @@ export class CreateSurveyComponent implements OnInit {
 
   addOption(index) {
     const optionGroup = new FormGroup({
-      optionText: new FormControl("", Validators.required),
+      option: new FormControl(""),
     });
-    (<FormArray>(
-      this.surveyForm.controls.surveyQuestions["controls"][index].controls
-        .questionGroup.controls.options
-    )).push(optionGroup);
+    (<FormArray>this.surveyForm.controls.questions.get("multipleOptions")).push(
+      optionGroup
+    );
   }
 
   removeOption(questionIndex, itemIndex) {
     (<FormArray>(
-      this.surveyForm.controls.surveyQuestions["controls"][questionIndex]
-        .controls.questionGroup.controls.options
+      this.surveyForm.controls.questions["controls"][questionIndex].controls
+        .multipleOptions
     )).removeAt(itemIndex);
   }
   postSurvey() {
+    console.log(this.surveyForm.value);
     this.surveyService.postSurvey(this.surveyForm.value).subscribe(
       (data) => {
         console.log(data);
@@ -170,52 +164,8 @@ export class CreateSurveyComponent implements OnInit {
       panelClass: colorName,
     });
   }
-  addNewSurvey() {
-    let formData = this.surveyForm.value;
-    let createrId = this.authService.currentUserValue.id;
-    let orgId = this.authService.currentUserValue.organizationId;
-    let surveyQuestions = formData.surveyQuestions;
-    console.log("hello", formData);
-
-    let survey: Survey;
-
-    survey.type = formData.surveyType;
-    survey.title = formData.surveyTitle;
-    survey.anonymous = formData.IsAnonymous;
-    survey.createrId = createrId;
-    survey.organizationId = orgId;
-
-    let optionArray =
-      formData.surveyQuestions[0].questionGroup.options[0].optionText;
-
-    surveyQuestions.forEach((question, index, array) => {
-      let questionItem = {
-        uuid: 0,
-        questionType: question.questionType,
-        questionTitle: question.questionTitle,
-        //"required": true,
-        options: [],
-      };
-
-      if (question.questionGroup.hasOwnProperty("options")) {
-        question.questionGroup.options.forEach((option) => {
-          let optionItem: MultipleOption = {
-            id: 0,
-            optionText: option.optionText,
-            optionColor: "",
-          };
-          questionItem.options.push(optionItem);
-        });
-      }
-
-      survey.questions.push(questionItem);
-    });
-
-    console.log(survey);
-    console.log("posting survey");
-  }
 
   onSubmit() {
-    this.addNewSurvey();
+    this.postSurvey();
   }
 }

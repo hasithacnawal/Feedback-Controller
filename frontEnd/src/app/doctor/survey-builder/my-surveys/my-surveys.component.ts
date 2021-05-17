@@ -90,6 +90,7 @@ export class MySurveysComponent implements OnInit {
         action: "edit",
       },
     });
+    console.log(row);
     dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id

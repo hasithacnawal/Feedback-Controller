@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 
 import { formatDate } from "@angular/common";
-import { Admin } from "src/app/core/models/admin";
+
 import { SurveyService } from "src/app/core/survey/survey.service";
 import { Survey } from "src/app/core/models/survey";
 @Component({

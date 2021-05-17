@@ -37,7 +37,7 @@
               >
                 <mat-form-field class="full-width">
                   <input
-                    formControlName="surveyTitle"
+                    formControlName="title"
                     matInput
                     placeholder="Enter Survey Title"
                     maxlength="50"
@@ -47,7 +47,7 @@
 
                 <mat-form-field class="full-width">
                   <mat-select
-                    formControlName="surveyType"
+                    formControlName="type"
                     placeholder="Select Type"
                     [required]="true"
                   >
@@ -64,13 +64,13 @@
                 </mat-slide-toggle>
 
                 <div class="survey-options">
-                  <div formArrayName="surveyQuestions" class="poll-options">
+                  <div formArrayName="questions" class="poll-options">
                     <h3 class="list-title">Add Survey Questions</h3>
 
                     <ol class="list-style">
                       <li
                         *ngFor="
-                          let questionCtrl of surveyForm.get('surveyQuestions')[
+                          let questionCtrl of surveyForm.get('questions')[
                             'controls'
                           ];
                           let i = index
@@ -108,32 +108,25 @@
                             </mat-form-field>
 
                             <div
-                              formGroupName="questionGroup"
+                              formArrayName="multipleOptions"
                               [ngSwitch]="selectedOption[i]"
                             >
                               <div *ngSwitchCase="'Single choice'">
                                 <div
-                                  *ngIf="
-                                    questionCtrl.controls.questionGroup.controls
-                                      .options
-                                  "
+                                  *ngIf="questionCtrl.controls.multipleOptions"
                                 >
-                                  <ul
-                                    class="question-type"
-                                    formArrayName="options"
-                                  >
+                                  <ul class="question-type">
                                     <li
                                       *ngFor="
                                         let optionCtrl of questionCtrl.controls
-                                          .questionGroup.controls.options
-                                          .controls;
+                                          .multipleOptions.controls;
                                         let j = index
                                       "
                                     >
                                       <div [formGroupName]="j">
                                         <mat-form-field>
                                           <input
-                                            formControlName="optionText"
+                                            formControlName="option"
                                             matInput
                                             placeholder="option text"
                                             maxlength="100"
@@ -164,27 +157,23 @@
                               </div>
                               <div *ngSwitchCase="'Multi choice'">
                                 <div
-                                  *ngIf="
-                                    questionCtrl.controls.questionGroup.controls
-                                      .options
-                                  "
+                                  *ngIf="questionCtrl.controls.multipleOptions"
                                 >
                                   <ul
                                     class="question-type"
-                                    formArrayName="options"
+                                    formArrayName="multipleOptions"
                                   >
                                     <li
                                       *ngFor="
                                         let optionCtrl of questionCtrl.controls
-                                          .questionGroup.controls.options
-                                          .controls;
+                                          .multipleOptions.controls;
                                         let j = index
                                       "
                                     >
                                       <div [formGroupName]="j">
                                         <mat-form-field>
                                           <input
-                                            formControlName="optionText"
+                                            formControlName="option"
                                             matInput
                                             placeholder="option text"
                                             maxlength="100"
@@ -249,8 +238,6 @@
                     color="primary"
                     type="submit"
                     mat-raised-button
-                    [disabled]="!surveyForm.valid"
-                  
                   >
                     <span *ngIf="!editMode">Add New Survey</span>
                     <span *ngIf="editMode">Update Survey</span>
