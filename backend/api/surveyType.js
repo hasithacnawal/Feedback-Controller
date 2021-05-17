@@ -9,4 +9,4 @@ router.get("/",getAllSurveyTypes);
 
 router.get("/:id",putSurveyType);
 
-module.exports = router;
+module.exports = router; 

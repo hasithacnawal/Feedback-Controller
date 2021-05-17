@@ -13,6 +13,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatMenuModule } from "@angular/material/menu";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatDatepicker,
   MatDatepickerModule,
@@ -71,6 +72,8 @@ import { AppointmentsService } from "./appointments/appointments.service";
     MatRadioModule,
     DragDropModule,
     MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AppointmentsService],
 })
