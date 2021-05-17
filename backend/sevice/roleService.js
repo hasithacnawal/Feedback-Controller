@@ -19,4 +19,16 @@ const postRole= async (req, res) => {
     res.json(roles);
   };
 
-  module.exports={postRole, getAllRoles}
+  const putRole = async(req, res) => {
+    const id = req.params.id;
+  
+    Role.update(req.body, {
+      where: { id: id }
+    }).then(() => {
+      res.status(200).send("updated successfully a role with id = " + id);
+      });
+      
+  
+  };
+
+  module.exports={postRole, getAllRoles, putRole}

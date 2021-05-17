@@ -5,7 +5,7 @@ const {
   login,
   findAdminById,
   findAllAdmins,
-  findByOrgId,
+  findByOrgId,putAdmin
 } = require("../sevice/adminService");
 
 const router = express.Router();
@@ -19,5 +19,6 @@ router.post("/login", login);
 router.get("/:id", findAdminById);
 router.get("/findByOrgId/:orgId", findByOrgId);
 router.get("/", findAllAdmins);
+router.put("/:id",putAdmin);
 
 module.exports = router;

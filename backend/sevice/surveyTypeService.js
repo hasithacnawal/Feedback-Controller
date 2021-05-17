@@ -20,4 +20,16 @@ const postSurveyType= async (req, res) => {
     res.json(surveyTypes);
   };
 
-  module.exports={postSurveyType,getAllSurveyTypes}
+  const putSurveyType = async(req, res) => {
+    const id = req.params.id;
+  
+    SurveyType.update(req.body, {
+      where: { id: id }
+    }).then(() => {
+      res.status(200).send("updated successfully a surveyType with id = " + id);
+      });
+      
+  
+  };
+
+  module.exports={postSurveyType,getAllSurveyTypes,putSurveyType}
