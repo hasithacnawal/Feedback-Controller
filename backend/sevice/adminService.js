@@ -8,15 +8,8 @@ const Organization = db.Organization;
 const Role = db.Role;
 
 const register = function (req, res) {
-  const {
-    name,
-    email,
-    phone,
-    password,
-    organizationId,
-    roleId,
-    role,
-  } = req.body;
+  const { name, email, phone, password, organizationId, roleId, role } =
+    req.body;
   if (
     name == undefined ||
     name == "" ||
@@ -72,6 +65,41 @@ const register = function (req, res) {
       }
     });
   }
+};
+
+const changePassword = async (req, res) => {
+  const { id } = req.params;
+  const { oldPassword, password } = req.body;
+
+  await Admin.findByPk(id)
+    .then((value) => {
+      const dbPassword = value.getDataValue("password");
+      bcrypt.compare(oldPassword, dbPassword, function (err, result) {
+        if (result) {
+          bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(password, salt, function (err, hash) {
+              Admin.update(
+                { password: hash },
+                {
+                  where: { id: value.id },
+                }
+              );
+              res.status(200).json({
+                message: "Password Changed",
+              });
+            });
+          });
+        } else {
+          res.status(401).json({
+            message: "Enter your correct current password",
+            status: res.statusCode,
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      res.status(404).send();
+    });
 };
 
 const login = function (req, res) {
@@ -212,16 +240,22 @@ const findByOrgId = async (req, res) => {
     });
 };
 
-const putAdmin = async(req, res) => {
-  const id = req.params.id;
+const putAdmin = async (req, res) => {
+  const id = req.params;
 
   Admin.update(req.body, {
-    where: { id: id }
+    where: { id: id },
   }).then(() => {
     res.status(200).send("updated successfully an admin with id = " + id);
-    });
-    
-
+  });
 };
 
-module.exports = { register, login, findAdminById, findAllAdmins, findByOrgId, putAdmin };
+module.exports = {
+  register,
+  login,
+  findAdminById,
+  findAllAdmins,
+  findByOrgId,
+  putAdmin,
+  changePassword,
+};

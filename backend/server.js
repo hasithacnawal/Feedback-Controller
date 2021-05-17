@@ -9,7 +9,7 @@ const { sequelize } = require("./models");
 
 //databse syncing
 sequelize
-  .sync({ alter: true })
+  .authenticate()
   .then(() => {
     console.log("database connected");
   })
