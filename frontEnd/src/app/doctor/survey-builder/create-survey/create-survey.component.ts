@@ -71,7 +71,7 @@ export class CreateSurveyComponent implements OnInit {
     const surveyQuestionItem = new FormGroup({
       questionTitle: new FormControl("", Validators.required),
       questionType: new FormControl("", Validators.required),
-      questionGroup: new FormGroup({}),
+      multipleOptions: new FormArray([]),
     });
 
     (<FormArray>this.surveyForm.get("questions")).push(surveyQuestionItem);
@@ -80,7 +80,7 @@ export class CreateSurveyComponent implements OnInit {
   onRemoveQuestion(index) {
     this.surveyForm.controls.surveyQuestions["controls"][
       index
-    ].controls.questionGroup = new FormGroup({});
+    ].controls.multipleOptions = new FormArray([]);
     this.surveyForm.controls.surveyQuestions["controls"][
       index
     ].controls.questionType = new FormControl({});
@@ -97,20 +97,20 @@ export class CreateSurveyComponent implements OnInit {
   }
 
   addOptionControls(questionType, index) {
-    let options = new FormArray([]);
+    let option = new FormControl("");
     let showRemarksBox = new FormControl(false);
 
     this.surveyForm.controls.questions["controls"][
       index
-    ].controls.questionGroup.addControl("options", options);
+    ].controls.multipleOptions.addControl("option", option);
     this.surveyForm.controls.questions["controls"][
       index
-    ].controls.questionGroup.addControl("showRemarksBox", showRemarksBox);
+    ].controls.multipleOptions.addControl("showRemarksBox", showRemarksBox);
 
     this.clearFormArray(
       <FormArray>(
         this.surveyForm.controls.questions["controls"][index].controls
-          .questionGroup.controls.options
+          .multipleOptions
       )
     );
 
@@ -126,18 +126,17 @@ export class CreateSurveyComponent implements OnInit {
 
   addOption(index) {
     const optionGroup = new FormGroup({
-      optionText: new FormControl("", Validators.required),
+      option: new FormControl(""),
     });
-    (<FormArray>(
-      this.surveyForm.controls.questions["controls"][index].controls
-        .questionGroup.controls.options
-    )).push(optionGroup);
+    (<FormArray>this.surveyForm.controls.questions.get("multipleOptions")).push(
+      optionGroup
+    );
   }
 
   removeOption(questionIndex, itemIndex) {
     (<FormArray>(
       this.surveyForm.controls.questions["controls"][questionIndex].controls
-        .questionGroup.controls.options
+        .multipleOptions
     )).removeAt(itemIndex);
   }
   postSurvey() {

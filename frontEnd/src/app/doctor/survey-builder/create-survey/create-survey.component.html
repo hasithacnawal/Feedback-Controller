@@ -108,32 +108,25 @@
                             </mat-form-field>
 
                             <div
-                              formGroupName="questionGroup"
+                              formArrayName="multipleOptions"
                               [ngSwitch]="selectedOption[i]"
                             >
                               <div *ngSwitchCase="'Single choice'">
                                 <div
-                                  *ngIf="
-                                    questionCtrl.controls.questionGroup.controls
-                                      .options
-                                  "
+                                  *ngIf="questionCtrl.controls.multipleOptions"
                                 >
-                                  <ul
-                                    class="question-type"
-                                    formArrayName="options"
-                                  >
+                                  <ul class="question-type">
                                     <li
                                       *ngFor="
                                         let optionCtrl of questionCtrl.controls
-                                          .questionGroup.controls.options
-                                          .controls;
+                                          .multipleOptions.controls;
                                         let j = index
                                       "
                                     >
                                       <div [formGroupName]="j">
                                         <mat-form-field>
                                           <input
-                                            formControlName="optionText"
+                                            formControlName="option"
                                             matInput
                                             placeholder="option text"
                                             maxlength="100"
@@ -164,27 +157,23 @@
                               </div>
                               <div *ngSwitchCase="'Multi choice'">
                                 <div
-                                  *ngIf="
-                                    questionCtrl.controls.questionGroup.controls
-                                      .options
-                                  "
+                                  *ngIf="questionCtrl.controls.multipleOptions"
                                 >
                                   <ul
                                     class="question-type"
-                                    formArrayName="options"
+                                    formArrayName="multipleOptions"
                                   >
                                     <li
                                       *ngFor="
                                         let optionCtrl of questionCtrl.controls
-                                          .questionGroup.controls.options
-                                          .controls;
+                                          .multipleOptions.controls;
                                         let j = index
                                       "
                                     >
                                       <div [formGroupName]="j">
                                         <mat-form-field>
                                           <input
-                                            formControlName="optionText"
+                                            formControlName="option"
                                             matInput
                                             placeholder="option text"
                                             maxlength="100"
@@ -249,7 +238,6 @@
                     color="primary"
                     type="submit"
                     mat-raised-button
-                    [disabled]="!surveyForm.valid"
                   >
                     <span *ngIf="!editMode">Add New Survey</span>
                     <span *ngIf="editMode">Update Survey</span>

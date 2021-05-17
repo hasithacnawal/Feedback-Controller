@@ -60,6 +60,7 @@ export class AddMemberComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+    this.orgAdminForm.reset();
   }
 
   showNotification(colorName, text, placementFrom, placementAlign) {
