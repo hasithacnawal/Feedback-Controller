@@ -73,23 +73,23 @@
               </div>
               <div class="body">
                 <div class="example-container">
-                  <form [formGroup]="form">
+                  <form [formGroup]="form"   (ngSubmit)="onSubmit()">
                   <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="name" required />
                   </mat-form-field>
                   <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Current Password</mat-label>
-                    <input matInput type="password" />
+                    <input matInput type="password" formConrolName="oldPassword" />
                   </mat-form-field>
                   <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>New Password</mat-label>
-                    <input matInput type="password" />
+                    <input matInput type="password" formControlName="password" />
                   </mat-form-field>
-
+                  <button mat-raised-button color="primary"    type="submit">Save</button>
                 </form>
                 </div>
-                <button mat-raised-button color="primary">Save</button>
+             
               </div>
               <div class="header">
                 <h2><strong>Account</strong> Settings</h2>

@@ -35,6 +35,7 @@ import { DoctorsComponent } from "./doctors/doctors.component";
 import { PatientsComponent } from "./patients/patients.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { AppointmentsService } from "./appointments/appointments.service";
+import {AdminService} from "src/app/core/admin/admin.service"
 
 @NgModule({
   declarations: [
@@ -75,6 +76,6 @@ import { AppointmentsService } from "./appointments/appointments.service";
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AppointmentsService],
+  providers: [AppointmentsService,AdminService],
 })
 export class DoctorModule {}
