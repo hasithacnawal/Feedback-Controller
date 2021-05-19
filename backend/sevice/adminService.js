@@ -104,7 +104,6 @@ const changePassword = async (req, res) => {
 
 const login = function (req, res) {
   const { email, password } = req.body;
-
   if (
     password == "" ||
     password == undefined ||
