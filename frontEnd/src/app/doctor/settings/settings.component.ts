@@ -1,10 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/core/service/auth.service";
-import {AdminService} from "src/app/core/admin/admin.service"
-import {Admin} from "src/app/core/models/admin";
+import { AdminService } from "src/app/core/admin/admin.service";
+import { Admin } from "src/app/core/models/admin";
 import { BehaviorSubject, Observable } from "rxjs";
-import { FormBuilder, FormControl, FormGroup,Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { AuthService } from "src/app/core/service/auth.service";
 
 @Component({
   selector: "app-settings",
@@ -12,87 +17,75 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   styleUrls: ["./settings.component.sass"],
 })
 export class SettingsComponent implements OnInit {
-
-  public currentUserSubject:BehaviorSubject<Admin>;
   public form: FormGroup;
-  public submit:false;
+  public submit: false;
+  name: string;
+  img: string;
+  role: string;
+  phone: string;
 
-  admin$:Observable<Admin>;
-  constructor(private adminService: AdminService,private formBuilder:FormBuilder, private snackBar:MatSnackBar) {
-
+  admin$: Observable<Admin>;
+  constructor(
+    private adminService: AdminService,
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
+  ) {
     this.form = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl(""),
     });
-
-
-   
+    (this.name = authService.currentUserValue.name),
+      (this.role = authService.currentUserValue.Role.name),
+      (this.img = authService.currentUserValue.img);
+    this.phone = authService.currentUserValue.phone;
   }
 
   ngOnInit(): void {
-
-    console.log(localStorage.getItem("currentUser"));
-    this.currentUserSubject = new BehaviorSubject<Admin>(
-      JSON.parse(localStorage.getItem("currentUser"))
-    );
-
     this.form.patchValue({
-      name: this.currentUserSubject.value.name,
-      });
-
-    console.log(this.currentUserSubject);
+      name: this.authService.currentUserValue.name,
+    });
 
     this.form = this.formBuilder.group({
-
-      name:[this.currentUserSubject.value.name],
-      oldPassword:["",Validators.required],
-    password:["",Validators.required]
-    })
+      name: [this.authService.currentUserValue.name],
+      oldPassword: ["", Validators.required],
+      password: ["", Validators.required],
+    });
   }
 
-  get f(){
-
+  get f() {
     return this.form.controls;
   }
 
-  onSubmit(){
-
-    //this.submit=true;
-    /*if(this.form.invalid){
-
-      //this.error= "Current password is inavlid"
-      return;
-    }*/
-
-    //else{
-
-      this.adminService.changePassword(this.currentUserSubject.value.id,this.f.oldPassword.value,this.f.password.value)
-      .subscribe( data =>{
-        console.log(data);
-        this.showNotification(
-          "black",
-          "Add Organization Record Successfully...!!!",
-          "bottom",
-          "center"
-        );
-       
-      },
-      error => console.log(error));
-
-    //}
-
+  seeFormValue() {
+    console.log(this.form.value);
+  }
+  onSubmit() {
+    this.adminService
+      .changePassword(
+        this.authService.currentUserValue.id,
+        this.f.oldPassword.value,
+        this.f.password.value
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.showNotification(
+            "Green",
+            "Change Password Successfully...!!!",
+            "bottom",
+            "center"
+          );
+        },
+        (error) => console.log(error)
+      );
   }
 
-  showNotification(colorName,text,placementFrom,placementAlign){
-
-    this.snackBar.open(text,"",{
-      duration:2000,
-      verticalPosition:placementFrom,
-      horizontalPosition:placementAlign,
-      panelClass:colorName,
-    })
+  showNotification(colorName, text, placementFrom, placementAlign) {
+    this.snackBar.open(text, "", {
+      duration: 2000,
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName,
+    });
   }
-
-  
-
-  
 }

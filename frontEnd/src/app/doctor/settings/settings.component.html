@@ -25,21 +25,21 @@
           <div class="m-b-20">
             <div class="contact-grid">
               <div class="profile-header bg-dark">
-            <div class="user-name">{{this.currentUserSubject.value.name}}</div>
-                <div class="name-center">{{this.currentUserSubject.value.Role.name}}</div>
+                <div class="user-name">
+                  {{ name }}
+                </div>
+                <div class="name-center">
+                  {{ role }}
+                </div>
               </div>
-              <img
-                src="{{this.currentUserSubject.value.img}}"
-                class="user-img"
-                alt=""
-              />
+              <img src="{{ img }}" class="user-img" alt="" />
               <p>
                 456, Estern evenue, Courtage area,
                 <br />New York
               </p>
               <div>
                 <span class="phone">
-                  <i class="material-icons">phone</i>{{this.currentUserSubject.value.phone}}</span
+                  <i class="material-icons">phone</i>{{ phone }}</span
                 >
               </div>
               <div class="row">
@@ -73,23 +73,46 @@
               </div>
               <div class="body">
                 <div class="example-container">
-                  <form [formGroup]="form"   (ngSubmit)="onSubmit()">
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Username</mat-label>
-                    <input matInput formControlName="name" required />
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Current Password</mat-label>
-                    <input matInput type="password" formConrolName="oldPassword" />
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>New Password</mat-label>
-                    <input matInput type="password" formControlName="password" />
-                  </mat-form-field>
-                  <button mat-raised-button color="primary"    type="submit">Save</button>
-                </form>
+                  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="fill"
+                    >
+                      <mat-label>Username</mat-label>
+                      <input matInput formControlName="name" required />
+                    </mat-form-field>
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="fill"
+                    >
+                      <mat-label>Current Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        formControlName="oldPassword"
+                      />
+                    </mat-form-field>
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="fill"
+                    >
+                      <mat-label>New Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        formControlName="password"
+                      />
+                    </mat-form-field>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      (click)="onSubmit()"
+                      [disabled]="!form.valid"
+                    >
+                      Save
+                    </button>
+                  </form>
                 </div>
-             
               </div>
               <div class="header">
                 <h2><strong>Account</strong> Settings</h2>
@@ -107,8 +130,7 @@
                       </mat-form-field>
                     </div>
                   </div>
-                
-                  
+
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field
@@ -131,7 +153,7 @@
                       </mat-form-field>
                     </div>
                   </div>
-               
+
                   <div class="col-md-12">
                     <div class="form-group">
                       <mat-checkbox class="example-margin"
