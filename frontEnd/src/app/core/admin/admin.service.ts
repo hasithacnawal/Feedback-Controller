@@ -1,5 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { stringify } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
+import { number } from "ngx-custom-validators/src/app/number/validator";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Admin } from "../models/admin";
 
@@ -17,9 +19,28 @@ export class AdminService {
   getDialogData() {
     return this.dialogData;
   }
+
   /** CRUD METHODS */
   createAdmin(admin: Admin): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}`, admin);
+  }
+  /*login(email: string, password: string) {
+    return this.http
+      .post<any>(`${this.baseUrl}/login`, {
+        email,
+        password,
+      })*/
+  changePassword(id:number,oldPassword:string, password:string){
+    //console.log(id,oldPassword);
+    
+
+    return this.httpClient.put(`${this.baseUrl}changePassword/${id}`,{
+
+      oldPassword,
+      password
+    });
+
+
   }
   addAdmin(admin: Admin): void {
     this.dialogData = admin;
