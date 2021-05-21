@@ -89,7 +89,7 @@ export class SettingsComponent implements OnInit {
     console.log(this.authService.currentUserValue.id, this.formAccount.value);
 
     this.adminService
-      .updateAdmiAccount(
+      .updateAdminAccount(
         this.authService.currentUserValue.id,
         this.formAccount.value
       )

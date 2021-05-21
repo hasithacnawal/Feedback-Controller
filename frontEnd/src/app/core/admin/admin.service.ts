@@ -30,21 +30,18 @@ export class AdminService {
         email,
         password,
       })*/
-  changePassword(id:number,oldPassword:string, password:string){
+  changePassword(id: number, oldPassword: string, password: string) {
     //console.log(id,oldPassword);
-    
 
-    return this.httpClient.put(`${this.baseUrl}changePassword/${id}`,{
-
+    return this.httpClient.put(`${this.baseUrl}changePassword/${id}`, {
       oldPassword,
-      password
+      password,
     });
-
   }
 
-  updateAdmiAccount(id:number,admin:Admin){
-
-    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`,admin)
+  updateAdminAccount(id: number, admin: Admin): Observable<Object> {
+    this.dialogData = admin;
+    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`, admin);
   }
   addAdmin(admin: Admin): void {
     this.dialogData = admin;
@@ -54,8 +51,6 @@ export class AdminService {
   }
 
   updateAdmin(admin: Admin): void {
-    this.dialogData = admin;
-
     /* this.httpClient.put(this.API_URL + doctors.id, doctors).subscribe(data => {
       this.dialogData = doctors;
     },
