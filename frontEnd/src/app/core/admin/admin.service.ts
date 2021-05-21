@@ -40,7 +40,11 @@ export class AdminService {
       password
     });
 
+  }
 
+  updateAdmiAccount(id:number,admin:Admin){
+
+    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`,admin)
   }
   addAdmin(admin: Admin): void {
     this.dialogData = admin;
