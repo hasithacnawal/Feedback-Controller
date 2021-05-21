@@ -239,15 +239,24 @@ const findByOrgId = async (req, res) => {
     });
 };
 
-const putAdmin = async (req, res) => {
-  const id = req.params;
-  const {name,email,phone}= req.body;
+const putAdmin = function (req, res) {
+  const { id } = req.params;
+  const { name, email, phone } = req.body;
 
-  Admin.update(name,email,phone, {
-    where: { id: id },
-  }).then(() => {
-    res.status(200).send("updated successfully an admin with id = " + id);
-  });
+  Admin.update(
+    { name, email, phone },
+    {
+      where: { id: id },
+    }
+  )
+    .then(() => {
+      res.status(200).send("updated successfully an admin with id = " + id);
+    })
+    .catch((err) => {
+      res.status(404).json({
+        message: "Error occured",
+      });
+    });
 };
 
 module.exports = {
