@@ -241,8 +241,9 @@ const findByOrgId = async (req, res) => {
 
 const putAdmin = async (req, res) => {
   const id = req.params;
+  const {name,email,phone}= req.body;
 
-  Admin.update(req.body, {
+  Admin.update(name,email,phone, {
     where: { id: id },
   }).then(() => {
     res.status(200).send("updated successfully an admin with id = " + id);

@@ -17,10 +17,10 @@ import { AuthService } from "src/app/core/service/auth.service";
   styleUrls: ["./settings.component.sass"],
 })
 export class SettingsComponent implements OnInit {
-  form: FormGroup;
-  submit: false;
-  error: "";
-
+  public form: FormGroup;
+  public formAccount: FormGroup;
+  public save: true;
+  public submit: false;
   name: string;
   img: string;
   role: string;
@@ -31,6 +31,7 @@ export class SettingsComponent implements OnInit {
     private adminService: AdminService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private formBuilderAccount: FormBuilder,
     private snackBar: MatSnackBar
   ) {
     this.form = new FormGroup({
@@ -47,6 +48,12 @@ export class SettingsComponent implements OnInit {
       name: [this.authService.currentUserValue.name, Validators.required],
       oldPassword: ["", Validators.required],
       password: ["", Validators.required],
+    });
+
+    this.formAccount = this.formBuilderAccount.group({
+      name: [this.authService.currentUserValue.name, Validators.required],
+      email: [this.authService.currentUserValue.email, Validators.required],
+      phone: [this.authService.currentUserValue.phone, Validators.required],
     });
   }
 
@@ -73,6 +80,23 @@ export class SettingsComponent implements OnInit {
             "bottom",
             "center"
           );
+        },
+        (error) => console.log(error)
+      );
+  }
+
+  onSave() {
+    console.log(this.authService.currentUserValue.id, this.formAccount.value);
+
+    this.adminService
+      .updateAdmiAccount(
+        this.authService.currentUserValue.id,
+        this.formAccount.value
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.showNotification("Green", "sucess", "bootom", "center");
         },
         (error) => console.log(error)
       );
