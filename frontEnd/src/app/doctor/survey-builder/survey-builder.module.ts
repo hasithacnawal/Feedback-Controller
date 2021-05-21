@@ -29,6 +29,7 @@ import { FormDialogComponent } from "./my-surveys/dialogs/form-dialog/form-dialo
 
 import { SurveyService } from "src/app/core/survey/survey.service";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     AllSurveysComponent,
     DeleteDialogComponent,
     FormDialogComponent,
+    ViewSurveyComponent,
   ],
   imports: [
     CommonModule,

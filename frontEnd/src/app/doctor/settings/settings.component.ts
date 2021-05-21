@@ -17,8 +17,10 @@ import { AuthService } from "src/app/core/service/auth.service";
   styleUrls: ["./settings.component.sass"],
 })
 export class SettingsComponent implements OnInit {
-  public form: FormGroup;
-  public submit: false;
+  form: FormGroup;
+  submit: false;
+  error: "";
+
   name: string;
   img: string;
   role: string;
@@ -41,12 +43,8 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.patchValue({
-      name: this.authService.currentUserValue.name,
-    });
-
     this.form = this.formBuilder.group({
-      name: [this.authService.currentUserValue.name],
+      name: [this.authService.currentUserValue.name, Validators.required],
       oldPassword: ["", Validators.required],
       password: ["", Validators.required],
     });
@@ -71,7 +69,7 @@ export class SettingsComponent implements OnInit {
           console.log(data);
           this.showNotification(
             "Green",
-            "Change Password Successfully...!!!",
+            "Password Changed Successfully",
             "bottom",
             "center"
           );
