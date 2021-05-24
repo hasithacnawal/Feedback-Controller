@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
   public formAccount: FormGroup;
   public save: true;
   public submit: false;
+  public admin:Admin;
   name: string;
   img: string;
   role: string;
@@ -41,6 +42,11 @@ export class SettingsComponent implements OnInit {
       (this.role = authService.currentUserValue.Role.name),
       (this.img = authService.currentUserValue.img);
     this.phone = authService.currentUserValue.phone;
+
+  
+  
+
+    
   }
 
   ngOnInit(): void {
@@ -50,8 +56,13 @@ export class SettingsComponent implements OnInit {
       password: ["", Validators.required],
     });
 
+    
+    //console.log(this.admin,"admin");
+   
+   
+
     this.formAccount = this.formBuilderAccount.group({
-      name: [this.authService.currentUserValue.name, Validators.required],
+      name: [this.authService.currentUserValue.name,Validators.required],
       email: [this.authService.currentUserValue.email, Validators.required],
       phone: [this.authService.currentUserValue.phone, Validators.required],
     });
@@ -86,7 +97,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.authService.currentUserValue.id, this.formAccount.value);
+    //console.log(this.authService.currentUserValue.id, this.formAccount.value);
 
     this.adminService
       .updateAdminAccount(
@@ -95,11 +106,15 @@ export class SettingsComponent implements OnInit {
       )
       .subscribe(
         (data) => {
-          console.log(data);
-          this.showNotification("Green", "sucess", "bootom", "center");
+         console.log(data);
+          this.showNotification("Green", data, "bootom", "center");
+          this.reset();
+          
         },
         (error) => console.log(error)
       );
+
+    
   }
 
   showNotification(colorName, text, placementFrom, placementAlign) {
@@ -109,5 +124,27 @@ export class SettingsComponent implements OnInit {
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
+  }
+
+
+  reset(){
+
+    this.adminService.getAdminById(this.authService.currentUserValue.id)
+    .subscribe(
+      (data) => {
+        console.log("dfg",data);
+        this.admin= data;
+        console.log("admin",this.admin);
+        this.formAccount = this.formBuilderAccount.group({
+          name: [data.name,Validators.required],
+          email: [data.email, Validators.required],
+          phone: [data.phone, Validators.required],
+        });
+        
+      },
+      (error) => console.log(error)
+    );
+
+    
   }
 }

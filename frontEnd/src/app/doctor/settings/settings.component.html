@@ -118,7 +118,7 @@
               </div>
               <div class="body">
                 <div class="example-container">
-                  <form [formGroup]="formAccount" (ngSubmit)="onSave">
+                  <form [formGroup]="formAccount" (ngSubmit)="onSave()">
                  
                     
                       <mat-form-field
@@ -153,7 +153,7 @@
 
                 
                   <div class="col-md-12">
-                    <button mat-raised-button color="primary"  (click)="onSave()"
+                    <button mat-raised-button color="primary"  type="submit"
                     [disabled]="!formAccount.valid">
                       Save Changes
                     </button>

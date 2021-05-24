@@ -250,7 +250,7 @@ const putAdmin = function (req, res) {
     }
   )
     .then(() => {
-      res.status(200).send("updated successfully an admin with id = " + id);
+      res.status(200).json("updated successfully an admin with id = " + id);
     })
     .catch((err) => {
       res.status(404).json({

@@ -2,7 +2,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { stringify } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
 import { number } from "ngx-custom-validators/src/app/number/validator";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { Admin } from "../models/admin";
 
 @Injectable()
@@ -39,9 +40,47 @@ export class AdminService {
     });
   }
 
+  getAdminById(id:number){
+
+    return this.httpClient.get<Admin>(`${this.baseUrl}${id}`);
+  }
+
   updateAdminAccount(id: number, admin: Admin): Observable<Object> {
     this.dialogData = admin;
-    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`, admin);
+    return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`, admin)
+                          .pipe(
+                            catchError(error=>{
+
+                              let errorMsg:string;
+                              if(error.error instanceof ErrorEvent){
+                                errorMsg=`Error:${error.error.message}`;
+                              } else{
+                                errorMsg =this.getServerErrorMessage(error)
+                              }
+
+                              return throwError(errorMsg);
+                            })
+                          )
+  }
+
+  private getServerErrorMessage(error:HttpErrorResponse):string{
+    switch(error.status){
+      case 404:{
+        return `Not Found : $ {error.message}`;
+      }
+
+      case 403:{
+        return `Access Denied:${error.message}`;
+      }
+
+      case 500:{
+        return `Internal Server Error:${error.message}`;
+      }
+
+      default:{
+        return `Unknon Server Error: ${error.message}`;
+      }
+    }
   }
   addAdmin(admin: Admin): void {
     this.dialogData = admin;
