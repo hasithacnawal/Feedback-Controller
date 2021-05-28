@@ -37,7 +37,21 @@ export class AdminService {
     return this.httpClient.put(`${this.baseUrl}changePassword/${id}`, {
       oldPassword,
       password,
-    });
+    })
+   .pipe(
+      catchError(error=>{
+
+        let errorMsg:string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg=`Error:${error.error.message}`;
+        } else{
+          errorMsg =this.getServerErrorMessage(error)
+        }
+
+        return throwError(errorMsg);
+      })
+    )
+    ;
   }
 
   getAdminById(id:number){
@@ -56,6 +70,7 @@ export class AdminService {
                                 errorMsg=`Error:${error.error.message}`;
                               } else{
                                 errorMsg =this.getServerErrorMessage(error)
+                                //console.log(errorMsg);
                               }
 
                               return throwError(errorMsg);
@@ -65,8 +80,11 @@ export class AdminService {
 
   private getServerErrorMessage(error:HttpErrorResponse):string{
     switch(error.status){
+      case 401:{
+        return `${error.statusText}`;
+      }
       case 404:{
-        return `Not Found : $ {error.message}`;
+        return `Not Found :${error.message}`;
       }
 
       case 403:{

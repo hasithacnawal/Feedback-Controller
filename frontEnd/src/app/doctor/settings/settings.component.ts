@@ -92,7 +92,17 @@ export class SettingsComponent implements OnInit {
             "center"
           );
         },
-        (error) => console.log(error)
+        (error) => {console.log(error);
+          this.showNotification(
+            "Green",
+            error,
+            "bottom",
+            "center"
+          );
+        
+        }
+
+
       );
   }
 
