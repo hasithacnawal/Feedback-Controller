@@ -43,6 +43,7 @@ export class AdminService {
     this.dialogData = admin;
     return this.httpClient.put(`${this.baseUrl}updateAdmin/${id}`, admin);
   }
+
   addAdmin(admin: Admin): void {
     this.dialogData = admin;
     // this.httpClient.post(`${this.baseUrl}/`, admin).subscribe((data) => {
